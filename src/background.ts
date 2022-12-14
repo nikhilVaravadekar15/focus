@@ -4,3 +4,5 @@ function polling() {
 }
 
 polling();
+
+export {}

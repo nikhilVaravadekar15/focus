@@ -1,8 +1,3 @@
-# Chrome Extension TypeScript Starter
-
-![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
-
-Chrome Extension, TypeScript and Visual Studio Code
 
 ## Prerequisites
 
@@ -12,25 +7,16 @@ Chrome Extension, TypeScript and Visual Studio Code
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 
-## Includes the following
-
-* TypeScript
-* Webpack
-* React
-* Jest
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
-
 ## Project Structure
 
 * src/typescript: TypeScript source files
 * src/assets: static files
-* dist: Chrome Extension directory
-* dist/js: Generated JavaScript files
+* chrome_extension: Chrome Extension directory
+* chrome_extension/js: Generated JavaScript files
+
+
+
+## Available Scripts
 
 ## Setup
 
@@ -38,33 +24,21 @@ Chrome Extension, TypeScript and Visual Studio Code
 npm install
 ```
 
-## Import as Visual Studio Code project
-
-...
-
-## Build
-
-```
-npm run build
-```
-
 ## Build in watch mode
 
-### terminal
-
 ```
-npm run watch
+    npm run watch
 ```
-
-### Visual Studio Code
-
-Run watch mode.
-
-type `Ctrl + Shift + B`
-
 ## Load extension to chrome
 
-Load `dist` directory
+[Load-unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked) **`chrome_extension`** directory
 
-## Test
-`npx jest` or `npm run test`
+## production Build 
+
+```
+    npm run build
+```
+Builds the app for production to the **`build`** folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+
+The build is minified and the filenames include the hashes. Your app is ready to be deployed!

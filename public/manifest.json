@@ -1,34 +1,35 @@
 {
   "manifest_version": 3,
-
-  "name": "Chrome Extension TypeScript Starter",
-  "description": "Chrome Extension, TypeScript, Visual Studio Code",
-  "version": "1.0",
-
-  "options_ui": {
-    "page": "options.html"
+  "name": "chrome-extension-rect-typescript-starter-template",
+  "description": "chrome extension - react typescript starter template",
+  "version": "0.1.0",
+  "icons": {
+    "64": "icons-react.png"
   },
-
   "action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_popup": "./popup.html",
+    "default_title": "Procrastination Blocker"
   },
-
-  "content_scripts": [
-      {
-          "matches": ["<all_urls>"],
-          "js": ["js/vendor.js", "js/content_script.js"]
-      }
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "alarms"
   ],
-
   "background": {
     "service_worker": "js/background.js"
   },
-
-  "permissions": [
-    "storage"
+  "incognito": "split",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content_script.js"
+      ]
+    }
   ],
-
   "host_permissions": [
     "<all_urls>"
   ]
