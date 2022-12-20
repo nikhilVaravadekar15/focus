@@ -24,6 +24,14 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(png|jpe?g|gif|svg|jpg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader'
+                    }
+                ]
+            },
+            {
                 test: /\.css$/,
                 use: 'css-loader',
                 exclude: /node_modules/,
