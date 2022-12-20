@@ -1,10 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "chrome-extension-rect-typescript-starter-template",
-  "description": "chrome extension - react typescript starter template",
+  "name": "Focus",
+  "description": "Simple Procrastination Blocker",
   "version": "0.1.0",
   "icons": {
-    "64": "icons-react.png"
+    "64": "icon-focus_main_64.png",
+    "128": "icon-focus_main_128.png"
   },
   "action": {
     "default_popup": "./popup.html",
