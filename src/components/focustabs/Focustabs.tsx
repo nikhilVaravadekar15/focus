@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Focustabs.css"
+import IconSettings from "../../assets/images/icon-settings.png"
 
 import { focusTabs } from "../../data/Data"
 import { TFocusTabsSection, TTabsSection } from "../../types/types"
@@ -23,7 +24,7 @@ function Focustabs({ currentTab, setMenuItemClick }: TFocusTabsSection) {
       <a href="#/dash-board" target={"_blank"}>
         <div className="Tab teal" title="Settings" id="settings">
           <div className="tab-image">
-            <img src="/images/icon-settings.png" alt="" draggable="false" />
+            <img src={IconSettings} alt="dashboard" draggable="false" />
           </div>
         </div>
       </a>
