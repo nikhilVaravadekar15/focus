@@ -21,4 +21,3 @@ export type TTabsSection = {
     currentTab: number
     handleMenuItemClick: (index: number) => void
 }
-

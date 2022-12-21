@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Main.css"
-
 import Focustabs from "../../components/focustabs/Focustabs";
+
 
 function Main() {
     const [currentTab, setCurrentTab] = useState<number>(0)
@@ -21,7 +21,16 @@ function Main() {
                 />
             </div>
             <div className="container__main-section">
-                POPUP
+                <div className={currentTab === 0 ? "section active BlockedSection" : "section BlockedSection"}>
+                    BlockedSection
+                </div>
+                <div className={currentTab === 1 ? "section active FocusSection" : "section FocusSection"}>
+                    FocusSection
+                </div>
+                <div
+                    className={currentTab === 2 ? "section active InsightSection" : "section InsightSection"}>
+                    InsightSection
+                </div>
             </div>
         </div>
     )
