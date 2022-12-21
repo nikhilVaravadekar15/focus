@@ -1,0 +1,36 @@
+.BlockedSection {
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	flex-direction: column;
+}
+
+.section__upper {
+	width: 100%;
+	height: 96px;
+	background: whitesmoke;
+}
+
+.section__lower {
+	display: none;
+}
+
+.section__lower.isValid {
+	display: block;
+	width: 100%;
+	height: calc(100% - 96px);
+}
+
+.lower__content {
+	height: 128px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+}
+
+.lower__edit-buttons {
+	padding: 16px 0;
+	height: calc(100% - 128px);
+}

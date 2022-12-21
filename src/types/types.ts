@@ -21,3 +21,21 @@ export type TTabsSection = {
     currentTab: number
     handleMenuItemClick: (index: number) => void
 }
+
+// aio
+export type TCustomClassName = {
+    classname: string
+}
+
+// WebsiteContent
+export type TWebsiteContent = {
+    currentWebsiteOrigin: string
+    currentWebsiteHostname: string
+    currentWebsiteFavIcon: string
+}
+
+// CoverUpSection
+export type TCoverUpSection = {
+    classname: string
+    title: string
+}

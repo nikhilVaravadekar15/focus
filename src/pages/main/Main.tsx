@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./Main.css"
 import Focustabs from "../../components/focustabs/Focustabs";
+import BlockedSection from '../blockedSection/BlockedSection';
 
 
 function Main() {
@@ -21,9 +22,9 @@ function Main() {
                 />
             </div>
             <div className="container__main-section">
-                <div className={currentTab === 0 ? "section active BlockedSection" : "section BlockedSection"}>
-                    BlockedSection
-                </div>
+                <BlockedSection
+                    classname={currentTab === 0 ? "section active" : "section"}
+                />
                 <div className={currentTab === 1 ? "section active FocusSection" : "section FocusSection"}>
                     FocusSection
                 </div>
