@@ -1,0 +1,94 @@
+.Focustabs {
+	width: 100%;
+	background: white;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	display: flex;
+	text-align: center;
+	justify-content: space-between;
+}
+
+.Tab {
+	background: white;
+	border-radius: 40px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin: 10px;
+	padding: 10px 20px;
+	transition: 0.2s;
+}
+
+.tab-image {
+	width: 36px;
+	height: 36px;
+}
+
+.tab-image img {
+	width: 100%;
+	height: 100%;
+}
+
+.Tab p {
+	font-family: system-ui, "ubuntu", sans-serif;
+	font-weight: bold;
+	overflow: hidden;
+	max-width: 0;
+}
+
+.Tab.active p {
+	max-width: 80px;
+	margin-left: 2px;
+}
+
+.Tab.active.red {
+	background: rgba(159, 29, 53, 0.2);
+	color: rgba(159, 29, 53, 1);
+}
+
+.Tab.active.green {
+	background: rgba(141, 182, 0, 0.2);
+	color: rgba(141, 182, 0, 1);
+}
+
+.Tab.active.yellow {
+	background: rgba(230, 169, 25, 0.2);
+	color: rgba(230, 169, 25, 1);
+}
+
+
+#settings .tab-image {
+	width: 32px;
+	height: 32px;
+}
+
+#settings:hover {
+	background: rgba(28, 150, 162, 0.2);
+	color: rgba(28, 150, 162, 1);
+}
+
+#settings:hover .tab-image img {
+	animation: rotation 0.9s;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	50% {
+		transform: rotate(180deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+#settings::before {
+	content: "";
+	position: absolute;
+	padding: 10px 20px;
+	margin-right: 54px;
+	border-left: 1px solid #333;
+}

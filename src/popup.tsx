@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import Main from "./pages/main/Main";
+import "./popup.css"
 
-const Popup = () => {
+
+function App() {
   return (
-    <>
-      <h1>hello world</h1>
-    </>
+    <div className="App">
+      <Main />
+    </div>
   );
-};
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <Popup />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

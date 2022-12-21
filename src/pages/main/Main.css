@@ -1,0 +1,30 @@
+.Main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container__header-section {
+    height: 72px;
+    display: flex;
+    z-index: 9;
+    width: 100%;
+}
+
+/*main-section*/
+
+.container__main-section {
+    height: calc(100% - 72px);
+    width: 100%;
+}
+
+.container__main-section .section {
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.container__main-section .section.active {
+    display: flex;
+}
