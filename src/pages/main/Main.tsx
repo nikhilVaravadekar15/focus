@@ -3,6 +3,7 @@ import "./Main.css"
 import Focustabs from "../../components/focustabs/Focustabs";
 import BlockedSection from '../blockedSection/BlockedSection';
 import FocusSection from '../focusSection/FocusSection';
+import InsightSection from '../insightSection/InsightSection';
 
 
 function Main() {
@@ -29,10 +30,9 @@ function Main() {
                 <FocusSection
                     classname={currentTab === 1 ? "section active" : "section"}
                 />
-                <div
-                    className={currentTab === 2 ? "section active InsightSection" : "section InsightSection"}>
-                    InsightSection
-                </div>
+                <InsightSection
+                    classname={currentTab === 2 ? "section active" : "section"}
+                />
             </div>
         </div>
     )

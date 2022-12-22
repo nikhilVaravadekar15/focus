@@ -1,0 +1,8 @@
+.InsightSection{
+    width: 100%;
+    height: calc(100%-80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
