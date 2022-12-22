@@ -1,3 +1,4 @@
+import { type } from "os"
 
 // main
 export type TFocustabsData = {
@@ -38,4 +39,17 @@ export type TWebsiteContent = {
 export type TCoverUpSection = {
     classname: string
     title: string
+}
+
+
+// focusSectionInput
+export type TFocusSectionInput = {
+    title: string
+    type: string
+    name: string
+    min: number
+    max: number
+    value: number
+    unit: string
+    handleOnChange: (event: any) => void 
 }
