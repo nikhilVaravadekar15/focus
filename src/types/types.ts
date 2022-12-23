@@ -51,12 +51,20 @@ export type TFocusSectionInput = {
     max: number
     value: number
     unit: string
-    handleOnChange: (event: any) => void 
+    handleOnChange: (event: any) => void
 }
 
 // dashboard navigationbar
 export type TNavigationbarData = {
     image: string
     title: string
+    url: string
+}
+
+// navigationbarTabs
+export type TNavigationbarTabs = {
+    index: number
+    title: string
+    image: string
     url: string
 }
