@@ -1,7 +1,11 @@
-import { TFocusSectionInput, TFocustabsData } from "../types/types"
+import { TFocusSectionInput, TFocustabsData, TNavigationbarData } from "../types/types"
 import IconBlocked from "../assets/images/icon-banned.png"
 import IconFocus from "../assets/images/icon-focus.png"
 import IconInsight from "../assets/images/icon-insight.png"
+import IconBlockByWords from "../assets/images/icon_add-words.png"
+import IconCategories from "../assets/images/icon_category.png"
+import IconSettings from "../assets/images/icon-settings.png"
+import IconAbout from "../assets/images/icon_about.png"
 
 const focusTabs: TFocustabsData[] = [
     {
@@ -30,7 +34,7 @@ const focusSectionInput: TFocusSectionInput[] = [
         "max": 999,
         "value": 25,
         "unit": "Minutes",
-        handleOnChange: () => {}
+        handleOnChange: () => { }
     },
     {
         "title": "Break time",
@@ -40,7 +44,7 @@ const focusSectionInput: TFocusSectionInput[] = [
         "max": 60,
         "value": 5,
         "unit": "Minutes",
-        handleOnChange: () => {}
+        handleOnChange: () => { }
     },
     {
         "title": "Number of cycles",
@@ -50,11 +54,50 @@ const focusSectionInput: TFocusSectionInput[] = [
         "max": 48,
         "value": 2,
         "unit": "Cycles",
-        handleOnChange: () => {}
+        handleOnChange: () => { }
+    }
+]
+
+const navigationbarData: TNavigationbarData[] = [
+    {
+        "image": IconBlocked,
+        "title": "Block Sites",
+        "url": ""
+    },
+    {
+        "image": IconFocus,
+        "title": "Focus Mode",
+        "url": "focus-mode"
+    },
+    {
+        "image": IconInsight,
+        "title": "Insights",
+        "url": "insights"
+    },
+    {
+        "image": IconBlockByWords,
+        "title": "Block By Words",
+        "url": "block-by-words"
+    },
+    {
+        "image": IconCategories,
+        "title": "Categories",
+        "url": "categories"
+    },
+    {
+        "image": IconSettings,
+        "title": "Settings",
+        "url": "settings"
+    },
+    {
+        "image": IconAbout,
+        "title": "About",
+        "url": "about"
     }
 ]
 
 export {
     focusTabs,
-    focusSectionInput
+    focusSectionInput,
+    navigationbarData
 }
