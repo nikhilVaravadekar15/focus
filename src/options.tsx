@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./common.css"
+import BlockSites from "./pages/blockSites/BlockSites";
 
 
 function Options() {
   return (
     <div className="App">
-      hello options page
+      <BlockSites />
     </div>
   );
 }
