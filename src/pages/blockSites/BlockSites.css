@@ -7,9 +7,9 @@
 .BlockSites .section {
     position: absolute;
     height: 100vh;
-    width: calc(100% - 293px);
+    width: calc(100% - 261px);
     top: 0;
-    left: 293px;
+    left: 261px;
     z-index: 1;
     padding: 32px;
     overflow: hidden;

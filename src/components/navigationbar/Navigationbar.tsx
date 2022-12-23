@@ -15,6 +15,8 @@ function Navigation() {
             <img src={IconCoverFocus} alt="" draggable="false" />
           </div>
         </div>
+      </div>
+      <div className="nav__body">
         <ul>
           {
             navigationbarData.map((item: TNavigationbarData, index: number) => {
