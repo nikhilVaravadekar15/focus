@@ -1,8 +1,7 @@
 .BlockedSectionButtons {
     width: 100%;
     height: 160px;
-    background: pink;
-    padding-top: 48px;
+    padding-top: 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
