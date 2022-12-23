@@ -3,7 +3,7 @@ import "./Navigationbar.css"
 
 import { navigationbarData } from "../../data/Data"
 import { TNavigationbarData, TNavigationbarTabs } from '../../types/types';
-import IconCoverFocus from "../../assets/images/cover-focus.png"
+import IconCoverFocus from "../../assets/images/cover-focus.gif"
 
 function Navigation() {
 
