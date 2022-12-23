@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Main from "./pages/main/Main";
-import "./popup.css"
+import "./common.css"
 
 
 function App() {

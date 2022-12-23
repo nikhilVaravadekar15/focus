@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./popup.css"
+import "./common.css"
 
 
 function Options() {
