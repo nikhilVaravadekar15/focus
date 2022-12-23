@@ -6,6 +6,15 @@ import { focusTabs } from "../../data/Data"
 import { TFocusTabsSection, TTabsSection } from "../../types/types"
 
 function Focustabs({ currentTab, setMenuItemClick }: TFocusTabsSection) {
+
+  function openOptions() {
+    if (chrome.runtime.openOptionsPage) {
+      chrome.runtime.openOptionsPage();
+    } else {
+      window.open(chrome.runtime.getURL('options.html'));
+    }
+  }
+
   return (
     <div className='Focustabs'>
       {
@@ -21,13 +30,13 @@ function Focustabs({ currentTab, setMenuItemClick }: TFocusTabsSection) {
           />
         })
       }
-      <a href="#/dash-board" target={"_blank"}>
+      <div onClick={() => openOptions()}>
         <div className="Tab teal" title="Settings" id="settings">
           <div className="tab-image">
             <img src={IconSettings} alt="dashboard" draggable="false" />
           </div>
         </div>
-      </a>
+      </div>
     </div>
   )
 }
