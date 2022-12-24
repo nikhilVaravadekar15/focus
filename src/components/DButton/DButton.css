@@ -1,8 +1,9 @@
 .custom-button {
-    padding: 8px 16px;
+    padding: 12px 24px;
+    gap: 16px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     cursor: pointer;
     background: #eaeaea;
     border-radius: 6px;
@@ -13,9 +14,8 @@
 }
 
 .custom-button .button-image {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
+    width: 18px;
+    height: 18px;
 }
 
 .custom-button .button-image img {
@@ -24,6 +24,6 @@
 }
 
 .custom-button h3 {
-    font-size: 16px;
-    font-weight: normal;
+    font-size: 14px;
+    font-weight: bold;
 }

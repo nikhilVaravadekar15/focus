@@ -19,7 +19,7 @@ function GetBlockedSiteItem() {
                 <div className="left__icon" title="google">
                     <img src={IconFocus} alt="" draggable="false" />
                 </div>
-                <h3 className="left__websiteOrigin">www.google.com</h3>
+                <div className="left__websiteOrigin">www.google.com</div>
             </div>
             <div className="item__right" title="Remove">
                 <img src={IconRemove} alt="" draggable="false" />
