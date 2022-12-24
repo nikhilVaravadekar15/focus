@@ -1,0 +1,29 @@
+.custom-button {
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #eaeaea;
+    border-radius: 6px;
+}
+
+.custom-button:hover {
+    background: #cfcfcf;
+}
+
+.custom-button .button-image {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}
+
+.custom-button .button-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-button h3 {
+    font-size: 16px;
+    font-weight: normal;
+}

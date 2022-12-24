@@ -1,0 +1,54 @@
+.container__customInput {
+    height: 48px;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #777;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.container__customInput.invalid {
+    border: 1px solid red;
+
+    animation: blink 0.6s;
+    animation-iteration-count: 6;
+}
+
+@keyframes blink {
+    50% {
+        border-color: #efefef;
+    }
+}
+
+.container__customInput input {
+    border: none;
+    outline: none;
+    height: 90%;
+    width: 100%;
+    background: transparent;
+    font-size: 18px;
+    padding: 0 8px;
+    color: #444;
+}
+
+.container__customInput img {
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    right: 4px;
+}
+
+.container__customInput h3 {
+    left: 16px;
+    bottom: -18px;
+    position: absolute;
+    color: #d83434;
+    display: none;
+}
+
+.container__customInput.invalid h3 {
+    display: block;
+}
