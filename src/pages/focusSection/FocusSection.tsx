@@ -4,7 +4,7 @@ import "./FocusSection.css"
 import { TCustomClassName, TFocusSectionInput } from '../../types/types'
 import { focusSectionInput } from "../../data/Data"
 import FocusInput from './components/focusInput/FocusInput'
-import FocusSectionButtons from './components/buttons/FocusSectionButtons'
+import PButton from '../../components/PButton/PButton'
 
 function FocusSection({ classname }: TCustomClassName) {
 
@@ -39,7 +39,25 @@ function FocusSection({ classname }: TCustomClassName) {
           }
         </div>
         <div className="section_focus-bottom">
-          <FocusSectionButtons />
+          <PButton
+            classname={"start-session-btn"}
+            title={"Start a session"}
+            clickEventHandler={() => { }}
+          />
+          <a href="#/dash-board" target="_blank"
+            style={{
+              textDecoration: "none",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <PButton
+              classname={"edit-list-btn"}
+              title={"Go to options"}
+              clickEventHandler={() => { }}
+            />
+          </a>
         </div>
       </div>
 

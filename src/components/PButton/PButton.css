@@ -1,0 +1,45 @@
+.button {
+    width: 80%;
+    padding: 12px 28px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(225, 225, 225);
+    background: rgb(205, 91, 91);
+    border: 1px solid #666;
+}
+
+.button h3 {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* block section block site button */
+.block-current-btn:hover {
+    color: whitesmoke;
+    background: rgb(221, 13, 33);
+}
+
+/* block & focus section edit list button */
+.edit-list-btn {
+    color: rgb(97, 97, 97);
+    background: rgb(238, 238, 238);
+}
+
+.edit-list-btn:hover {
+    color: rgb(66, 66, 66);
+    background: rgb(224, 224, 224);
+}
+
+/* focus section start session button */
+.start-session-btn {
+    background: rgb(154, 205, 50);
+}
+
+.start-session-btn:hover {
+    background-color: rgb(0, 213, 100);
+}
