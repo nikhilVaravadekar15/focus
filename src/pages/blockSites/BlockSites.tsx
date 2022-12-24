@@ -1,7 +1,7 @@
 import React from 'react'
 import "./BlockSites.css"
 import Navigation from '../../components/navigationbar/Navigationbar'
-import DButton from '../../components/DButton/DButton'
+import DButton from '../../components/button/DButton/DButton'
 import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
 

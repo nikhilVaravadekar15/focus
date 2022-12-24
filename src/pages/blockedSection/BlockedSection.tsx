@@ -1,14 +1,14 @@
 /*global chrome*/
 import React, { useEffect, useState } from 'react'
 import "./BlockedSection.css"
-import { TCustomClassName } from '../../types/types'
+import logo from "../../assets/images/icon-focus_main_64.png"
 
+import { TCustomClassName } from '../../types/types'
 import WebsiteContent from "./components/websiteContent/WebsiteContent"
 import AlreadyBlocked from "./components/alreadyBlocked/AlreadyBlocked"
 import CoverUpSection from "./components/coverUpSection/CoverUpSection"
+import PButton from '../../components/button/PButton/PButton'
 
-import logo from "../../assets/images/icon-focus_main_64.png"
-import PButton from '../../components/PButton/PButton'
 
 function BlockedSection({ classname }: TCustomClassName) {
     return (

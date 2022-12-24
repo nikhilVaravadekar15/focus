@@ -4,7 +4,7 @@ import "./FocusSection.css"
 import { TCustomClassName, TFocusSectionInput } from '../../types/types'
 import { focusSectionInput } from "../../data/Data"
 import FocusInput from './components/focusInput/FocusInput'
-import PButton from '../../components/PButton/PButton'
+import PButton from '../../components/button/PButton/PButton'
 
 function FocusSection({ classname }: TCustomClassName) {
 
