@@ -2,36 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import "./BlockedSection.css"
 import IconInternetCoverUp from "../../assets/images/internet_cover.gif"
-import logo from "../../assets/images/icon-focus_main_64.png"
 
 import { TCustomClassName, TWebsiteContent } from '../../types/types'
 import WebsiteContent from "./components/websiteContent/WebsiteContent"
 import AlreadyBlocked from "./components/alreadyBlocked/AlreadyBlocked"
 import CoverUpSection from "./components/coverUpSection/CoverUpSection"
 import PButton from '../../components/button/PButton/PButton'
-
-
-
-export function validURL(url: string) {
-    var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-    return !!pattern.test(url);
-}
-
-export function isAvailableInChromePaths(url: string) {
-    // check if the current tab is in chrome-paths
-    let chrome_paths = ["file://", "about:blank", "chrome://", "chrome-extension://"]
-    for (var i = 0; i < chrome_paths.length; i++) {
-        if (url.includes(chrome_paths[i])) {
-            return true
-        }
-    }
-    return false
-}
+import { isAvailableInChromePaths, validURL } from '../../utility/utility'
 
 
 function BlockedSection({ classname }: TCustomClassName) {
