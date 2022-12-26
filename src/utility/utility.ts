@@ -19,3 +19,11 @@ export function isAvailableInChromePaths(url: string) {
     }
     return false
 }
+
+export function openOptions() {
+    if (chrome.runtime.openOptionsPage) {
+        chrome.runtime.openOptionsPage();
+    } else {
+        window.open(chrome.runtime.getURL("options.html"));
+    }
+}

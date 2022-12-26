@@ -2,18 +2,10 @@ import React from 'react'
 import "./Error.css"
 import IconNotFound from "../../assets/images/not-fount-404.gif"
 
-import { Link } from 'react-router-dom'
+import { openOptions } from '../../utility/utility'
 
 function Error() {
   const mainTextArray = ["🚫 Page not found 🚫", "🙅 No way ... 🚫", "👏👍 Nice try ... 🙌", "🤫 Forget about it 😡😐"]
-
-  function openOptions() {
-    if (chrome.runtime.openOptionsPage) {
-      chrome.runtime.openOptionsPage();
-    } else {
-      window.open(chrome.runtime.getURL('options.html'));
-    }
-  }
 
   return (
     <div className="Error">

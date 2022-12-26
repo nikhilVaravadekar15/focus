@@ -4,16 +4,9 @@ import IconSettings from "../../assets/images/icon-settings.png"
 
 import { focusTabs } from "../../data/Data"
 import { TFocusTabsSection, TTabsSection } from "../../types/types"
+import { openOptions } from '../../utility/utility'
 
 function Focustabs({ currentTab, setMenuItemClick }: TFocusTabsSection) {
-
-  function openOptions() {
-    if (chrome.runtime.openOptionsPage) {
-      chrome.runtime.openOptionsPage();
-    } else {
-      window.open(chrome.runtime.getURL('options.html'));
-    }
-  }
 
   return (
     <div className='Focustabs'>
