@@ -74,7 +74,7 @@ function BlockedSection({ classname }: TCustomClassName) {
             {
                 validSection ?
                     (
-                        <div className="section__lower isValid">
+                        <div className="section__lower">
                             <div className="lower__content">
                                 <WebsiteContent
                                     currentWebsiteOrigin={websiteContent.currentWebsiteOrigin}
@@ -109,7 +109,6 @@ function BlockedSection({ classname }: TCustomClassName) {
                         </div>
                     ) : (
                         <CoverUpSection
-                            classname={"isValid"}
                             title={title}
                         />
                     )

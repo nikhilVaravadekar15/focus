@@ -1,4 +1,3 @@
-import { type } from "os"
 
 // main
 export type TFocustabsData = {
@@ -33,12 +32,6 @@ export type TWebsiteContent = {
     currentWebsiteOrigin: string
     currentWebsiteHostname: string
     currentWebsiteFavIcon: string
-}
-
-// CoverUpSection
-export type TCoverUpSection = {
-    classname: string
-    title: string
 }
 
 

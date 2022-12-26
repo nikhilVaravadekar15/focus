@@ -2,14 +2,10 @@
 .section_cover-image {
 	width: 100%;
 	height: calc(100% - 96px);
-	display: none;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-}
-
-.section_cover-image.isValid {
-	display: flex;
 }
 
 .cover__background {

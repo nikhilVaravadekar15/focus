@@ -1,11 +1,10 @@
 import React from 'react'
 import "./CoverUpSection.css"
 import BackgroundFocusGif from "../../../../assets/images/background-focus.gif"
-import { TCoverUpSection } from '../../../../types/types'
 
-function CoverUpSection({ classname, title }: TCoverUpSection) {
+function CoverUpSection({ title }: any) {
     return (
-        <div className={`section_cover-image ${classname}`}>
+        <div className="section_cover-image">
             <div className="cover__background">
                 <img src={BackgroundFocusGif} alt="" draggable="false" />
             </div>

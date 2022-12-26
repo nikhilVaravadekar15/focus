@@ -12,10 +12,6 @@
 }
 
 .section__lower {
-	display: none;
-}
-
-.section__lower.isValid {
 	display: block;
 	width: 100%;
 	height: calc(100% - 96px);
