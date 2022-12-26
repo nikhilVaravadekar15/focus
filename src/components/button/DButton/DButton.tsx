@@ -1,7 +1,7 @@
 import React from 'react'
 import "./DButton.css"
 
-import IconRedirect from "../../assets/images/icon_redirect.png"
+import IconRedirect from "../../../assets/images/icon_redirect.png"
 
 function DButton() {
     return (
