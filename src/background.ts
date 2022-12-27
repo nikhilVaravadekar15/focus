@@ -12,8 +12,7 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.extension.isAllowedIncognitoAccess((status) => {
     if (!status) {
       chrome.tabs.create({
-        url: "/options.html"
-        // url: "/options.html/incognito"
+        url: "/allow-in-incognito.html"
       });
     }
   })
