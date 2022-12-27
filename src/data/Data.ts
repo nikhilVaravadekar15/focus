@@ -1,4 +1,4 @@
-import { TFocusSectionInput, TFocustabsData, TNavigationbarData } from "../types/types"
+import { TData, TFocusSectionInput, TFocustabsData, TNavigationbarData } from "../types/types"
 import IconBlocked from "../assets/images/icon-banned.png"
 import IconFocus from "../assets/images/icon-focus.png"
 import IconInsight from "../assets/images/icon-insight.png"
@@ -96,8 +96,22 @@ const navigationbarData: TNavigationbarData[] = [
     }
 ]
 
+// local-storage init data
+let data: TData = {
+    "mainActive": true,
+    "redirectUrl": "/error",
+    "blockedWebsites": [],
+    "focusModeStatus": false,
+    "focusMode": {
+        "focusTime": 25,
+        "breakTime": 5,
+        "numberOfCycles": 2
+    }
+}
+
 export {
     focusTabs,
     focusSectionInput,
-    navigationbarData
+    navigationbarData,
+    data
 }

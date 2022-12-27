@@ -61,3 +61,28 @@ export type TNavigationbarTabs = {
     image: string
     url: string
 }
+
+
+// blocked website
+export type TBlockedWebsite = {
+    websiteFavIcon: string
+    websiteOrigin: string // "www.github.com",
+    hostname: string // "github.com",
+    blockedStatus: boolean, //true
+}
+
+// focus mode details
+export type TfocusMode = {
+    focusTime: number
+    breakTime: number
+    numberOfCycles: number
+}
+
+// local storage data
+export type TData = {
+    mainActive: boolean
+    redirectUrl: string
+    blockedWebsites: TBlockedWebsite[]
+    focusModeStatus: boolean
+    focusMode: TfocusMode
+}
