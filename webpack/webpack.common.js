@@ -8,6 +8,7 @@ module.exports = {
         popup: path.join(srcDir, 'popup.tsx'),
         options: path.join(srcDir, 'options.tsx'),
         "allow-in-incognito": path.join(srcDir, 'allow-in-incognito.tsx'),
+        redirect: path.join(srcDir, 'redirect.tsx'),
         background: path.join(srcDir, 'background.ts'),
         content_script: path.join(srcDir, 'content_script.tsx'),
     },
