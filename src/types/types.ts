@@ -60,6 +60,8 @@ export type TNavigationbarTabs = {
     title: string
     image: string
     url: string
+    currentTab: number
+    handleMenuItemClick: (index: number) => void
 }
 
 

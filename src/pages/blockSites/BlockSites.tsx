@@ -1,6 +1,5 @@
 import React from 'react'
 import "./BlockSites.css"
-import Navigation from '../../components/navigationbar/Navigationbar'
 import DButton from '../../components/button/DButton/DButton'
 import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
@@ -9,8 +8,6 @@ function BlockSites() {
 
   return (
     <div className='BlockSites'>
-      <Navigation />
-      {/* BlockSites section */}
       <div className="section">
         <div className="block__container">
           {/* header  */}

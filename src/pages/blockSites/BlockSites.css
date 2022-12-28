@@ -1,19 +1,14 @@
 .BlockSites {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 
 /* BlockSites section */
 .BlockSites .section {
-    position: absolute;
-    height: 100vh;
-    width: calc(100% - 261px);
-    top: 0;
-    left: 261px;
+    height: 100%;
+    width: 100%;
     z-index: 1;
-    /* padding: 32px 48px; */
     padding: 32px;
-    overflow: hidden;
     transition: 0.5s;
 }
 

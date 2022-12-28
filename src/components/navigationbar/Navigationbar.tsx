@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react'
 import "./Navigationbar.css"
 
 import { navigationbarData } from "../../data/Data"
-import { TNavigationbarData, TNavigationbarTabs } from '../../types/types';
+import { TFocusTabsSection, TNavigationbarData, TNavigationbarTabs } from '../../types/types';
 import IconCoverFocus from "../../assets/images/cover-focus.gif"
 
-function Navigation() {
+function Navigation({ currentTab, setMenuItemClick }: TFocusTabsSection) {
 
   return (
     <div className="Navigationbar">
@@ -21,7 +21,15 @@ function Navigation() {
           {
             navigationbarData.map((item: TNavigationbarData, index: number) => {
               return (
-                <NavItem key={index} index={index} title={item["title"]} image={item["image"]} url={item["url"]} />
+                <NavItem
+                  key={index}
+                  index={index}
+                  title={item["title"]}
+                  image={item["image"]}
+                  url={item["url"]}
+                  currentTab={currentTab}
+                  handleMenuItemClick={setMenuItemClick}
+                />
               )
             })
           }
@@ -31,12 +39,14 @@ function Navigation() {
   )
 }
 
-function NavItem({ index, title, image, url }: TNavigationbarTabs) {
+function NavItem({ index, title, image, url, currentTab, handleMenuItemClick }: TNavigationbarTabs) {
 
   return (
-    <div
-      style={{ textDecoration: 'none' }}>
-      <li className={index === 0 ? "list active" : "list"}>
+    <a href={url} style={{ textDecoration: "none" }}>
+      <li
+        className={index === currentTab ? "list active" : "list"}
+        onClick={() => handleMenuItemClick(index)}
+      >
         <div className="item">
           <div className="icon" title={title}>
             <img src={image} alt="" draggable="false" />
@@ -44,7 +54,7 @@ function NavItem({ index, title, image, url }: TNavigationbarTabs) {
           <span className="title">{title}</span>
         </div>
       </li>
-    </div>
+    </a>
   )
 }
 
