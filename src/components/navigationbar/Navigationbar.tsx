@@ -4,8 +4,9 @@ import "./Navigationbar.css"
 import { navigationbarData } from "../../data/Data"
 import { TFocusTabsSection, TNavigationbarData, TNavigationbarTabs } from '../../types/types';
 import IconCoverFocus from "../../assets/images/cover-focus.gif"
+import { pageContext } from '../../context/context';
 
-function Navigation({ currentTab, setMenuItemClick }: TFocusTabsSection) {
+function Navigation() {
 
   return (
     <div className="Navigationbar">
@@ -27,8 +28,6 @@ function Navigation({ currentTab, setMenuItemClick }: TFocusTabsSection) {
                   title={item["title"]}
                   image={item["image"]}
                   url={item["url"]}
-                  currentTab={currentTab}
-                  handleMenuItemClick={setMenuItemClick}
                 />
               )
             })
@@ -39,13 +38,14 @@ function Navigation({ currentTab, setMenuItemClick }: TFocusTabsSection) {
   )
 }
 
-function NavItem({ index, title, image, url, currentTab, handleMenuItemClick }: TNavigationbarTabs) {
-
+// # TODO | Issue | pageContext is set to default state on new page
+function NavItem({ index, title, image, url }: TNavigationbarTabs) {
+  const { currentTab, setMenuItemClick } = useContext(pageContext);
   return (
     <a href={url} style={{ textDecoration: "none" }}>
       <li
         className={index === currentTab ? "list active" : "list"}
-        onClick={() => handleMenuItemClick(index)}
+        onClick={() => setMenuItemClick(index)}
       >
         <div className="item">
           <div className="icon" title={title}>

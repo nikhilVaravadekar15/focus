@@ -65,8 +65,8 @@
     position: relative;
     list-style: none;
     width: 96%;
-    border-radius: 20px;
-    transition: 0.8s;
+    border-radius: 12px;
+    transition: 0.1s;
 }
 
 .Navigationbar .nav__body ul li.active {
