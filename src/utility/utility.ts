@@ -27,3 +27,11 @@ export function openOptions() {
         window.open(chrome.runtime.getURL("options.html"));
     }
 }
+
+export function setHref(location: string) {
+    if (document.location.href.includes("#/")) {
+        document.location.href = document.location.href.split("#")[0] + location
+    } else {
+        document.location.href = document.location.href + location
+    }
+}

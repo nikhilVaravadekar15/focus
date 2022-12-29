@@ -8,7 +8,7 @@ import WebsiteContent from "./components/websiteContent/WebsiteContent"
 import AlreadyBlocked from "./components/alreadyBlocked/AlreadyBlocked"
 import CoverUpSection from "./components/coverUpSection/CoverUpSection"
 import PButton from '../../components/button/PButton/PButton'
-import { isAvailableInChromePaths, validURL } from '../../utility/utility'
+import { isAvailableInChromePaths, openOptions, validURL } from '../../utility/utility'
 
 
 function BlockedSection({ classname }: TCustomClassName) {
@@ -67,20 +67,11 @@ function BlockedSection({ classname }: TCustomClassName) {
                                         title={"Block this site"}
                                         clickEventHandler={() => { }}
                                     />
-                                    <a href="#/dash-board" target="_blank"
-                                        style={{
-                                            textDecoration: "none",
-                                            width: "100%",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        <PButton
-                                            classname={"edit-list-btn"}
-                                            title={"Edit block list"}
-                                            clickEventHandler={() => { }}
-                                        />
-                                    </a>
+                                    <PButton
+                                        classname={"edit-list-btn"}
+                                        title={"Edit block list"}
+                                        clickEventHandler={openOptions}
+                                    />
                                 </div>
                             </div>
                         </div>

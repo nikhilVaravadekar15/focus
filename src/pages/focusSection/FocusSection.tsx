@@ -5,6 +5,7 @@ import { TCustomClassName, TFocusSectionInput } from '../../types/types'
 import { focusSectionInput } from "../../data/Data"
 import FocusInput from './components/focusInput/FocusInput'
 import PButton from '../../components/button/PButton/PButton'
+import { openOptions } from '../../utility/utility'
 
 function FocusSection({ classname }: TCustomClassName) {
 
@@ -44,20 +45,11 @@ function FocusSection({ classname }: TCustomClassName) {
             title={"Start a session"}
             clickEventHandler={() => { }}
           />
-          <a href="#/dash-board" target="_blank"
-            style={{
-              textDecoration: "none",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <PButton
-              classname={"edit-list-btn"}
-              title={"Go to options"}
-              clickEventHandler={() => { }}
-            />
-          </a>
+          <PButton
+            classname={"edit-list-btn"}
+            title={"Go to options"}
+            clickEventHandler={openOptions}
+          />
         </div>
       </div>
 

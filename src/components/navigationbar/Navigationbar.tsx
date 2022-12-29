@@ -5,6 +5,7 @@ import { navigationbarData } from "../../data/Data"
 import { TFocusTabsSection, TNavigationbarData, TNavigationbarTabs } from '../../types/types';
 import IconCoverFocus from "../../assets/images/cover-focus.gif"
 import { pageContext } from '../../context/context';
+import { setHref } from "../../utility/utility"
 
 function Navigation() {
 
@@ -38,14 +39,17 @@ function Navigation() {
   )
 }
 
-// # TODO | Issue | pageContext is set to default state on new page
+
 function NavItem({ index, title, image, url }: TNavigationbarTabs) {
   const { currentTab, setMenuItemClick } = useContext(pageContext);
   return (
-    <a href={url} style={{ textDecoration: "none" }}>
+    <div style={{ textDecoration: "none" }}>
       <li
         className={index === currentTab ? "list active" : "list"}
-        onClick={() => setMenuItemClick(index)}
+        onClick={() => {
+          setMenuItemClick(index)
+          setHref(url)
+        }}
       >
         <div className="item">
           <div className="icon" title={title}>
@@ -54,7 +58,7 @@ function NavItem({ index, title, image, url }: TNavigationbarTabs) {
           <span className="title">{title}</span>
         </div>
       </li>
-    </a>
+    </div>
   )
 }
 
