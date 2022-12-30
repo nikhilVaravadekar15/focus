@@ -3,6 +3,7 @@ import "./BlockSites.css"
 import DButton from '../../components/button/DButton/DButton'
 import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
+import BlockSubstitute from './components/blockSubstitute/BlockSubstitute'
 
 function BlockSites() {
 
@@ -33,11 +34,13 @@ function BlockSites() {
           {/* body  */}
           <div className="block-container__body">
             <h2> BLOCKED SITES </h2>
-            {/* list  */}
+
             <div className="block-added-list">
-              {/* item  */}
               <GetBlockedSiteList />
             </div>
+
+            {/* <BlockSubstitute /> */}
+
           </div>
         </div>
 

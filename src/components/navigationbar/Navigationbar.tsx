@@ -6,6 +6,8 @@ import { TFocusTabsSection, TNavigationbarData, TNavigationbarTabs } from '../..
 import IconCoverFocus from "../../assets/images/cover-focus.gif"
 import { pageContext } from '../../context/context';
 import { setHref } from "../../utility/utility"
+import IconBlock from "../../assets/images/icon__block.png"
+import IconStar from "../../assets/images/start_us.gif"
 
 function Navigation() {
 
@@ -34,6 +36,29 @@ function Navigation() {
             })
           }
         </ul>
+      </div>
+      <div className="nav__footer">
+        <div className="list">
+          <div className="item">
+            <div className="icon" title="Blocking">
+              <img src={IconBlock} alt="" draggable="false" />
+            </div>
+            <span className="title">Blocking</span>
+          </div>
+          <div className="_toggle" title="Toggle">
+            <div className="outer-circle isActive">
+              <div className="inner-circle"></div>
+            </div>
+          </div>
+        </div>
+        <div className="list">
+          <a href="https://github.com/nikhilVaravadekar15/focus" target="_blank" className="item">
+            <div className="icon" title="Star us on Github">
+              <img src={IconStar} alt="" draggable="false" style={{ width: "36px", height: "36px" }} />
+            </div>
+            <span className="title">Star us on Github</span>
+          </a>
+        </div>
       </div>
     </div>
   )

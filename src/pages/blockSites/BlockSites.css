@@ -90,7 +90,7 @@
 
 .block-added-list {
     width: 100%;
-    height: calc(100% - 40px);
+    height: 96%;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;

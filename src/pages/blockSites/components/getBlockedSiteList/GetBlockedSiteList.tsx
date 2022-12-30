@@ -16,10 +16,17 @@ function GetBlockedSiteItem() {
     return (
         <div className="block-list-item .removed" id="">
             <div className="item__left">
-                <div className="left__icon" title="google">
-                    <img src={IconFocus} alt="" draggable="false" />
+                <div className="item__left_toggle" title="Toggle">
+                    <div className="outer-circle isActive">
+                        <div className="inner-circle"></div>
+                    </div>
                 </div>
-                <div className="left__websiteOrigin">www.google.com</div>
+                <div className="item__left_details">
+                    <div className="left__icon" title="google">
+                        <img src={IconFocus} alt="" draggable="false" />
+                    </div>
+                    <div className="left__websiteOrigin">www.google.com</div>
+                </div>
             </div>
             <div className="item__right" title="Remove">
                 <img src={IconRemove} alt="" draggable="false" />
