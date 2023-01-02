@@ -99,7 +99,7 @@ const navigationbarData: TNavigationbarData[] = [
 // local-storage init data
 let data: TData = {
     "mainActive": true,
-    "redirectUrl": "/error",
+    "redirectUrl": "redirect.html",
     "blockedWebsites": [],
     "focusModeStatus": false,
     "focusMode": {

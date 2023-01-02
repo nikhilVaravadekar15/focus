@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import "./BlockedSection.css"
 import IconInternetCoverUp from "../../assets/images/internet_cover.gif"
 
-import { TCustomClassName, TWebsiteContent } from '../../types/types'
+import { TCustomClassName, TWebsiteContent, TData, TBlockedWebsite } from '../../types/types'
 import WebsiteContent from "./components/websiteContent/WebsiteContent"
 import AlreadyBlocked from "./components/alreadyBlocked/AlreadyBlocked"
 import CoverUpSection from "./components/coverUpSection/CoverUpSection"
@@ -13,6 +13,7 @@ import { isAvailableInChromePaths, openOptions, validURL } from '../../utility/u
 
 function BlockedSection({ classname }: TCustomClassName) {
 
+    const [isAlreadyBlocked, setIsAlreadyBlocked] = useState<boolean>(false)
     const [validSection, setValidSection] = useState<boolean>(false)
     const [title, setTitle] = useState<string>("__FOCUS__")
     const [websiteContent, setWebsiteContent] = useState<TWebsiteContent>({
@@ -44,6 +45,44 @@ function BlockedSection({ classname }: TCustomClassName) {
 
     }, [])
 
+    function addToBlockList(event: any) {
+        chrome.storage.sync.get(["data"], (result: any) => {
+            let flag: boolean = false
+            let data: TData = result["data"]
+
+            for (let index = 0; index < data["blockedWebsites"].length; index++) {
+                let item: TBlockedWebsite = data["blockedWebsites"][index]
+                if (item["websiteOrigin"] === websiteContent.currentWebsiteOrigin && item["blockedStatus"]) {
+                    flag = true
+                    break
+                }
+            }
+
+            if (flag) {
+                setIsAlreadyBlocked(true)
+                setTimeout(() => {
+                    setIsAlreadyBlocked(false)
+                }, 10000)
+                console.log('%c Already blocked ', 'background: #222; color: purple; font-size:16px;');
+            } else {
+                data["blockedWebsites"].push({
+                    "websiteFavIcon": websiteContent.currentWebsiteFavIcon,
+                    "websiteOrigin": websiteContent.currentWebsiteOrigin,
+                    "hostname": websiteContent.currentWebsiteHostname,
+                    "blockedStatus": true,
+                })
+                console.log('%c Added to blocked list ', 'background: #222; color: red; font-size:16px;');
+            }
+
+            chrome.storage.sync.set({ "data": data })
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                // chrome.tabs.update({ url: data["redirectUrl"] });
+                console.log(tabs)
+                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#${websiteContent.currentWebsiteOrigin}`) });
+                console.log('%c Blocked ', 'background: #222; color: #bada55; font-size:16px;');
+            })
+        })
+    }
 
     return (
         <div className={`${classname} BlockedSection`}>
@@ -58,14 +97,16 @@ function BlockedSection({ classname }: TCustomClassName) {
                                     currentWebsiteHostname={websiteContent.currentWebsiteHostname}
                                     currentWebsiteFavIcon={websiteContent.currentWebsiteFavIcon}
                                 />
-                                <AlreadyBlocked />
+                                {
+                                    isAlreadyBlocked && <AlreadyBlocked />
+                                }
                             </div>
                             <div className="lower__edit-buttons">
                                 <div className="BlockedSectionButtons">
                                     <PButton
                                         classname={"block-current-btn"}
                                         title={"Block this site"}
-                                        clickEventHandler={() => { }}
+                                        clickEventHandler={addToBlockList}
                                     />
                                     <PButton
                                         classname={"edit-list-btn"}

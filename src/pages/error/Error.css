@@ -14,7 +14,7 @@
 	justify-content: space-evenly;
 	flex-direction: column;
 	border-radius: 16px;
-	background: rgba(17, 27, 127, 0.1);
+	background: rgb(245, 245, 245);
 }
 
 .Error .notFound .notFound-404 {
@@ -52,6 +52,7 @@
 .Error .notFound .notFound-404 h3 {
 	text-align: center;
 	font-size: 18px;
+	font-weight: 500;
 }
 
 .Error .notFound .notFound-404 h3 span {
@@ -72,6 +73,7 @@
 	font-size: 18px;
 	font-weight: 700;
 	transition: 0.2s all;
+	cursor: pointer;
 }
 
 .notFound .redirect-button:hover {
