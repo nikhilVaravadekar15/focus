@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import "./BlockSites.css"
+import 'react-toastify/dist/ReactToastify.css';
 import DButton from '../../components/button/DButton/DButton'
 import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
 import BlockSubstitute from './components/blockSubstitute/BlockSubstitute'
-import Snackbar from '../../components/snackbar/Snackbar'
 import { validURL, isAvailableInChromePaths } from '../../utility/utility'
 import { TBlockedWebsite, TData, TSnackbar } from '../../types/types'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function BlockSites() {
 
-  const [snackbar, setSnackBar] = useState<boolean>(false)
   const [inputBlock, setInputBlock] = useState<string>("")
   const [substitute, setSubstitute] = useState<boolean>(false)
   const [blockList, setBlockList] = useState<TBlockedWebsite[]>([])
@@ -54,10 +55,10 @@ function BlockSites() {
 
   function addToBlockList(event: any) {
     if (inputBlock === null || inputBlock === "" || isAvailableInChromePaths(inputBlock) || !validURL(inputBlock)) {
-      setSnackBar(true);
-      setTimeout(() => {
-        setSnackBar(false);
-      }, 5000)
+      toast.error("Incorrect URL !", {
+        delay: 500,
+        position: toast.POSITION.TOP_CENTER
+      });
     } else {
       let flag: boolean = false
       for (let index = 0; index < blockList.length; index++) {
@@ -69,10 +70,10 @@ function BlockSites() {
       }
 
       if (flag) {
-        setSnackBar(true);
-        setTimeout(() => {
-          setSnackBar(false);
-        }, 5000)
+        toast.info("Already blocked !", {
+          delay: 500,
+          position: toast.POSITION.TOP_CENTER
+        });
         console.log('%c Already blocked ', 'background: #222; color: purple; font-size:16px;');
       }
       else {
@@ -81,6 +82,10 @@ function BlockSites() {
         const websiteFavIcon: string = "https://s2.googleusercontent.com/s2/favicons?domain_url=" + websiteOrigin
         const blockedStatus = true
         setListBlock({ websiteFavIcon, websiteOrigin, hostname, blockedStatus })
+        toast.success("Site added.", {
+          delay: 500,
+          position: toast.POSITION.TOP_CENTER
+        });
         console.log('%c Added to blocked list ', 'background: #222; color: red; font-size:16px;');
       }
     }
@@ -89,7 +94,7 @@ function BlockSites() {
 
   return (
     <>
-      {snackbar && <Snackbar />}
+      <ToastContainer limit={1} pauseOnHover={false} />
       <div className='BlockSites'>
         <div className="section">
           <div className="block__container">
