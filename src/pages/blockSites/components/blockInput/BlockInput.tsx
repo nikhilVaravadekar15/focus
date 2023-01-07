@@ -13,6 +13,12 @@ function BlockInput({ value, setInputValue, handleClick }: TBlockInput) {
                 value={value}
                 placeholder="Enter a web address (ex: https://www.youtube.com)"
                 onChange={(event: any) => setInputValue(event.target.value)}
+                onKeyUp={(event: any) => {
+                    if (event.key === "Enter") {
+                        setInputValue(event.target.value)
+                        handleClick(event)
+                    }
+                }}
             />
             <img
                 id="blockUrl_img"
