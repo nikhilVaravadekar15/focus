@@ -14,28 +14,32 @@ function BlockSites() {
   const [inputBlock, setInputBlock] = useState<string>("")
   const [substitute, setSubstitute] = useState<boolean>(false)
   const [blockList, setBlockList] = useState<TBlockedWebsite[]>([])
-  // const [blockList1, setBlockList1] = useState<Map<number, TBlockedWebsite>>()
 
   useEffect(() => {
     chrome.storage.sync.get(["data"], (result: any) => {
       let data: TData = result["data"]
-      setBlockList(data["blockedWebsites"])
+      setBlockList((prevData: TBlockedWebsite[]) => {
+        prevData = data["blockedWebsites"]
+        return prevData
+      })
     })
   }, [])
 
   useEffect(() => {
-    console.log(`blockList ${blockList}`)
-    if (blockList.length == 0) {
+    if (blockList.length != 0) {
       setSubstitute(true)
     } else {
       setSubstitute(false)
     }
+  })
+
+  useEffect(() => {
     chrome.storage.sync.get(["data"], (result: any) => {
       let data: TData = result["data"]
       data["blockedWebsites"] = blockList
       chrome.storage.sync.set({ "data": data })
     })
-  }, [blockList])
+  }, [substitute, blockList])
 
   function setBlockInput(value: string) {
     setInputBlock(value)
@@ -79,7 +83,6 @@ function BlockSites() {
         setListBlock({ websiteFavIcon, websiteOrigin, hostname, blockedStatus })
         console.log('%c Added to blocked list ', 'background: #222; color: red; font-size:16px;');
       }
-
     }
     setBlockInput("")
   }
