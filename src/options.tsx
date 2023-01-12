@@ -4,6 +4,7 @@ import "./common.css"
 import Navigation from "./components/navigationbar/Navigationbar";
 import BlockSites from "./pages/blockSites/BlockSites";
 import { pageContext } from "./context/context";
+import About from "./pages/about/About";
 
 
 function Options() {
@@ -49,7 +50,7 @@ function Options() {
           </div>
           <div id="/about"
             className={`options_section ${currentTab === 6 && "active"}`}>
-            About
+            <About />
           </div>
         </div>
       </div>

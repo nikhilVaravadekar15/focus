@@ -1,0 +1,86 @@
+.About {
+    height: 100%;
+    width: 100%;
+}
+
+/* About section */
+.About .section {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    padding: 32px;
+    transition: 0.5s;
+}
+
+.about__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* container__block-sites about-container__header */
+.about__container .about-container__header {
+    width: 100%;
+    height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about__container .about-container__header .header__titles h2 {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: rgb(33, 33, 33);
+    text-transform: capitalize;
+}
+
+.about__container .about-container__header .header__titles p {
+    font-size: 16px;
+    color: rgb(138, 138, 138);
+}
+
+.about__container .about-container__body {
+    width: 100%;
+    height: calc(100% - 112px);
+    margin-top: 8px;
+}
+
+.about__container .about-container__body .item {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+}
+
+.about__container .about-container__body .item .item__subtitle {
+    color: rgb(80, 86, 93);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.about__container .about-container__body .item .item__description {
+    color: rgb(158, 158, 158);
+    font-size: 16px;
+    display: flex;
+}
+
+.Incognito .allow-in-incognito {
+    padding-left: 4px;
+    cursor: pointer;
+}
+
+.Incognito .allow-in-incognito:hover {
+    color: rgb(78, 147, 223);
+    text-decoration: underline;
+}
+
+.rate-us a {
+    font-size: 1rem;
+    padding: 0px 4px;
+    margin: 0 4px;
+    color: rgb(78, 147, 223);
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -92,7 +92,7 @@ const navigationbarData: TNavigationbarData[] = [
     {
         "image": IconAbout,
         "title": "About",
-        "url": "#about"
+        "url": "#/about"
     }
 ]
 
