@@ -5,6 +5,7 @@ import Navigation from "./components/navigationbar/Navigationbar";
 import BlockSites from "./pages/blockSites/BlockSites";
 import { pageContext } from "./context/context";
 import About from "./pages/about/About";
+import BlockByWords from "./pages/blockByWords/BlockByWords";
 
 
 function Options() {
@@ -38,7 +39,7 @@ function Options() {
           </div>
           <div id="/block-by-words"
             className={`options_section ${currentTab === 3 && "active"}`}>
-            BlockByWords
+            <BlockByWords />
           </div>
           <div id="/categories"
             className={`options_section ${currentTab === 4 && "active"}`}>

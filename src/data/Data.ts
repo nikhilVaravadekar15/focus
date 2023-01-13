@@ -106,7 +106,8 @@ let data: TData = {
         "focusTime": 25,
         "breakTime": 5,
         "numberOfCycles": 2
-    }
+    },
+    "blockByWords": []
 }
 
 export {

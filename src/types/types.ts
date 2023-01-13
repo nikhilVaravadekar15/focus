@@ -85,6 +85,7 @@ export type TData = {
     blockedWebsites: TBlockedWebsite[]
     focusModeStatus: boolean
     focusMode: TfocusMode
+    blockByWords: string[]
 }
 
 // BlockInput
