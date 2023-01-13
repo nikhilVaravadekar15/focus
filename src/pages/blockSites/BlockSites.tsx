@@ -5,7 +5,7 @@ import DButton from '../../components/button/DButton/DButton'
 import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
 import BlockSubstitute from './components/blockSubstitute/BlockSubstitute'
-import { validURL, isAvailableInChromePaths } from '../../utility/utility'
+import { validURL, isAvailableInChromePaths, showToast } from '../../utility/utility'
 import { TBlockedWebsite, TData, TSnackbar } from '../../types/types'
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -34,59 +34,91 @@ function BlockSites() {
     }
   })
 
-  useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      data["blockedWebsites"] = blockList
-      chrome.storage.sync.set({ "data": data })
-    })
-  }, [substitute, blockList])
-
   function setBlockInput(value: string) {
     setInputBlock(value)
   }
 
-  function setListBlock({ websiteFavIcon, websiteOrigin, hostname, blockedStatus }: TBlockedWebsite) {
-    setBlockList((prevData: TBlockedWebsite[]) => {
-      prevData.push({ websiteFavIcon, websiteOrigin, hostname, blockedStatus })
-      return prevData
+  useEffect(() => {
+    chrome.storage.sync.get(["data"], (result: any) => {
+      let data: TData = result["data"]
+      data["blockedWebsites"] = []
+      for (let index = 0; index < blockList.length; index++) {
+        data["blockedWebsites"][index] = blockList[index];
+      }
+      chrome.storage.sync.set({ "data": data })
     })
+  }, [blockList])
+
+
+  function setListBlock({ websiteFavIcon, websiteOrigin, hostname, blockedStatus }: TBlockedWebsite) {
+    var currentData: TBlockedWebsite[]
+    setBlockList((prevData: TBlockedWebsite[]) => {
+      currentData = [...prevData];  // spreading operator which doesn't mutate the array and returns new array
+      currentData.push({ websiteFavIcon, websiteOrigin, hostname, blockedStatus })
+      return currentData
+    })
+  }
+
+  function updateBlockList(websiteOrigin: string) {
+    var currentData: TBlockedWebsite[]
+    setBlockList((prevData: TBlockedWebsite[]) => {
+      currentData = [...prevData]; // spreading operator which doesn't mutate the array and returns new array
+      for (let index = 0; index < currentData.length; index++) {
+        let item: TBlockedWebsite = currentData[index];
+        if (websiteOrigin === item.websiteOrigin) {
+          item.blockedStatus = !item.blockedStatus
+        }
+      }
+
+      return currentData
+    })
+  }
+
+  function deleteBlockListItem(websiteOrigin: string, index: number) {
+    var currentData: TBlockedWebsite[]
+    setBlockList((prevData: TBlockedWebsite[]) => {
+      currentData = [...prevData]; // spreading operator which doesn't mutate the array and returns new array
+      currentData.splice(index, 1);
+      return currentData
+    })
+    showToast("info", `${websiteOrigin} deleted`, 500)
   }
 
   function addToBlockList(event: any) {
     if (inputBlock === null || inputBlock === "" || isAvailableInChromePaths(inputBlock) || !validURL(inputBlock)) {
-      toast.error("Incorrect URL !", {
-        delay: 500,
-        position: toast.POSITION.TOP_CENTER
-      });
+      showToast("error", "Incorrect URL !", 500)
     } else {
       let flag: boolean = false
       for (let index = 0; index < blockList.length; index++) {
         let item: TBlockedWebsite = blockList[index]
-        if (item["websiteOrigin"] === new URL(inputBlock).origin) {
-          flag = true
-          break
+        try {
+          if (item["websiteOrigin"] === new URL(inputBlock).origin) {
+            flag = true
+            break
+          }
+        } catch {
+          showToast("error", "Incorrect URL !", 500)
         }
+
       }
 
       if (flag) {
-        toast.info("Already blocked !", {
-          delay: 500,
-          position: toast.POSITION.TOP_CENTER
-        });
+        showToast("info", "Already blocked !", 500)
         console.log('%c Already blocked ', 'background: #222; color: purple; font-size:16px;');
       }
       else {
-        const websiteOrigin: string = new URL(inputBlock).origin
-        const hostname: string = new URL(inputBlock).hostname
-        const websiteFavIcon: string = "https://s2.googleusercontent.com/s2/favicons?domain_url=" + websiteOrigin
-        const blockedStatus = true
-        setListBlock({ websiteFavIcon, websiteOrigin, hostname, blockedStatus })
-        toast.success("Site added.", {
-          delay: 500,
-          position: toast.POSITION.TOP_CENTER
-        });
-        console.log('%c Added to blocked list ', 'background: #222; color: red; font-size:16px;');
+        try {
+          const websiteOrigin: string = new URL(inputBlock).origin
+          const hostname: string = new URL(inputBlock).hostname
+          const websiteFavIcon: string = "https://s2.googleusercontent.com/s2/favicons?domain_url=" + websiteOrigin
+          const blockedStatus = true
+          setListBlock({ websiteFavIcon, websiteOrigin, hostname, blockedStatus })
+          showToast("success", "Site added.", 500)
+          console.log('%c Added to blocked list ', 'background: #222; color: red; font-size:16px;');
+        } catch {
+          showToast("error", "Incorrect URL !", 500)
+        }
+
       }
     }
     setBlockInput("")
@@ -128,7 +160,11 @@ function BlockSites() {
               {
                 substitute ? (
                   <div className="block-added-list">
-                    <GetBlockedSiteList list={blockList} setBlockList={setListBlock} />
+                    <GetBlockedSiteList
+                      list={blockList}
+                      updateBlockList={updateBlockList}
+                      deleteBlockListItem={deleteBlockListItem}
+                    />
                   </div>
                 ) : (
                   <BlockSubstitute />
@@ -141,7 +177,6 @@ function BlockSites() {
     </>
   )
 }
-
 
 
 export default BlockSites

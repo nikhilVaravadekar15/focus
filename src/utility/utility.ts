@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+import { TBlockedWebsite, TData } from "../types/types";
 
 export function validURL(url: string) {
     var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
@@ -33,5 +35,55 @@ export function setHref(location: string) {
         document.location.href = document.location.href.split("#")[0] + location
     } else {
         document.location.href = document.location.href + location
+    }
+}
+
+export function validateCurrentOrigin(currentTabUrl: string) {
+    chrome.storage.sync.get(["data"], (result: any) => {
+        let flag: boolean = false
+        let data: TData = result["data"]
+
+        for (let index = 0; index < data["blockedWebsites"].length; index++) {
+            let item: TBlockedWebsite = data["blockedWebsites"][index]
+            if (item["websiteOrigin"] === currentTabUrl && item["blockedStatus"]) {
+                flag = true
+                break
+            }
+        }
+
+        if (flag) {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#${currentTabUrl}`) });
+                console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');
+            })
+        }
+
+    });
+}
+
+export function showToast(type: string, toastString: string, delay: number) {
+    if (type === "error") {
+        toast.error(toastString, {
+            delay: delay,
+            position: toast.POSITION.TOP_CENTER
+        });
+    }
+    if (type === "success") {
+        toast.success(toastString, {
+            delay: delay,
+            position: toast.POSITION.TOP_CENTER
+        });
+    }
+    if (type === "info") {
+        toast.info(toastString, {
+            delay: delay,
+            position: toast.POSITION.TOP_CENTER
+        });
+    }
+    if (type === "warn") {
+        toast.warn(toastString, {
+            delay: delay,
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 }

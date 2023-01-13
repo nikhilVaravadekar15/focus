@@ -94,10 +94,16 @@ export type TBlockInput = {
     handleClick: (event: any) => void
 }
 
-
 // snackbar
 export type TSnackbar = {
     flag: boolean
     icon: string
     value: string
+}
+
+// BlockedSiteList 
+export type TBlockedSiteList = {
+    list: TBlockedWebsite[]
+    updateBlockList: (websiteOrigin: string) => void
+    deleteBlockListItem: (websiteOrigin: string, index: number) => void
 }

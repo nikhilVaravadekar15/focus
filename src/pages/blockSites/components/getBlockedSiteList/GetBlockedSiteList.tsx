@@ -2,26 +2,43 @@ import React, { Key } from 'react'
 import "./GetBlockedSiteList.css"
 import IconFocus from "../../../../assets/images/icon-focus_main_128.png"
 import IconRemove from "../../../../assets/images/icon-remove.png"
-import { TBlockedWebsite } from '../../../../types/types'
+import { TBlockedWebsite, TBlockedSiteList } from '../../../../types/types'
 
-type TBlockedSiteList = {
-    list: TBlockedWebsite[]
-    setBlockList: ({ websiteFavIcon, websiteOrigin, hostname, blockedStatus }: TBlockedWebsite) => void
-}
 
-function GetBlockedSiteList({ list, setBlockList }: TBlockedSiteList) {
+function GetBlockedSiteList({ list, updateBlockList, deleteBlockListItem }: TBlockedSiteList) {
     return (
         <div className="GetBlockedSiteList">
             {
                 list.map((item: TBlockedWebsite, index: number) => {
                     return (
-                        <GetBlockedSiteItem
-                            key={index}
-                            websiteFavIcon={item["websiteFavIcon"]}
-                            websiteOrigin={item["websiteOrigin"]}
-                            hostname={item["hostname"]}
-                            blockedStatus={item["blockedStatus"]}
-                        />
+                        <div className="block-list-item .removed" id={item.websiteOrigin} key={item.websiteOrigin}>
+                            <div className="item__left">
+                                <div className="item__left_toggle" title="Toggle">
+                                    <div
+                                        className={item.blockedStatus ? "outer-circle isActive" : "outer-circle"}
+                                        onClick={() => {
+                                            updateBlockList(item.websiteOrigin)
+                                        }}
+                                    >
+                                        <div className="inner-circle"></div>
+                                    </div>
+                                </div>
+                                <div className="item__left_details">
+                                    <div className="left__icon" title={item.websiteOrigin}>
+                                        <img src={item.websiteFavIcon} alt="" draggable="false" />
+                                    </div>
+                                    <div className="left__websiteOrigin">{item.hostname}</div>
+                                </div>
+                            </div>
+                            <div
+                                className="item__right" title="Remove"
+                                onClick={() => {
+                                    deleteBlockListItem(item.websiteOrigin, index)
+                                }}
+                            >
+                                <img src={IconRemove} alt="" draggable="false" />
+                            </div>
+                        </div>
                     )
                 })
             }
@@ -29,28 +46,5 @@ function GetBlockedSiteList({ list, setBlockList }: TBlockedSiteList) {
     )
 }
 
-
-function GetBlockedSiteItem({ websiteFavIcon, websiteOrigin, hostname, blockedStatus }: TBlockedWebsite) {
-    return (
-        <div className="block-list-item .removed" id="">
-            <div className="item__left">
-                <div className="item__left_toggle" title="Toggle">
-                    <div className={blockedStatus ? "outer-circle isActive" : "outer-circle"}>
-                        <div className="inner-circle"></div>
-                    </div>
-                </div>
-                <div className="item__left_details">
-                    <div className="left__icon" title={websiteOrigin}>
-                        <img src={websiteFavIcon} alt={IconFocus} draggable="false" />
-                    </div>
-                    <div className="left__websiteOrigin">{hostname}</div>
-                </div>
-            </div>
-            <div className="item__right" title="Remove">
-                <img src={IconRemove} alt="" draggable="false" />
-            </div>
-        </div>
-    )
-}
 
 export default GetBlockedSiteList
