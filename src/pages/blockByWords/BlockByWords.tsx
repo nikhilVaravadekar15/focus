@@ -55,7 +55,7 @@ function BlockByWords() {
   }
 
   function onAddChip(chipValue: string, chipIndex: number) {
-    chipValue = chipValue.toLowerCase()
+    chipValue = chipValue.trim().toLowerCase()
 
     if (chipExists(chipValue)) {
       showToast("error", `${chipValue} is alreary blocked`, 500)

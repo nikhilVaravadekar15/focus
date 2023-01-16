@@ -39,13 +39,40 @@ export function setHref(location: string) {
 }
 
 export function validateCurrentOrigin(currentTabUrl: string) {
+    const currentTabUrlOrigin = new URL(currentTabUrl).origin
     chrome.storage.sync.get(["data"], (result: any) => {
         let flag: boolean = false
         let data: TData = result["data"]
 
         for (let index = 0; index < data["blockedWebsites"].length; index++) {
             let item: TBlockedWebsite = data["blockedWebsites"][index]
-            if (item["websiteOrigin"] === currentTabUrl && item["blockedStatus"]) {
+            if (item["websiteOrigin"] === currentTabUrlOrigin && item["blockedStatus"]) {
+                flag = true
+                break
+            }
+        }
+
+        if (flag) {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#${currentTabUrlOrigin}`) });
+                console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');
+            })
+        }
+        else {
+            validateBlockByWords(currentTabUrl)
+        }
+
+    });
+}
+
+export function validateBlockByWords(currentTabUrl: string) {
+    chrome.storage.sync.get(["data"], (result: any) => {
+        let flag: boolean = false
+        let data: TData = result["data"]
+
+        for (let index = 0; index < data["blockByWords"].length; index++) {
+            let item: string = data["blockByWords"][index]
+            if (currentTabUrl.search(item) != -1) {
                 flag = true
                 break
             }
