@@ -54,7 +54,7 @@ export function validateCurrentOrigin(currentTabUrl: string) {
 
         if (flag) {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#${currentTabUrlOrigin}`) });
+                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href=${currentTabUrlOrigin}`) });
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');
             })
         }
@@ -71,7 +71,7 @@ export function validateBlockByWords(currentTabUrl: string) {
         let data: TData = result["data"]
 
         for (let index = 0; index < data["blockByWords"].length; index++) {
-            let item: string = data["blockByWords"][index]
+            var item: string = data["blockByWords"][index]
             if (currentTabUrl.search(item) != -1) {
                 flag = true
                 break
@@ -80,7 +80,7 @@ export function validateBlockByWords(currentTabUrl: string) {
 
         if (flag) {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#${currentTabUrl}`) });
+                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#blocked-words=${item}`) });
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');
             })
         }

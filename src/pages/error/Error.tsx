@@ -6,11 +6,20 @@ import { openOptions } from '../../utility/utility'
 
 function Error() {
   const mainTextArray = ["No way ... ", "Nice try ... ", "Forget about it"]
-  const [blockedWebsiteName, setBlockedWebsiteName] = useState<string>("this")
+  const [blockedStatus, setBlockedStatus] = useState<boolean>(true)
+  const [blockedWebsiteName, setBlockedWebsiteName] = useState<string>("")
 
   useEffect(() => {
-    const href: string = document.location.href.split("#")[1]
-    setBlockedWebsiteName(href)
+    if (document.location.href.search("#href") != -1) {
+      const blockedUrl: string = document.location.href.split("#href=")[1]
+      setBlockedStatus(true)
+      setBlockedWebsiteName(blockedUrl)
+    }
+    else if (document.location.href.search("#blocked-words") != -1) {
+      const blockedWords: string = document.location.href.split("#blocked-words=")[1]
+      setBlockedStatus(false)
+      setBlockedWebsiteName(blockedWords)
+    }
   }, [])
 
   return (
@@ -23,10 +32,19 @@ function Error() {
           <h2 className="main-text">
             {mainTextArray[Math.floor(Math.random() * mainTextArray.length)]}
           </h2>
-          <div className="message">
-            <h3> You put <span className="website-name">{blockedWebsiteName}</span> in your Block Sites list. <br /> It’s probably there for a reason. </h3>
-            <h3>Add more distracting sites to become even more productive.</h3>
-          </div>
+          {
+            blockedStatus ? (
+              <div className="message">
+                <h3> You put <span className="blocked-details">{blockedWebsiteName}</span> in your Block Sites list. <br /> It’s probably there for a reason. </h3>
+                <h3>Add more distracting sites to become even more productive.</h3>
+              </div>
+            ) : (
+              <div className="message">
+                <h3> It looks like you blocked the word <span className="blocked-details">{blockedWebsiteName}</span>. Let’s keep it that way. </h3>
+                <h3>Add more words to become even more productive.</h3>
+              </div>
+            )
+          }
         </div>
         <div className="redirect-button"
           onClick={() => openOptions()}>

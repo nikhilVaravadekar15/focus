@@ -78,7 +78,7 @@ function BlockedSection({ classname }: TCustomClassName) {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 // chrome.tabs.update({ url: data["redirectUrl"] });
                 console.log(tabs)
-                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#${websiteContent.currentWebsiteOrigin}`) });
+                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href${websiteContent.currentWebsiteOrigin}`) });
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size:16px;');
             })
         })
