@@ -1,15 +1,18 @@
 import React from 'react'
 import "./DButton.css"
+import { TDButton } from '../../../types/types'
 
-import IconRedirect from "../../../assets/images/icon_redirect.png"
 
-function DButton() {
+function DButton({ icon, title, handler }: TDButton) {
     return (
-        <div className="custom-button redirect">
+        <div
+            className="custom-button redirect"
+            onClick={() => handler(true)}
+        >
             <div className="button-image" title="Redirect">
-                <img src={IconRedirect} alt="" draggable="false" />
+                <img src={icon} alt="" draggable="false" />
             </div>
-            <h3>Redirect</h3>
+            <h3>{title}</h3>
         </div>
     )
 }

@@ -76,9 +76,14 @@ function BlockedSection({ classname }: TCustomClassName) {
 
             chrome.storage.sync.set({ "data": data })
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                // chrome.tabs.update({ url: data["redirectUrl"] });
-                console.log(tabs)
-                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href${websiteContent.currentWebsiteOrigin}`) });
+                chrome.storage.sync.get(["data"], (result: any) => {
+                    let data: TData = result["data"]
+                    if (data["redirectUrl"] === "redirect.html") {
+                        chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href${websiteContent.currentWebsiteOrigin}`) });
+                    } else {
+                        chrome.tabs.update({ url: data["redirectUrl"] });
+                    }
+                })
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size:16px;');
             })
         })

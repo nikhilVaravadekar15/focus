@@ -5,7 +5,7 @@
   scroll-behavior: smooth;
 }
 
-body {  
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -45,7 +45,7 @@ body {
   left: 261px;
   z-index: 1;
   overflow: hidden;
-  transition: 0.5s;  
+  transition: 0.5s;
 }
 
 .Options .options__container .options_section {
@@ -58,7 +58,11 @@ body {
   display: block;
 }
 
-
+.blur {
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
 
 /* scrollbar */
 *::-webkit-scrollbar {

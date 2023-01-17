@@ -27,6 +27,13 @@ export type TCustomClassName = {
     classname: string
 }
 
+// DButton 
+export type TDButton = {
+    icon: string
+    title: string
+    handler: (flag: boolean) => void
+}
+
 // WebsiteContent
 export type TWebsiteContent = {
     currentWebsiteOrigin: string
@@ -107,4 +114,11 @@ export type TBlockedSiteList = {
     list: TBlockedWebsite[]
     updateBlockList: (websiteOrigin: string) => void
     deleteBlockListItem: (websiteOrigin: string, index: number) => void
+}
+
+
+// redirect 
+export type TRedirect = {
+    redirectFlag: boolean
+    setRedirectFlagStatus: (flag: boolean) => void
 }

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./BlockSites.css"
 import 'react-toastify/dist/ReactToastify.css';
+import IconRedirect from "../../assets/images/icon_redirect.png"
 import DButton from '../../components/button/DButton/DButton'
 import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
@@ -8,13 +9,15 @@ import BlockSubstitute from './components/blockSubstitute/BlockSubstitute'
 import { validURL, isAvailableInChromePaths, showToast } from '../../utility/utility'
 import { TBlockedWebsite, TData, TSnackbar } from '../../types/types'
 import { ToastContainer, toast } from 'react-toastify';
-
+import Redirect from '../../components/redirect/Redirect';
+import { redirectContext } from '../../context/context';
 
 function BlockSites() {
 
   const [inputBlock, setInputBlock] = useState<string>("")
   const [substitute, setSubstitute] = useState<boolean>(false)
   const [blockList, setBlockList] = useState<TBlockedWebsite[]>([])
+  const { redirectFlag, setRedirectFlagStatus } = useContext(redirectContext)
 
   useEffect(() => {
     chrome.storage.sync.get(["data"], (result: any) => {
@@ -139,10 +142,10 @@ function BlockSites() {
                 </div>
                 <div className="buttons">
                   <div className="single-button">
-                    <DButton />
+                    <DButton icon={IconRedirect} title={"Redirect"} handler={setRedirectFlagStatus} />
                   </div>
                   <div className="single-button">
-                    <DButton />
+                    <DButton icon={IconRedirect} title={"Schedule"} handler={() => { }} />
                   </div>
                 </div>
               </div>

@@ -54,7 +54,14 @@ export function validateCurrentOrigin(currentTabUrl: string) {
 
         if (flag) {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href=${currentTabUrlOrigin}`) });
+                chrome.storage.sync.get(["data"], (result: any) => {
+                    let data: TData = result["data"]
+                    if (data["redirectUrl"] === "redirect.html") {
+                        chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href=${currentTabUrlOrigin}`) });
+                    } else {
+                        chrome.tabs.update({ url: data["redirectUrl"] });
+                    }
+                })
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');
             })
         }
@@ -80,7 +87,14 @@ export function validateBlockByWords(currentTabUrl: string) {
 
         if (flag) {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#blocked-words=${item}`) });
+                chrome.storage.sync.get(["data"], (result: any) => {
+                    let data: TData = result["data"]
+                    if (data["redirectUrl"] === "redirect.html") {
+                        chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#blocked-words=${item}`) });
+                    } else {
+                        chrome.tabs.update({ url: data["redirectUrl"] });
+                    }
+                })
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');
             })
         }

@@ -1,0 +1,85 @@
+.Popup {
+    position: absolute;
+    z-index: 9;
+    left: 50%;
+    transform: translate(-50%, 75%);
+    width: 396px;
+    height: 221px;
+    position: relative;
+    border: 1px solid gray;
+    border-radius: 8px;
+    background: white;
+}
+
+.Popup.Redirect .popup-close {
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    cursor: pointer;
+    margin: auto;
+}
+
+.Popup.Redirect .popup-close img {
+    height: 24px;
+    width: 24px;
+}
+
+.Popup.Redirect .popup-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Popup.Redirect .popup-body .body-title {
+    text-align: left;
+    width: 100%;
+    font-size: 20px;
+    margin-left: 12px;
+    color: rgb(80, 86, 93);
+}
+
+.Popup.Redirect .popup-body .body-input {
+    height: 40px;
+    width: 96%;
+    border-radius: 8px;
+    margin: 2px 0;
+    border: 1px solid rgb(224, 224, 224);
+    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    padding: 0px 32px 0px 10px;
+    transition: all 0.3s ease-in-out 0s;
+    color: rgb(158, 158, 158);
+    position: relative;
+    box-shadow: rgb(255 255 255) 0px 0px 3pt 2pt;
+}
+
+.Popup.Redirect .popup-body .body-input:focus-within {
+    border: 1px solid #3498db;
+}
+
+.Popup.Redirect .popup-body .body-input input {
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    outline: none;
+}
+
+.Popup.Redirect .popup-body .redirect-ok-button {
+    width: 96%;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 12px 24px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(60, 140, 193);
+}
+
+.Popup.Redirect .popup-body .redirect-ok-button:hover {
+    background-color: rgb(42, 95, 145);
+}
