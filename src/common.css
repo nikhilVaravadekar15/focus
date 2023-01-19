@@ -62,6 +62,7 @@ body {
   /* Add the blur effect */
   filter: blur(8px);
   -webkit-filter: blur(8px);
+  pointer-events: none;
 }
 
 /* scrollbar */
