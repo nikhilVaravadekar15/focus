@@ -116,9 +116,14 @@ export type TBlockedSiteList = {
     deleteBlockListItem: (websiteOrigin: string, index: number) => void
 }
 
-
 // redirect 
 export type TRedirect = {
     redirectFlag: boolean
     setRedirectFlagStatus: (flag: boolean) => void
+}
+
+// schedule
+export type TSchedule = {
+    scheduleFlag: boolean
+    setScheduleFlagStatus: (flag: boolean) => void
 }

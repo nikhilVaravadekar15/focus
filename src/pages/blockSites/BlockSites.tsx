@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import "./BlockSites.css"
 import 'react-toastify/dist/ReactToastify.css';
 import IconRedirect from "../../assets/images/icon_redirect.png"
+import IconSchedule from "../../assets/images/icon_schedule.png"
 import DButton from '../../components/button/DButton/DButton'
 import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
@@ -10,7 +11,7 @@ import { validURL, isAvailableInChromePaths, showToast } from '../../utility/uti
 import { TBlockedWebsite, TData, TSnackbar } from '../../types/types'
 import { ToastContainer, toast } from 'react-toastify';
 import Redirect from '../../components/redirect/Redirect';
-import { redirectContext } from '../../context/context';
+import { redirectContext, scheduleContext } from '../../context/context';
 
 function BlockSites() {
 
@@ -18,6 +19,15 @@ function BlockSites() {
   const [substitute, setSubstitute] = useState<boolean>(false)
   const [blockList, setBlockList] = useState<TBlockedWebsite[]>([])
   const { redirectFlag, setRedirectFlagStatus } = useContext(redirectContext)
+  const { scheduleFlag, setScheduleFlagStatus } = useContext(scheduleContext)
+
+  useEffect(() => {
+    if (blockList.length != 0) {
+      setSubstitute(true)
+    } else {
+      setSubstitute(false)
+    }
+  })
 
   useEffect(() => {
     chrome.storage.sync.get(["data"], (result: any) => {
@@ -29,17 +39,6 @@ function BlockSites() {
     })
   }, [])
 
-  useEffect(() => {
-    if (blockList.length != 0) {
-      setSubstitute(true)
-    } else {
-      setSubstitute(false)
-    }
-  })
-
-  function setBlockInput(value: string) {
-    setInputBlock(value)
-  }
 
   useEffect(() => {
     chrome.storage.sync.get(["data"], (result: any) => {
@@ -52,6 +51,9 @@ function BlockSites() {
     })
   }, [blockList])
 
+  function setBlockInput(value: string) {
+    setInputBlock(value)
+  }
 
   function setListBlock({ websiteFavIcon, websiteOrigin, hostname, blockedStatus }: TBlockedWebsite) {
     var currentData: TBlockedWebsite[]
@@ -145,7 +147,7 @@ function BlockSites() {
                     <DButton icon={IconRedirect} title={"Redirect"} handler={setRedirectFlagStatus} />
                   </div>
                   <div className="single-button">
-                    <DButton icon={IconRedirect} title={"Schedule"} handler={() => { }} />
+                    <DButton icon={IconSchedule} title={"Schedule"} handler={setScheduleFlagStatus} />
                   </div>
                 </div>
               </div>
