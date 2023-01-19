@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Redirect.css"
 import IconClosePopup from "../../assets/images/icon_cancel.png"
 import { toast, ToastContainer } from 'react-toastify';
@@ -9,9 +9,20 @@ import { TBlockedWebsite, TData } from '../../types/types';
 
 function Redirect() {
 
-  const toastId = useRef<any>(null);
   const [inputUrl, setInputUrl] = useState<string>("")
   const { redirectFlag, setRedirectFlagStatus } = useContext(redirectContext);
+
+  useEffect(() => {
+    chrome.storage.sync.get(["data"], (result: any) => {
+      let data: TData = result["data"]
+      console.log(data["redirectUrl"])
+      if (data["redirectUrl"] === "redirect.html") {
+        setInputUrl("")
+      } else {
+        setInputUrl(data["redirectUrl"])
+      }
+    })
+  }, [])
 
   function addCustomBlockUrl() {
     if (validURL(inputUrl) && !isAvailableInChromePaths(inputUrl)) {
@@ -48,7 +59,7 @@ function Redirect() {
             showToast("error", "Cannot set this url because it contains words that are in the block-by-words list. Please try again!", 500)
           } else {
             data["redirectUrl"] = inputUrl
-            chrome.storage.sync.get({ "data": data })
+            chrome.storage.sync.set({ "data": data })
             showToast("success", `${inputUrl} set as custom redirect url`, 500)
             console.log('%c Custom redirect url added ', 'background: #222; color: purple; font-size:16px;');
           }
