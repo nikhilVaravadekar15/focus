@@ -93,6 +93,7 @@ export type TData = {
     focusModeStatus: boolean
     focusMode: TfocusMode
     blockByWords: string[]
+    scheduleData: TScheduleData
 }
 
 // BlockInput
@@ -126,4 +127,17 @@ export type TRedirect = {
 export type TSchedule = {
     scheduleFlag: boolean
     setScheduleFlagStatus: (flag: boolean) => void
+}
+
+export type TScheduleDay = {
+    title: string
+    abbrev: string
+    flag: boolean
+}
+
+export type TScheduleData = {
+    status: boolean
+    starttime: string
+    endtime: string
+    days: TScheduleDay[]
 }

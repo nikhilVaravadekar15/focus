@@ -1,12 +1,47 @@
-import React, { useContext } from 'react'
+import React, { TimeHTMLAttributes, useContext, useEffect, useState } from 'react'
 import "./Schedule.css"
 import IconClosePopup from "../../assets/images/icon_cancel.png"
 import { scheduleContext } from "../../context/context";
+import { TData, TScheduleData, TScheduleDay } from "../../types/types";
 
 
 function Redirect() {
 
   const { scheduleFlag, setScheduleFlagStatus } = useContext(scheduleContext);
+  const [scheduleData, setScheduleData] = useState<TScheduleData>()
+  const [starttime, setStarttime] = useState<string>("")
+  const [endtime, setEndtime] = useState<string>("")
+  const [days, setDays] = useState<TScheduleDay[]>([])
+
+  useEffect(() => {
+    chrome.storage.sync.get(["data"], (result: any) => {
+      const data: TData = result["data"]
+      setScheduleData(data["scheduleData"])
+      setStarttime(data["scheduleData"]["starttime"])
+      setEndtime(data["scheduleData"]["endtime"])
+      setDays(data["scheduleData"]["days"])
+    })
+  }, [])
+
+  function toggleDays(index: number) {
+    setDays((prevData: TScheduleDay[]) => {
+      let currentScheduleDays: TScheduleDay[] = [...prevData]
+      const day: TScheduleDay = currentScheduleDays[index]
+      currentScheduleDays.splice(index, 1, {
+        "abbrev": day["abbrev"],
+        "title": day["title"],
+        "flag": !day["flag"]
+      });
+      return currentScheduleDays
+    })
+  }
+
+  function handleSetSchedule() {
+    if (starttime === endtime) {
+      alert("Please Enter Time");
+    }
+    // TODO: 
+  }
 
   return scheduleFlag ? (
     <>
@@ -28,25 +63,51 @@ function Redirect() {
             <div className="input__times">
               <div className="subtitle">SET TIMES</div>
               <div className="time">
-                <input id="start-time" type="time" min="09:00" max="18:00" />
+                <input
+                  id="start-time"
+                  type="time"
+                  value={starttime}
+                  min="00:00"
+                  max="24:00"
+                  onChange={(event: any) => {
+                    setStarttime(event.target.value)
+                  }}
+                />
                 <span>to</span>
-                <input id="end-time" type="time" min="09:00" max="18:00" />
+                <input
+                  id="end-time"
+                  type="time"
+                  value={endtime}
+                  min="00:00"
+                  max="24:00"
+                  onChange={(event: any) => setEndtime(event.target.value)}
+                />
               </div>
             </div>
             <div className="input__days">
               <div className="subtitle">SELECTED DAYS</div>
               <div className="days">
-                <div className="day active" title="Monday">M</div>
-                <div className="day" title="Tuesday">T</div>
-                <div className="day" title="Wednesday">W</div>
-                <div className="day" title="Thursday">T</div>
-                <div className="day" title="Friday">F</div>
-                <div className="day" title="Saturday">S</div>
-                <div className="day" title="Sunday">S</div>
+                {
+                  days.map((day: TScheduleDay, index: number) => {
+                    return (
+                      <div
+                        key={index}
+                        title={day["title"]}
+                        className={day["flag"] ? "day active" : "day"}
+                        onClick={() => toggleDays(index)}
+                      >
+                        {day["abbrev"]}
+                      </div>
+                    )
+                  })
+                }
               </div>
             </div>
           </div>
-          <div className="schedule-set-button">
+          <div
+            className="schedule-set-button"
+            onClick={() => handleSetSchedule()}
+          >
             Set Schedule
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { TData, TFocusSectionInput, TFocustabsData, TNavigationbarData } from "../types/types"
+import { TData, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData } from "../types/types"
 import IconBlocked from "../assets/images/icon-banned.png"
 import IconFocus from "../assets/images/icon-focus.png"
 import IconInsight from "../assets/images/icon-insight.png"
@@ -96,6 +96,49 @@ const navigationbarData: TNavigationbarData[] = [
     }
 ]
 
+const scheduleData: TScheduleData = {
+    "status": false,
+    "starttime": "00:00",
+    "endtime": "00:00",
+    "days": [
+        {
+            "title": "monday",
+            "abbrev": "M",
+            "flag": true
+        },
+        {
+            "title": "tuesday",
+            "abbrev": "T",
+            "flag": true
+        },
+        {
+            "title": "wednesday",
+            "abbrev": "W",
+            "flag": true
+        },
+        {
+            "title": "thursday",
+            "abbrev": "T",
+            "flag": true
+        },
+        {
+            "title": "friday",
+            "abbrev": "F",
+            "flag": true
+        },
+        {
+            "title": "saturday",
+            "abbrev": "S",
+            "flag": true
+        },
+        {
+            "title": "sunday",
+            "abbrev": "S",
+            "flag": true
+        }
+    ]
+}
+
 // local-storage init data
 let data: TData = {
     "mainActive": true,
@@ -107,7 +150,8 @@ let data: TData = {
         "breakTime": 5,
         "numberOfCycles": 2
     },
-    "blockByWords": []
+    "blockByWords": [],
+    "scheduleData": scheduleData
 }
 
 export {
