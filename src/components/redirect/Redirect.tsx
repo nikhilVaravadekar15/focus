@@ -15,7 +15,6 @@ function Redirect() {
   useEffect(() => {
     chrome.storage.sync.get(["data"], (result: any) => {
       let data: TData = result["data"]
-      console.log(data["redirectUrl"])
       if (data["redirectUrl"] === "redirect.html") {
         setInputUrl("")
       } else {
