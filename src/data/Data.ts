@@ -1,4 +1,4 @@
-import { TData, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData } from "../types/types"
+import { TCategories, TData, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData } from "../types/types"
 import IconBlocked from "../assets/images/icon-banned.png"
 import IconFocus from "../assets/images/icon-focus.png"
 import IconInsight from "../assets/images/icon-insight.png"
@@ -96,6 +96,39 @@ const navigationbarData: TNavigationbarData[] = [
     }
 ]
 
+const categoriesData: TCategories[] = [
+    {
+        "image": "🔞",
+        "title": "Adult",
+        "status": true
+    },
+    {
+        "image": "💬",
+        "title": "Social",
+        "status": false
+    },
+    {
+        "image": "🛍",
+        "title": "Shopping",
+        "status": false
+    },
+    {
+        "image": "🗞",
+        "title": "News",
+        "status": false
+    },
+    {
+        "image": "🏀",
+        "title": "Sports",
+        "status": false
+    },
+    {
+        "image": "🃏",
+        "title": "Gambling",
+        "status": true
+    }
+]
+
 const scheduleData: TScheduleData = {
     "status": false,
     "starttime": "00:00",
@@ -151,7 +184,8 @@ let data: TData = {
         "numberOfCycles": 2
     },
     "blockByWords": [],
-    "scheduleData": scheduleData
+    "scheduleData": scheduleData,
+    "categoriesData": categoriesData
 }
 
 export {

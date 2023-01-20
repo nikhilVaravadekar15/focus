@@ -94,6 +94,7 @@ export type TData = {
     focusMode: TfocusMode
     blockByWords: string[]
     scheduleData: TScheduleData
+    categoriesData: TCategories[]
 }
 
 // BlockInput
@@ -140,4 +141,11 @@ export type TScheduleData = {
     starttime: string
     endtime: string
     days: TScheduleDay[]
+}
+
+// Categories 
+export type TCategories = {
+    image: string
+    title: string
+    status: boolean
 }

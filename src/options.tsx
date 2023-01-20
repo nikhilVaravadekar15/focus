@@ -8,6 +8,7 @@ import About from "./pages/about/About";
 import BlockByWords from "./pages/blockByWords/BlockByWords";
 import Redirect from "./components/redirect/Redirect";
 import Schedule from "./components/schedule/Schedule";
+import Categories from "./pages/categories/Categories";
 
 
 function Options() {
@@ -63,7 +64,7 @@ function Options() {
               </div>
               <div id="/categories"
                 className={`options_section ${currentTab === 4 && "active"}`}>
-                Categories
+                <Categories />
               </div>
               <div id="/settings"
                 className={`options_section ${currentTab === 5 && "active"}`}>
