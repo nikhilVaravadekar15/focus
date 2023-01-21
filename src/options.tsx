@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./common.css"
 import Navigation from "./components/navigationbar/Navigationbar";
@@ -9,6 +9,7 @@ import BlockByWords from "./pages/blockByWords/BlockByWords";
 import Redirect from "./components/redirect/Redirect";
 import Schedule from "./components/schedule/Schedule";
 import Categories from "./pages/categories/Categories";
+import { TData } from "./types/types";
 
 
 function Options() {
@@ -16,6 +17,21 @@ function Options() {
   const [currentTab, setCurrentNavTab] = useState<number>(0)
   const [redirectFlag, setRedirectFlag] = useState<boolean>(false)
   const [scheduleFlag, setScheduleFlag] = useState<boolean>(false)
+
+  useEffect(() => {
+    chrome.storage.sync.get(["data"], (result: any) => {
+      const data: TData = result["data"]
+      setCurrentNavTab(data["navigation"])
+    })
+  }, [])
+
+  useEffect(() => {
+    chrome.storage.sync.get(["data"], (result: any) => {
+      let data: TData = result["data"]
+      data["navigation"] = currentTab
+      chrome.storage.sync.set({ "data": data })
+    })
+  }, [currentTab])
 
   function setRedirectFlagStatus(flag: boolean) {
     setRedirectFlag(flag)

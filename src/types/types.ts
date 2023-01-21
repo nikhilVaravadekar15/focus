@@ -88,6 +88,7 @@ export type TfocusMode = {
 // local storage data
 export type TData = {
     mainActive: boolean
+    navigation: number
     redirectUrl: string
     blockedWebsites: TBlockedWebsite[]
     focusModeStatus: boolean

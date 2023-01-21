@@ -175,6 +175,7 @@ const scheduleData: TScheduleData = {
 // local-storage init data
 let data: TData = {
     "mainActive": true,
+    "navigation": 0,
     "redirectUrl": "redirect.html",
     "blockedWebsites": [],
     "focusModeStatus": false,
