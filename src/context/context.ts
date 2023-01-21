@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { TFocusTabsSection, TRedirect, TSchedule } from "../types/types";
+import { TFocusTabsSection, TMainActive, TRedirect, TSchedule } from "../types/types";
 
 export const pageContext = createContext<TFocusTabsSection>({
     currentTab: 0,
@@ -14,4 +14,9 @@ export const redirectContext = createContext<TRedirect>({
 export const scheduleContext = createContext<TSchedule>({
     scheduleFlag: false,
     setScheduleFlagStatus: () => { }
+});
+
+export const mainActiveContext = createContext<TMainActive>({
+    mainActive: false,
+    setMainActiveFlagStatus: () => { }
 });

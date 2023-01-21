@@ -4,12 +4,14 @@ import "./Navigationbar.css"
 import { navigationbarData } from "../../data/Data"
 import { TFocusTabsSection, TNavigationbarData, TNavigationbarTabs } from '../../types/types';
 import IconCoverFocus from "../../assets/images/cover-focus.gif"
-import { pageContext } from '../../context/context';
+import { mainActiveContext, pageContext } from '../../context/context';
 import { setHref } from "../../utility/utility"
 import IconBlock from "../../assets/images/icon__block.png"
 import IconStar from "../../assets/images/start_us.gif"
 
 function Navigation() {
+
+  const { mainActive, setMainActiveFlagStatus } = useContext(mainActiveContext);
 
   return (
     <div className="Navigationbar">
@@ -46,7 +48,10 @@ function Navigation() {
             <span className="title">Blocking</span>
           </div>
           <div className="_toggle" title="Toggle">
-            <div className="outer-circle isActive">
+            <div
+              className={mainActive ? "outer-circle isActive" : "outer-circle"}
+              onClick={() => setMainActiveFlagStatus((!mainActive))}
+            >
               <div className="inner-circle"></div>
             </div>
           </div>

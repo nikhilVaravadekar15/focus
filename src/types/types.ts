@@ -131,6 +131,11 @@ export type TSchedule = {
     setScheduleFlagStatus: (flag: boolean) => void
 }
 
+export type TMainActive = {
+    mainActive: boolean
+    setMainActiveFlagStatus: (flag: boolean) => void
+}
+
 export type TScheduleDay = {
     title: string
     abbrev: string

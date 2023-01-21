@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Main.css"
 import Focustabs from "../../components/focustabs/Focustabs";
 import BlockedSection from '../blockedSection/BlockedSection';
 import FocusSection from '../focusSection/FocusSection';
 import InsightSection from '../insightSection/InsightSection';
+import { TData } from '../../types/types';
 
 
 function Main() {
     const [currentTab, setCurrentTab] = useState<number>(0)
+    const [mainActiveStatus, setMainActiveStatusFlag] = useState<boolean>(true)
+
+    useEffect(() => {
+        chrome.storage.sync.get(["data"], (result: any) => {
+            const data: TData = result["data"]
+            setMainActiveStatusFlag(data["mainActive"])
+        })
+    }, [])
+
 
     function handleTabClick(id: number) {
         setCurrentTab(() => {
@@ -23,7 +33,7 @@ function Main() {
                     setMenuItemClick={handleTabClick}
                 />
             </div>
-            <div className="container__main-section">
+            <div className={!mainActiveStatus ? "container__main-section blur" : "container__main-section"}>
                 <BlockedSection
                     classname={currentTab === 0 ? "section active" : "section"}
                 />

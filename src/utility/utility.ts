@@ -46,7 +46,7 @@ export function validateCurrentOrigin(currentTabUrl: string) {
 
         for (let index = 0; index < data["blockedWebsites"].length; index++) {
             let item: TBlockedWebsite = data["blockedWebsites"][index]
-            if (item["websiteOrigin"] === currentTabUrlOrigin && item["blockedStatus"]) {
+            if (item["websiteOrigin"] === currentTabUrlOrigin && item["blockedStatus"] && data["mainActive"]) {
                 flag = true
                 break
             }
@@ -79,7 +79,7 @@ export function validateBlockByWords(currentTabUrl: string) {
 
         for (let index = 0; index < data["blockByWords"].length; index++) {
             var item: string = data["blockByWords"][index]
-            if (currentTabUrl.search(item) != -1) {
+            if (currentTabUrl.search(item) != -1 && data["mainActive"]) {
                 flag = true
                 break
             }
