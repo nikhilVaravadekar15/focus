@@ -126,6 +126,31 @@ const categoriesData: TCategories[] = [
         "image": "🃏",
         "title": "Gambling",
         "status": true
+    },
+    {
+        "image": "⚕️",
+        "title": "Health",
+        "status": false
+    },
+    {
+        "image": "🎮",
+        "title": "Games",
+        "status": false
+    },
+    {
+        "image": "💸",
+        "title": "Finance",
+        "status": false
+    },
+    {
+        "image": "👭",
+        "title": "Community and Society Website",
+        "status": false
+    },
+    {
+        "image": "🎭",
+        "title": "Arts & Entertainment",
+        "status": false
     }
 ]
 

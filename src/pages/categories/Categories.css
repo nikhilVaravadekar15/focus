@@ -87,12 +87,15 @@
 
 
 .Categories-list {
+    height: 96%;
     width: 100%;
-    padding: 24px 0;
+    padding: 18px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 18px;
+    margin-block: -6px;
+    overflow-y: scroll;
     border: 1px solid rgb(205, 205, 205);
 }
 
@@ -100,7 +103,7 @@
 /* Categories-list list-item */
 .list-item {
     width: 96%;
-    padding-top: 16px;
+    padding-top: 12px;
     padding-bottom: 12px;
     display: flex;
     align-items: center;
