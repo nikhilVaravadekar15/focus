@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { TCategories, TData } from '../../types/types'
 import "./Categories.css"
+import Popup from './component/popup/Popup'
 
 function Categories() {
 
   const [categories, setCategories] = useState<TCategories[]>([])
+  const [popup, setPopup] = useState<boolean>(false)
+  const [currentCategory, setCurrentCategory] = useState<string>("")
 
   useEffect(() => {
     chrome.storage.sync.get(["data"], (result: any) => {
@@ -37,8 +40,18 @@ function Categories() {
     })
   }
 
+  function setCurrentCategoryPopupState(flag: boolean) {
+    setPopup(flag)
+  }
+  function handlePopup(category: string) {
+    console.log(category)
+    setCurrentCategoryPopupState(true)
+    setCurrentCategory(category)
+  }
+
   return (
     <>
+      {popup && <Popup title={currentCategory} setCurrentCategoryPopupState={setCurrentCategoryPopupState} />}
       <div className='Categories'>
         <div className="section">
           <div className="Categories__container">
@@ -61,7 +74,12 @@ function Categories() {
                       <div className="list-item" key={index}>
                         <div className="item-left" title={category["title"]}>
                           <div className="image">{category["image"]}</div>
-                          <div className="title">{category["title"]}</div>
+                          <div
+                            className="title"
+                            onClick={() => { handlePopup(category["title"]) }}
+                          >
+                            {category["title"]}
+                          </div>
                         </div>
                         <div className="item-right toggle">
                           <div

@@ -1,6 +1,8 @@
 .Categories {
+    top: 0;
     height: 100%;
     width: 100%;
+    position: absolute;
 }
 
 /* CategoriesSites section */
@@ -122,6 +124,13 @@
 
 .list-item .item-left .title {
     font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.list-item .item-left .title:hover {
+    border-bottom: 1px solid rgb(78, 147, 223);
+    color: rgb(78, 147, 223);
 }
 
 
