@@ -4,10 +4,11 @@ import IconClosePopup from "../../../../assets/images/icon_cancel.png"
 
 type TCurrentCategoryPopup = {
   title: string
+  array: string[]
   setCurrentCategoryPopupState: (flag: boolean) => void
 }
 
-function Popup({ title, setCurrentCategoryPopupState }: TCurrentCategoryPopup) {
+function Popup({ title, array, setCurrentCategoryPopupState }: TCurrentCategoryPopup) {
 
   return (
 
@@ -16,8 +17,8 @@ function Popup({ title, setCurrentCategoryPopupState }: TCurrentCategoryPopup) {
         <div className="header-title">
           <h3>{title}</h3>
         </div>
-        <div 
-          title="close" 
+        <div
+          title="close"
           className="popup-close"
           onClick={() => setCurrentCategoryPopupState(false)}
         >
@@ -26,10 +27,16 @@ function Popup({ title, setCurrentCategoryPopupState }: TCurrentCategoryPopup) {
       </div>
       <div className="popup-body">
         <div className="table">
-          <div className="item">
-            <span className="number">1</span>
-            <span className="title">https://www.google.com</span>
-          </div>
+          {
+            array.map((value: string, index: number) => {
+              return (
+                <div className="item" key={index}>
+                  <span className="number">{index+1}</span>
+                  <span className="title">{value}</span>
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     </div>
