@@ -21,29 +21,22 @@ function Options() {
   const [scheduleFlag, setScheduleFlag] = useState<boolean>(false)
 
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      const data: TData = result["data"]
-      setCurrentNavTab(data["navigation"])
-      setMainActiveStatus(data["mainActive"])
+    chrome.storage.sync.get(["mainActive", "navigation"], (result: any) => {
+      const mainActive: boolean = result["mainActive"]
+      const navigation: number = result["navigation"]
+      setMainActiveStatus(mainActive)
+      setCurrentNavTab(navigation)
     })
   }, [])
 
   useEffect(() => {
-    // current navigation tab
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      data["navigation"] = currentTab
-      chrome.storage.sync.set({ "data": data })
-    })
+    // current navigation tab    
+    chrome.storage.sync.set({ "navigation": currentTab })
   }, [currentTab])
 
   useEffect(() => {
     // main active status
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      data["mainActive"] = mainActiveStatus
-      chrome.storage.sync.set({ "data": data })
-    })
+    chrome.storage.sync.set({ "mainActive": mainActiveStatus })
   }, [mainActiveStatus])
 
   function setMainActiveStatusFlag(flag: boolean) {

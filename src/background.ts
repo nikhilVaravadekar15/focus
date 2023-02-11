@@ -17,7 +17,20 @@ chrome.runtime.onInstalled.addListener(() => {
       });
     }
   })
-  chrome.storage.sync.set({ "data": data });
+  chrome.storage.sync.set({
+    "mainActive": true,
+    "navigation": 0,
+    "redirectUrl": "redirect.html",
+    "focusMode": {
+      "focusModeStatus": false,
+      "details": {
+        "focusTime": 25,
+        "breakTime": 5,
+        "numberOfCycles": 2
+      }
+    },
+    "data": data
+  });
   console.log('%c allow-in-incognito ', 'background: black; color: white; font-size:16px;');
 })
 

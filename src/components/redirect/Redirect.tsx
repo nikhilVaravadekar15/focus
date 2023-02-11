@@ -13,12 +13,12 @@ function Redirect() {
   const { redirectFlag, setRedirectFlagStatus } = useContext(redirectContext);
 
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      if (data["redirectUrl"] === "redirect.html") {
+    chrome.storage.sync.get(["redirectUrl"], (result: any) => {
+      let redirectUrl: string = result["redirectUrl"]
+      if (redirectUrl === "redirect.html") {
         setInputUrl("")
       } else {
-        setInputUrl(data["redirectUrl"])
+        setInputUrl(redirectUrl)
       }
     })
   }, [])
@@ -26,7 +26,7 @@ function Redirect() {
   function addCustomBlockUrl() {
     if (validURL(inputUrl) && !isAvailableInChromePaths(inputUrl)) {
 
-      chrome.storage.sync.get(["data"], (result: any) => {
+      chrome.storage.sync.get(["redirectUrl", "data"], (result: any) => {
         let flag: boolean = false
         const origin: string = new URL(inputUrl).origin
         let data: TData = result["data"]
@@ -44,7 +44,6 @@ function Redirect() {
           showToast("error", "Cannot set this url because it is in the blocklist. Please try again!", 500)
         } else {
           let flag: boolean = false
-          console.log(data["blockByWords"])
           for (let index = 0; index < data["blockByWords"].length; index++) {
             let item: string = data["blockByWords"][index]
             if (origin.search(item) != -1) {
@@ -57,8 +56,7 @@ function Redirect() {
             setInputUrl("")
             showToast("error", "Cannot set this url because it contains words that are in the block-by-words list. Please try again!", 500)
           } else {
-            data["redirectUrl"] = inputUrl
-            chrome.storage.sync.set({ "data": data })
+            chrome.storage.sync.set({ "redirectUrl": inputUrl })
             showToast("success", `${inputUrl} set as custom redirect url`, 500)
             console.log('%c Custom redirect url added ', 'background: #222; color: purple; font-size:16px;');
           }

@@ -12,9 +12,9 @@ function Main() {
     const [mainActiveStatus, setMainActiveStatusFlag] = useState<boolean>(true)
 
     useEffect(() => {
-        chrome.storage.sync.get(["data"], (result: any) => {
-            const data: TData = result["data"]
-            setMainActiveStatusFlag(data["mainActive"])
+        chrome.storage.sync.get(["mainActive"], (result: any) => {
+            const mainActive: boolean = result["mainActive"]
+            setMainActiveStatusFlag(mainActive)
         })
     }, [])
 

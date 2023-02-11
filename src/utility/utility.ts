@@ -108,19 +108,20 @@ function checkBlockedByCategories(currentTabUrl: string, categoriesData: TCatego
 
 export function validateCurrentOrigin(currentTabUrl: string) {
     const currentTabUrlOrigin = new URL(currentTabUrl).origin
-    chrome.storage.sync.get(["data"], (result: any) => {
+    chrome.storage.sync.get(["mainActive", "redirectUrl", "data"], (result: any) => {
         let flag: boolean = false
         let data: TData = result["data"]
         const categoriesData: TCategories[] = data["categoriesData"]
+
         if (true) {
-            // TODO: check if block-by-categories is enabled in seetings 
+            // TODO: check if block-by-categories is enabled in settings 
             flag = checkBlockedByCategories(new URL(currentTabUrl).origin, categoriesData)
         }
 
         if (!flag) {
             for (let index = 0; index < data["blockedWebsites"].length; index++) {
                 let item: TBlockedWebsite = data["blockedWebsites"][index]
-                if (item["websiteOrigin"] === currentTabUrlOrigin && item["blockedStatus"] && data["mainActive"]) {
+                if (item["websiteOrigin"] === currentTabUrlOrigin && item["blockedStatus"] && result["mainActive"]) {
                     flag = true
                     break
                 }
@@ -131,10 +132,10 @@ export function validateCurrentOrigin(currentTabUrl: string) {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 chrome.storage.sync.get(["data"], (result: any) => {
                     let data: TData = result["data"]
-                    if (data["redirectUrl"] === "redirect.html") {
+                    if (result["redirectUrl"] === "redirect.html") {
                         chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href=${currentTabUrlOrigin}`) });
                     } else {
-                        chrome.tabs.update({ url: data["redirectUrl"] });
+                        chrome.tabs.update({ url: result["redirectUrl"] });
                     }
                 })
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');
@@ -148,13 +149,13 @@ export function validateCurrentOrigin(currentTabUrl: string) {
 }
 
 export function validateBlockByWords(currentTabUrl: string) {
-    chrome.storage.sync.get(["data"], (result: any) => {
+    chrome.storage.sync.get(["mainActive", "redirectUrl", "data"], (result: any) => {
         let flag: boolean = false
         let data: TData = result["data"]
 
         for (let index = 0; index < data["blockByWords"].length; index++) {
             var item: string = data["blockByWords"][index]
-            if (currentTabUrl.search(item) != -1 && data["mainActive"]) {
+            if (currentTabUrl.search(item) != -1 && result["mainActive"]) {
                 flag = true
                 break
             }
@@ -164,10 +165,10 @@ export function validateBlockByWords(currentTabUrl: string) {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 chrome.storage.sync.get(["data"], (result: any) => {
                     let data: TData = result["data"]
-                    if (data["redirectUrl"] === "redirect.html") {
+                    if (result["redirectUrl"] === "redirect.html") {
                         chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#blocked-words=${item}`) });
                     } else {
-                        chrome.tabs.update({ url: data["redirectUrl"] });
+                        chrome.tabs.update({ url: result["redirectUrl"] });
                     }
                 })
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size: 16px;');

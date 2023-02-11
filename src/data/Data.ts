@@ -223,16 +223,7 @@ const settingData: TSetting[] = [
 
 // local-storage init data
 let data: TData = {
-    "mainActive": true,
-    "navigation": 0,
-    "redirectUrl": "redirect.html",
     "blockedWebsites": [],
-    "focusModeStatus": false,
-    "focusMode": {
-        "focusTime": 25,
-        "breakTime": 5,
-        "numberOfCycles": 2
-    },
     "blockByWords": [],
     "scheduleData": scheduleData,
     "categoriesData": categoriesData,
