@@ -235,13 +235,13 @@ let data: TData = {
     },
     "blockByWords": [],
     "scheduleData": scheduleData,
-    "categoriesData": categoriesData
+    "categoriesData": categoriesData,
+    "settings": settingData
 }
 
 export {
     focusTabs,
     focusSectionInput,
     navigationbarData,
-    settingData,
     data
 }

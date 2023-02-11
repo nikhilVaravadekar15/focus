@@ -1,9 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Settings.css"
-import { TSetting } from '../../types/types'
-import { settingData } from '../../data/Data'
+import { TData, TSetting } from '../../types/types'
 
 function Settings() {
+    const [settingData, setSettingData] = useState<TSetting[]>([])
+
+    useEffect(() => {
+        chrome.storage.sync.get(["data"], (result: any) => {
+            const data: TData = result["data"]
+            setSettingData(data["settings"])
+        })
+    }, [])
+
+    useEffect(() => {
+        chrome.storage.sync.get(["data"], (result: any) => {
+            const data: TData = result["data"]
+            data["settings"] = settingData
+            chrome.storage.sync.set({ "data": data })
+        })
+    }, [settingData])
+
+    function updateSettingItem(index: number) {
+        var updatedSetting: TSetting[] = []
+        setSettingData((prevData: TSetting[]) => {
+            updatedSetting = [...prevData]
+            const item: TSetting = updatedSetting[index]
+            updatedSetting.splice(index, 1, {
+                "title": item.title,
+                "description": item.description,
+                "reditect": item.reditect,
+                "flag": !item.flag
+            })
+            return updatedSetting
+        })
+    }
+
     return (
         <div className='Settings'>
             <div className="section">
@@ -22,7 +53,7 @@ function Settings() {
                             {
                                 settingData.map((item: TSetting, index: number) => {
                                     return (
-                                        <div className="item">
+                                        <div className="item" key={index}>
                                             <div className="item-left">
                                                 <div className="title">{item["title"]}</div>
                                                 <div className="description">
@@ -33,7 +64,10 @@ function Settings() {
                                                 </div>
                                             </div>
                                             <div className="item-right">
-                                                <div className={item["flag"] ? "outer-circle isActive" : "outer-circle"}>
+                                                <div
+                                                    className={item["flag"] ? "outer-circle isActive" : "outer-circle"}
+                                                    onClick={() => updateSettingItem(index)}
+                                                >
                                                     <div className="inner-circle"></div>
                                                 </div>
                                             </div>
@@ -45,7 +79,7 @@ function Settings() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -96,6 +96,7 @@ export type TData = {
     blockByWords: string[]
     scheduleData: TScheduleData
     categoriesData: TCategories[]
+    settings: TSetting[]
 }
 
 // BlockInput
