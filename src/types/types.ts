@@ -155,3 +155,11 @@ export type TCategories = {
     title: string
     status: boolean
 }
+
+//  TSetting  
+export type TSetting = {
+    title: string
+    description: string
+    reditect?: string
+    flag: boolean
+}

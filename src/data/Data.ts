@@ -1,4 +1,4 @@
-import { TCategories, TData, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData } from "../types/types"
+import { TCategories, TData, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
 import IconBlocked from "../assets/images/icon-banned.png"
 import IconFocus from "../assets/images/icon-focus.png"
 import IconInsight from "../assets/images/icon-insight.png"
@@ -197,6 +197,30 @@ const scheduleData: TScheduleData = {
     ]
 }
 
+const settingData: TSetting[] = [
+    {
+        "title": "Close the tab when blocked wessite is accessed",
+        "description": "Enable this to close tab when blocked website is accessed instead of redirected",
+        "flag": false
+    },
+    {
+        "title": "Show remaining time on favicon",
+        "description": "Enable this to show the time left in current interval on the extension's favicon.",
+        "flag": true
+    },
+    {
+        "title": "Enable \"Block By Category\" Blocking",
+        "description": "Allows BlockSite to access your visited URLs, IP address, operating system, and browser information, for use as directed in our",
+        "reditect": "Privacy Policy.",
+        "flag": true
+    },
+    {
+        "title": "Enable BlockSite shortcut option using right-click",
+        "description": "Add sites to your block list or your focus mode list by right-clicking and selecting the BlockSite menu on a website.",
+        "flag": true
+    }
+]
+
 // local-storage init data
 let data: TData = {
     "mainActive": true,
@@ -218,5 +242,6 @@ export {
     focusTabs,
     focusSectionInput,
     navigationbarData,
+    settingData,
     data
 }

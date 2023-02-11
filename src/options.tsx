@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./common.css"
+import { TData } from "./types/types";
 import Navigation from "./components/navigationbar/Navigationbar";
 import BlockSites from "./pages/blockSites/BlockSites";
-import { pageContext, mainActiveContext, redirectContext, scheduleContext } from "./context/context";
 import About from "./pages/about/About";
 import BlockByWords from "./pages/blockByWords/BlockByWords";
 import Redirect from "./components/redirect/Redirect";
 import Schedule from "./components/schedule/Schedule";
 import Categories from "./pages/categories/Categories";
-import { TData } from "./types/types";
+import Settings from "./pages/settings/Settings";
+import { pageContext, mainActiveContext, redirectContext, scheduleContext } from "./context/context";
 
 
 function Options() {
@@ -104,7 +105,7 @@ function Options() {
                 </div>
                 <div id="/settings"
                   className={`options_section ${currentTab === 5 && "active"}`}>
-                  Settings
+                  <Settings />
                 </div>
                 <div id="/about"
                   className={`options_section ${currentTab === 6 && "active"}`}>
