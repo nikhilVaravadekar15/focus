@@ -1,5 +1,17 @@
 import { toast } from "react-toastify";
-import { TBlockedWebsite, TData } from "../types/types";
+import { TBlockedWebsite, TCategories, TData } from "../types/types";
+
+import adult from '../data/categories/adult'
+import arts_and_entertainment from '../data/categories/arts-and-entertainment'
+import community_and_society from '../data/categories/community-and-society'
+import finance from '../data/categories/finance'
+import gambling from '../data/categories/gambling'
+import games from '../data/categories/games'
+import health from '../data/categories/health'
+import news_and_media from '../data/categories/news-and-media'
+import shopping from '../data/categories/shopping'
+import social_media from '../data/categories/social-media'
+import sports from '../data/categories/sports'
 
 export function validURL(url: string) {
     var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
@@ -38,17 +50,81 @@ export function setHref(location: string) {
     }
 }
 
+function checkSubArray(currentTabUrl: string, array: string[]): boolean {
+    for (let index = 0; index < array.length; index++) {
+        if (currentTabUrl == array[index]) {
+            return true
+        }
+    }
+    return false
+}
+
+function checkBlockedByCategories(currentTabUrl: string, categoriesData: TCategories[]): boolean {
+    let flag: boolean = false
+    currentTabUrl = currentTabUrl.split("www.").join("")
+    for (let index = 0; index < categoriesData.length; index++) {
+        const category: TCategories = categoriesData[index];
+        if (category["status"] && !flag) {
+            switch (category["title"]) {
+                case "Adult":
+                    flag = checkSubArray(currentTabUrl, adult)
+                    break;
+                case "Social":
+                    flag = checkSubArray(currentTabUrl, social_media)
+                    break;
+                case "Shopping":
+                    flag = checkSubArray(currentTabUrl, shopping)
+                    break;
+                case "News":
+                    flag = checkSubArray(currentTabUrl, news_and_media)
+                    break;
+                case "Sports":
+                    flag = checkSubArray(currentTabUrl, sports)
+                    break;
+                case "Gambling":
+                    flag = checkSubArray(currentTabUrl, gambling)
+                    break;
+                case "Health":
+                    flag = checkSubArray(currentTabUrl, health)
+                    break;
+                case "Games":
+                    flag = checkSubArray(currentTabUrl, games)
+                    break;
+                case "Finance":
+                    flag = checkSubArray(currentTabUrl, finance)
+                    break;
+                case "Community and Society Website":
+                    flag = checkSubArray(currentTabUrl, community_and_society)
+                    break;
+                case "Arts & Entertainment":
+                    flag = checkSubArray(currentTabUrl, arts_and_entertainment)
+                    break;
+                default:
+                    console.log('%c Invalid Category ', 'background: red; color: white; font-size:16px;');
+            }
+        }
+    }
+    return flag
+}
+
 export function validateCurrentOrigin(currentTabUrl: string) {
     const currentTabUrlOrigin = new URL(currentTabUrl).origin
     chrome.storage.sync.get(["data"], (result: any) => {
         let flag: boolean = false
         let data: TData = result["data"]
+        const categoriesData: TCategories[] = data["categoriesData"]
+        if (true) {
+            // TODO: check if block-by-categories is enabled in seetings 
+            flag = checkBlockedByCategories(new URL(currentTabUrl).origin, categoriesData)
+        }
 
-        for (let index = 0; index < data["blockedWebsites"].length; index++) {
-            let item: TBlockedWebsite = data["blockedWebsites"][index]
-            if (item["websiteOrigin"] === currentTabUrlOrigin && item["blockedStatus"] && data["mainActive"]) {
-                flag = true
-                break
+        if (!flag) {
+            for (let index = 0; index < data["blockedWebsites"].length; index++) {
+                let item: TBlockedWebsite = data["blockedWebsites"][index]
+                if (item["websiteOrigin"] === currentTabUrlOrigin && item["blockedStatus"] && data["mainActive"]) {
+                    flag = true
+                    break
+                }
             }
         }
 
