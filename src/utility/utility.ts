@@ -61,7 +61,6 @@ function checkSubArray(currentTabUrl: string, array: string[]): boolean {
 
 function checkBlockedByCategories(currentTabUrl: string, categoriesData: TCategories[]): boolean {
     let flag: boolean = false
-    currentTabUrl = currentTabUrl.split("www.").join("")
     for (let index = 0; index < categoriesData.length; index++) {
         const category: TCategories = categoriesData[index];
         if (category["status"] && !flag) {
