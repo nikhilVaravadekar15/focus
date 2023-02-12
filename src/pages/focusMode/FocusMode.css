@@ -1,0 +1,117 @@
+.FocusMode {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+/* CategoriesSites section */
+.FocusMode .section {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    padding: 32px;
+    transition: 0.5s;
+}
+
+.FocusMode__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* container__FocusMode-sites header */
+.FocusMode__container .header {
+    width: 100%;
+    height: 112px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.FocusMode__container .FocusMode-container__body {
+    width: 100%;
+    height: calc(100% - 112px);
+    margin-top: 20px;
+}
+
+.FocusMode__container .FocusMode-container__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.FocusMode__container .FocusMode-container__header .buttons {
+    height: 100%;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FocusMode__container .FocusMode-container__header .buttons .single-button {
+    height: 100%;
+}
+
+
+.FocusMode__container .FocusMode-container__header .header__titles h2 {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: rgb(33, 33, 33);
+    text-transform: capitalize;
+}
+
+.FocusMode__container .FocusMode-container__header .header__titles p {
+    font-size: 16px;
+    color: rgb(138, 138, 138);
+}
+
+
+/* container__FocusMode-sites body */
+.FocusMode-container__body {
+    flex-grow: 1;
+    height: 100%;
+    border-radius: 18px;
+    border: 1px solid rgb(205, 205, 205);
+}
+
+/* Timer component */
+.FocusMode-timer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .FocusMode-container__body .body__options */
+.body__options {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body__options .options__focus-inputs {
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid rgb(205, 205, 205);
+}
+
+.body__options .options__focus-blockedsites {
+    width: 50%;
+    height: 100%;
+}
+
+.body__options .options__focus-inputs h2 {
+    height: 16px;
+    font-size: 14px;
+    margin-top: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: rgb(0, 0, 0);
+}

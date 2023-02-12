@@ -1,0 +1,78 @@
+.FocusMode-timer .Timer {
+    width: 448px;
+    height: 100%;
+}
+
+.Timer {
+    /* width: 448px;
+    height: 528px; */
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Timer .status {
+    margin: 16px 0px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.71;
+    color: rgb(38, 38, 38);
+    text-align: center;
+    position: relative;
+}
+
+.Timer .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CountdownCircleTimer Counter */
+.Timer .progress .Counter {
+    position: relative;
+    margin: 16px 0px 12px;
+}
+
+.Timer .progress .Counter .actual-counter {
+    font-size: 32px;
+    font-weight: 500;
+    color: rgb(38, 38, 38);
+    text-align: center;
+}
+
+.Timer .progress .Counter .units {
+    font-size: 14px;
+    line-height: 2;
+    text-align: center;
+    color: rgb(166, 166, 166);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+}
+
+.Timer .helper-text {
+    margin: 12px;
+    font-size: 14px;
+    line-height: 1.71;
+    text-align: center;
+    color: rgb(166, 166, 166);
+}
+
+.Timer .reset-button {
+    width: 80%;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(97, 97, 97);
+    background-color: rgb(238, 238, 238);
+}
+
+.Timer .reset-button:hover {
+    background-color: rgb(219, 219, 219);
+}

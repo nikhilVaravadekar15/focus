@@ -10,6 +10,7 @@ import Schedule from "./components/schedule/Schedule";
 import Categories from "./pages/categories/Categories";
 import Settings from "./pages/settings/Settings";
 import { pageContext, mainActiveContext, redirectContext, scheduleContext } from "./context/context";
+import FocusMode from "./pages/focusMode/FocusMode";
 
 
 function Options() {
@@ -81,7 +82,7 @@ function Options() {
                 </div>
                 <div id="/focus-mode"
                   className={`options_section ${currentTab === 1 && "active"}`}>
-                  focusMode
+                  <FocusMode />
                 </div>
                 <div id="/insights"
                   className={`options_section ${currentTab === 2 && "active"}`}>
