@@ -30,25 +30,14 @@ function BlockSites() {
   })
 
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      setBlockList((prevData: TBlockedWebsite[]) => {
-        prevData = data["blockedWebsites"]
-        return prevData
-      })
+    chrome.storage.sync.get(["blockedWebsites"], (result: any) => {
+      let blockedWebsites: TBlockedWebsite[] = result["blockedWebsites"]
+      setBlockList(blockedWebsites)
     })
   }, [])
 
-
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      data["blockedWebsites"] = []
-      for (let index = 0; index < blockList.length; index++) {
-        data["blockedWebsites"][index] = blockList[index];
-      }
-      chrome.storage.sync.set({ "data": data })
-    })
+    chrome.storage.sync.set({ "blockedWebsites": blockList })
   }, [blockList])
 
   function setBlockInput(value: string) {

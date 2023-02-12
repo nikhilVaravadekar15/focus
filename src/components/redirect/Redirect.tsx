@@ -4,7 +4,7 @@ import IconClosePopup from "../../assets/images/icon_cancel.png"
 import { toast, ToastContainer } from 'react-toastify';
 import { redirectContext } from "../../context/context";
 import { validURL, isAvailableInChromePaths, showToast } from "../../utility/utility";
-import { TBlockedWebsite, TData } from '../../types/types';
+import { TBlockedWebsite } from '../../types/types';
 
 
 function Redirect() {
@@ -26,13 +26,13 @@ function Redirect() {
   function addCustomBlockUrl() {
     if (validURL(inputUrl) && !isAvailableInChromePaths(inputUrl)) {
 
-      chrome.storage.sync.get(["redirectUrl", "blockByWords", "data"], (result: any) => {
+      chrome.storage.sync.get(["redirectUrl", "blockByWords", "blockedWebsites", "data"], (result: any) => {
         let flag: boolean = false
         const origin: string = new URL(inputUrl).origin
-        let data: TData = result["data"]
+        let blockedWebsites: TBlockedWebsite[] = result["blockedWebsites"]
 
-        for (let index = 0; index < data["blockedWebsites"].length; index++) {
-          let item: TBlockedWebsite = data["blockedWebsites"][index]
+        for (let index = 0; index < blockedWebsites.length; index++) {
+          let item: TBlockedWebsite = blockedWebsites[index]
           if (origin === item["websiteOrigin"]) {
             flag = true
             break

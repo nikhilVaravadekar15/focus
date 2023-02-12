@@ -46,12 +46,13 @@ function BlockedSection({ classname }: TCustomClassName) {
     }, [])
 
     function addToBlockList(event: any) {
-        chrome.storage.sync.get(["data"], (result: any) => {
+        chrome.storage.sync.get(["redirectUrl", "blockedWebsites", "data"], (result: any) => {
             let flag: boolean = false
-            let data: TData = result["data"]
+            let redirectUrl: string = result["redirectUrl"]
+            let blockedWebsites: TBlockedWebsite[] = result["blockedWebsites"]
 
-            for (let index = 0; index < data["blockedWebsites"].length; index++) {
-                let item: TBlockedWebsite = data["blockedWebsites"][index]
+            for (let index = 0; index < blockedWebsites.length; index++) {
+                let item: TBlockedWebsite = blockedWebsites[index]
                 if (item["websiteOrigin"] === websiteContent.currentWebsiteOrigin && item["blockedStatus"]) {
                     flag = true
                     break
@@ -65,7 +66,7 @@ function BlockedSection({ classname }: TCustomClassName) {
                 }, 10000)
                 console.log('%c Already blocked ', 'background: #222; color: purple; font-size:16px;');
             } else {
-                data["blockedWebsites"].push({
+                blockedWebsites.push({
                     "websiteFavIcon": websiteContent.currentWebsiteFavIcon,
                     "websiteOrigin": websiteContent.currentWebsiteOrigin,
                     "hostname": websiteContent.currentWebsiteHostname,
@@ -74,16 +75,13 @@ function BlockedSection({ classname }: TCustomClassName) {
                 console.log('%c Added to blocked list ', 'background: #222; color: red; font-size:16px;');
             }
 
-            chrome.storage.sync.set({ "data": data })
+            chrome.storage.sync.set({ "blockedWebsites": blockedWebsites })
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.storage.sync.get(["redirectUrl"], (result: any) => {
-
-                    if (result["redirectUrl"] === "redirect.html") {
-                        chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href=${websiteContent.currentWebsiteOrigin}`) });
-                    } else {
-                        chrome.tabs.update({ url: result["redirectUrl"] });
-                    }
-                })
+                if (redirectUrl === "redirect.html") {
+                    chrome.tabs.update({ url: chrome.runtime.getURL(`redirect.html#href=${websiteContent.currentWebsiteOrigin}`) });
+                } else {
+                    chrome.tabs.update({ url: redirectUrl });
+                }
                 console.log('%c Blocked ', 'background: #222; color: #bada55; font-size:16px;');
             })
         })

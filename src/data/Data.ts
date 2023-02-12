@@ -1,4 +1,3 @@
-import { TCategories, TData, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
 import IconBlocked from "../assets/images/icon-banned.png"
 import IconFocus from "../assets/images/icon-focus.png"
 import IconInsight from "../assets/images/icon-insight.png"
@@ -6,6 +5,7 @@ import IconBlockByWords from "../assets/images/icon_add-words.png"
 import IconCategories from "../assets/images/icon_category.png"
 import IconSettings from "../assets/images/icon-settings.png"
 import IconAbout from "../assets/images/icon_about.png"
+import { TCategories, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
 
 const focusTabs: TFocustabsData[] = [
     {
@@ -221,17 +221,11 @@ const settingsData: TSetting[] = [
     }
 ]
 
-// local-storage init data
-let data: TData = {
-    "blockedWebsites": [],
-}
-
 export {
     focusTabs,
     focusSectionInput,
     navigationbarData,
     scheduleData,
     categoriesData,
-    settingsData,
-    data
+    settingsData
 }
