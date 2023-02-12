@@ -2,7 +2,7 @@ import React, { TimeHTMLAttributes, useContext, useEffect, useState } from 'reac
 import "./Schedule.css"
 import IconClosePopup from "../../assets/images/icon_cancel.png"
 import { scheduleContext } from "../../context/context";
-import { TData, TScheduleData, TScheduleDay } from "../../types/types";
+import { TScheduleData, TScheduleDay } from "../../types/types";
 
 
 function Redirect() {

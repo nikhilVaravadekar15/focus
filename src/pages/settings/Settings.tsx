@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Settings.css"
-import { TData, TSetting } from '../../types/types'
+import { TSetting } from '../../types/types'
 
 function Settings() {
     const [settings, setSettings] = useState<TSetting[]>([])

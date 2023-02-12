@@ -3,7 +3,6 @@ import "./BlockByWords.css"
 import { MuiChipsInput } from 'mui-chips-input'
 import { ToastContainer } from 'react-toastify'
 import { showToast } from '../../utility/utility'
-import { TData } from '../../types/types'
 
 function BlockByWords() {
   const unblock: string[] = ["file://", "about:blank", "chrome://", "chrome-extension://", "http", "https"]

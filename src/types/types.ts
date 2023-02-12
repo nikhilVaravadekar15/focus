@@ -85,10 +85,6 @@ export type TfocusMode = {
     numberOfCycles: number
 }
 
-// local storage data
-export type TData = {
-    blockedWebsites: TBlockedWebsite[]
-}
 
 // BlockInput
 export type TBlockInput = {

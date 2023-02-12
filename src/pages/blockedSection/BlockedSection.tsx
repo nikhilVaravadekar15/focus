@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import "./BlockedSection.css"
 import IconInternetCoverUp from "../../assets/images/internet_cover.gif"
 
-import { TCustomClassName, TWebsiteContent, TData, TBlockedWebsite } from '../../types/types'
+import { TCustomClassName, TWebsiteContent, TBlockedWebsite } from '../../types/types'
 import WebsiteContent from "./components/websiteContent/WebsiteContent"
 import AlreadyBlocked from "./components/alreadyBlocked/AlreadyBlocked"
 import CoverUpSection from "./components/coverUpSection/CoverUpSection"

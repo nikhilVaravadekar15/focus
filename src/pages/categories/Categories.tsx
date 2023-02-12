@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TCategories, TData } from '../../types/types'
+import { TCategories } from '../../types/types'
 import "./Categories.css"
 import Popup from './component/popup/Popup'
 

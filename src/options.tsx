@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./common.css"
-import { TData } from "./types/types";
 import Navigation from "./components/navigationbar/Navigationbar";
 import BlockSites from "./pages/blockSites/BlockSites";
 import About from "./pages/about/About";

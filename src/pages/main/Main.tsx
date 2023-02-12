@@ -4,7 +4,6 @@ import Focustabs from "../../components/focustabs/Focustabs";
 import BlockedSection from '../blockedSection/BlockedSection';
 import FocusSection from '../focusSection/FocusSection';
 import InsightSection from '../insightSection/InsightSection';
-import { TData } from '../../types/types';
 
 
 function Main() {

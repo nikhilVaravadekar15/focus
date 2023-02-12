@@ -8,7 +8,7 @@ import BlockInput from './components/blockInput/BlockInput'
 import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
 import BlockSubstitute from './components/blockSubstitute/BlockSubstitute'
 import { validURL, isAvailableInChromePaths, showToast } from '../../utility/utility'
-import { TBlockedWebsite, TData, TSnackbar } from '../../types/types'
+import { TBlockedWebsite, TSnackbar } from '../../types/types'
 import { ToastContainer, toast } from 'react-toastify';
 import Redirect from '../../components/redirect/Redirect';
 import { redirectContext, scheduleContext } from '../../context/context';
