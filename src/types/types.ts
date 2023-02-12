@@ -47,6 +47,7 @@ export type TFocusSectionInput = {
     title: string
     type: string
     name: string
+    description: string
     min: number
     max: number
     value: number

@@ -96,22 +96,17 @@
     justify-content: center;
 }
 
-.body__options .options__focus-inputs {
-    width: 50%;
+.body__options .Focusio {
+    gap: 12px;
+    width: 40%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     border-right: 1px solid rgb(205, 205, 205);
 }
 
-.body__options .options__focus-blockedsites {
-    width: 50%;
+.body__options .Focusblock {
+    width: 60%;
     height: 100%;
-}
-
-.body__options .options__focus-inputs h2 {
-    height: 16px;
-    font-size: 14px;
-    margin-top: 12px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: rgb(0, 0, 0);
 }

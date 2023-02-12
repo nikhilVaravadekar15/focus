@@ -3,9 +3,9 @@ import "./FocusSection.css"
 
 import { TCustomClassName, TFocusSectionInput } from '../../types/types'
 import { focusSectionInput } from "../../data/Data"
-import FocusInput from './components/focusInput/FocusInput'
 import PButton from '../../components/button/PButton/PButton'
 import { openOptions } from '../../utility/utility'
+import FocusInput from './components/focusInput/FocusInput'
 
 function FocusSection({ classname }: TCustomClassName) {
 
@@ -29,6 +29,7 @@ function FocusSection({ classname }: TCustomClassName) {
                   title={item["title"]}
                   type={item["type"]}
                   name={item["name"]}
+                  description={item["description"]}
                   min={item["min"]}
                   max={item["max"]}
                   value={item["value"]}

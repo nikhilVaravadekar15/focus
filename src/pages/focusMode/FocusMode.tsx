@@ -1,6 +1,8 @@
 import React from 'react'
-import Timer from '../../components/timer/Timer'
 import "./FocusMode.css"
+import Timer from '../../components/timer/Timer'
+import Focusio from './component/focusio/Focusio'
+import Focusblock from './component/focusblock/Focusblock'
 
 function FocusMode() {
     return (
@@ -24,12 +26,8 @@ function FocusMode() {
                                 <Timer />
                             </div> */}
                             <div className="body__options">
-                                <div className="options__focus-inputs">
-                                    <h2> Blocked categories list </h2>
-                                </div>
-                                <div className="options__focus-blockedsites">
-                                    <h2>session sites are blocked</h2>
-                                </div>
+                                <Focusio />
+                                <Focusblock />
                             </div>
 
                         </div>
