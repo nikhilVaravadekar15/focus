@@ -3,26 +3,22 @@ import "./Settings.css"
 import { TData, TSetting } from '../../types/types'
 
 function Settings() {
-    const [settingData, setSettingData] = useState<TSetting[]>([])
+    const [settings, setSettings] = useState<TSetting[]>([])
 
     useEffect(() => {
-        chrome.storage.sync.get(["data"], (result: any) => {
-            const data: TData = result["data"]
-            setSettingData(data["settings"])
+        chrome.storage.sync.get(["settingsData"], (result: any) => {
+            const settingsData: TSetting[] = result["settingsData"]
+            setSettings(settingsData)
         })
     }, [])
 
     useEffect(() => {
-        chrome.storage.sync.get(["data"], (result: any) => {
-            const data: TData = result["data"]
-            data["settings"] = settingData
-            chrome.storage.sync.set({ "data": data })
-        })
-    }, [settingData])
+        chrome.storage.sync.set({ "settingsData": settings })
+    }, [settings])
 
     function updateSettingItem(index: number) {
         var updatedSetting: TSetting[] = []
-        setSettingData((prevData: TSetting[]) => {
+        setSettings((prevData: TSetting[]) => {
             updatedSetting = [...prevData]
             const item: TSetting = updatedSetting[index]
             updatedSetting.splice(index, 1, {
@@ -51,7 +47,7 @@ function Settings() {
                     <div className="Settings-container__body">
                         <div className="Settings-list">
                             {
-                                settingData.map((item: TSetting, index: number) => {
+                                settings.map((item: TSetting, index: number) => {
                                     return (
                                         <div className="item" key={index}>
                                             <div className="item-left">

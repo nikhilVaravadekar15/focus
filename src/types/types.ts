@@ -89,9 +89,6 @@ export type TfocusMode = {
 export type TData = {
     blockedWebsites: TBlockedWebsite[]
     blockByWords: string[]
-    scheduleData: TScheduleData
-    categoriesData: TCategories[]
-    settings: TSetting[]
 }
 
 // BlockInput

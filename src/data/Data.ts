@@ -197,7 +197,7 @@ const scheduleData: TScheduleData = {
     ]
 }
 
-const settingData: TSetting[] = [
+const settingsData: TSetting[] = [
     {
         "title": "Close the tab when blocked wessite is accessed",
         "description": "Enable this to close tab when blocked website is accessed instead of redirected",
@@ -224,15 +224,15 @@ const settingData: TSetting[] = [
 // local-storage init data
 let data: TData = {
     "blockedWebsites": [],
-    "blockByWords": [],
-    "scheduleData": scheduleData,
-    "categoriesData": categoriesData,
-    "settings": settingData
+    "blockByWords": []
 }
 
 export {
     focusTabs,
     focusSectionInput,
     navigationbarData,
+    scheduleData,
+    categoriesData,
+    settingsData,
     data
 }

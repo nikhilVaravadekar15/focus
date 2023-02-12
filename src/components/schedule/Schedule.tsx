@@ -8,20 +8,29 @@ import { TData, TScheduleData, TScheduleDay } from "../../types/types";
 function Redirect() {
 
   const { scheduleFlag, setScheduleFlagStatus } = useContext(scheduleContext);
-  const [scheduleData, setScheduleData] = useState<TScheduleData>()
   const [starttime, setStarttime] = useState<string>("")
   const [endtime, setEndtime] = useState<string>("")
   const [days, setDays] = useState<TScheduleDay[]>([])
 
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      const data: TData = result["data"]
-      setScheduleData(data["scheduleData"])
-      setStarttime(data["scheduleData"]["starttime"])
-      setEndtime(data["scheduleData"]["endtime"])
-      setDays(data["scheduleData"]["days"])
+    chrome.storage.sync.get(["scheduleData"], (result: any) => {
+      const scheduleData: TScheduleData = result["scheduleData"]
+      setStarttime(scheduleData["starttime"])
+      setEndtime(scheduleData["endtime"])
+      setDays(scheduleData["days"])
     })
   }, [])
+
+  useEffect(() => {
+    chrome.storage.sync.set({
+      "scheduleData": {
+        "status": false,
+        "starttime": starttime,
+        "endtime": endtime,
+        "days": days
+      }
+    })
+  }, [starttime, endtime, days])
 
   function toggleDays(index: number) {
     setDays((prevData: TScheduleDay[]) => {

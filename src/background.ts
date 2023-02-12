@@ -1,6 +1,6 @@
 /*global chrome*/
 
-import { data } from "./data/Data";
+import { categoriesData, data, scheduleData, settingsData } from "./data/Data";
 import { validateCurrentOrigin } from "./utility/utility";
 
 
@@ -29,6 +29,9 @@ chrome.runtime.onInstalled.addListener(() => {
         "numberOfCycles": 2
       }
     },
+    "scheduleData": scheduleData,
+    "categoriesData": categoriesData,
+    "settingsData": settingsData,
     "data": data
   });
   console.log('%c allow-in-incognito ', 'background: black; color: white; font-size:16px;');

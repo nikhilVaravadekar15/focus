@@ -108,10 +108,10 @@ function checkBlockedByCategories(currentTabUrl: string, categoriesData: TCatego
 
 export function validateCurrentOrigin(currentTabUrl: string) {
     const currentTabUrlOrigin = new URL(currentTabUrl).origin
-    chrome.storage.sync.get(["mainActive", "redirectUrl", "data"], (result: any) => {
+    chrome.storage.sync.get(["mainActive", "redirectUrl", "categoriesData", "data"], (result: any) => {
         let flag: boolean = false
         let data: TData = result["data"]
-        const categoriesData: TCategories[] = data["categoriesData"]
+        const categoriesData: TCategories[] = result["categoriesData"]
 
         if (true) {
             // TODO: check if block-by-categories is enabled in settings 

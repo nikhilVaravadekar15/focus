@@ -23,23 +23,15 @@ function Categories() {
   const [currentCategory, setCurrentCategory] = useState<string>("")
   const [currentCategoryArray, setCurrentCategoryArray] = useState<string[]>([])
 
-
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      const data: TData = result["data"]
-      setCategories(data["categoriesData"])
+    chrome.storage.sync.get(["categoriesData"], (result: any) => {
+      const categoriesData: TCategories[] = result["categoriesData"]
+      setCategories(categoriesData)
     })
   }, [])
 
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      data["categoriesData"] = []
-      for (let index = 0; index < categories.length; index++) {
-        data["categoriesData"][index] = categories[index];
-      }
-      chrome.storage.sync.set({ "data": data })
-    })
+    chrome.storage.sync.set({ "categoriesData": categories })
   }, [categories])
 
   function handleCategoriesToggle(index: number) {
@@ -58,6 +50,7 @@ function Categories() {
   function setCurrentCategoryPopupState(flag: boolean) {
     setPopup(flag)
   }
+
   function handlePopup(category: string) {
     setCurrentCategoryPopupState(true)
     setCurrentCategory(category)
