@@ -149,12 +149,11 @@ export function validateCurrentOrigin(currentTabUrl: string) {
 }
 
 export function validateBlockByWords(currentTabUrl: string) {
-    chrome.storage.sync.get(["mainActive", "redirectUrl", "data"], (result: any) => {
+    chrome.storage.sync.get(["mainActive", "redirectUrl", "blockByWords"], (result: any) => {
         let flag: boolean = false
-        let data: TData = result["data"]
 
-        for (let index = 0; index < data["blockByWords"].length; index++) {
-            var item: string = data["blockByWords"][index]
+        for (let index = 0; index < result["blockByWords"].length; index++) {
+            var item: string = result["blockByWords"][index]
             if (currentTabUrl.search(item) != -1 && result["mainActive"]) {
                 flag = true
                 break

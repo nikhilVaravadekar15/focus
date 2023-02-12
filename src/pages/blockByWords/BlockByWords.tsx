@@ -6,30 +6,18 @@ import { showToast } from '../../utility/utility'
 import { TData } from '../../types/types'
 
 function BlockByWords() {
-  const unblock: string[] = [
-    "file://",
-    "about:blank", "chrome://", "chrome-extension://", "http", "https"]
+  const unblock: string[] = ["file://", "about:blank", "chrome://", "chrome-extension://", "http", "https"]
   const [chips, setChips] = React.useState<string[]>([])
 
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      setChips((prevData: string[]) => {
-        prevData = data["blockByWords"]
-        return prevData
-      })
+    chrome.storage.sync.get(["blockByWords"], (result: any) => {
+      let blockedWords: string[] = result["blockByWords"]
+      setChips(blockedWords)
     })
   }, [])
 
   useEffect(() => {
-    chrome.storage.sync.get(["data"], (result: any) => {
-      let data: TData = result["data"]
-      data["blockByWords"] = []
-      for (let index = 0; index < chips.length; index++) {
-        data["blockByWords"][index] = chips[index];
-      }
-      chrome.storage.sync.set({ "data": data })
-    })
+    chrome.storage.sync.set({ "blockByWords": chips })
   }, [chips])
 
   function chipExists(chipValue: string) {
@@ -60,7 +48,7 @@ function BlockByWords() {
     if (chipExists(chipValue)) {
       showToast("error", `${chipValue} is alreary blocked`, 500)
     }
-    if (validChip(chipValue)) {
+    else if (validChip(chipValue)) {
       showToast("error", `${chipValue} cannot be blocked`, 500)
     } else {
       var chipsSet: string[]

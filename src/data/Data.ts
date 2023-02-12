@@ -224,7 +224,6 @@ const settingsData: TSetting[] = [
 // local-storage init data
 let data: TData = {
     "blockedWebsites": [],
-    "blockByWords": []
 }
 
 export {

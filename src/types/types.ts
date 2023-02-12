@@ -88,7 +88,6 @@ export type TfocusMode = {
 // local storage data
 export type TData = {
     blockedWebsites: TBlockedWebsite[]
-    blockByWords: string[]
 }
 
 // BlockInput

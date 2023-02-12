@@ -26,7 +26,7 @@ function Redirect() {
   function addCustomBlockUrl() {
     if (validURL(inputUrl) && !isAvailableInChromePaths(inputUrl)) {
 
-      chrome.storage.sync.get(["redirectUrl", "data"], (result: any) => {
+      chrome.storage.sync.get(["redirectUrl", "blockByWords", "data"], (result: any) => {
         let flag: boolean = false
         const origin: string = new URL(inputUrl).origin
         let data: TData = result["data"]
@@ -44,8 +44,8 @@ function Redirect() {
           showToast("error", "Cannot set this url because it is in the blocklist. Please try again!", 500)
         } else {
           let flag: boolean = false
-          for (let index = 0; index < data["blockByWords"].length; index++) {
-            let item: string = data["blockByWords"][index]
+          for (let index = 0; index < result["blockByWords"].length; index++) {
+            let item: string = result["blockByWords"][index]
             if (origin.search(item) != -1) {
               flag = true
               break

@@ -32,6 +32,7 @@ chrome.runtime.onInstalled.addListener(() => {
     "scheduleData": scheduleData,
     "categoriesData": categoriesData,
     "settingsData": settingsData,
+    "blockByWords": [],
     "data": data
   });
   console.log('%c allow-in-incognito ', 'background: black; color: white; font-size:16px;');
