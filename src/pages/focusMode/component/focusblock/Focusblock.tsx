@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import "./Focusblock.css"
+import BackgroundFocusModeGif from "../../../../assets/images/background-focus.gif"
 import { isAvailableInChromePaths, showToast, validURL } from '../../../../utility/utility'
 import BlockInput from '../../../../components/blockInput/BlockInput'
 import GetBlockedSiteList from '../../../../components/getBlockedSiteList/GetBlockedSiteList'
-import BlockSubstitute from '../../../blockSites/components/blockSubstitute/BlockSubstitute'
+import BlockSubstitute from '../../../../components/blockSubstitute/BlockSubstitute'
 
 function Focusblock() {
 
@@ -71,7 +72,7 @@ function Focusblock() {
                             </div>
                         ) : (
                             <div className="list-content__substitute">
-                                <BlockSubstitute />
+                                <BlockSubstitute coverup_image={BackgroundFocusModeGif} />
                             </div>
                         )
                     }

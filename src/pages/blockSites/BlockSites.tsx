@@ -3,10 +3,11 @@ import "./BlockSites.css"
 import 'react-toastify/dist/ReactToastify.css';
 import IconRedirect from "../../assets/images/icon_redirect.png"
 import IconSchedule from "../../assets/images/icon_schedule.png"
+import backgroundBlocksitesGif from "../../assets/images/background-blocksites.gif"
 import DButton from '../../components/button/DButton/DButton'
 import BlockInput from '../../components/blockInput/BlockInput'
 import GetBlockedSiteList from '../../components/getBlockedSiteList/GetBlockedSiteList'
-import BlockSubstitute from './components/blockSubstitute/BlockSubstitute'
+import BlockSubstitute from '../../components/blockSubstitute/BlockSubstitute'
 import { validURL, isAvailableInChromePaths, showToast } from '../../utility/utility'
 import { TBlockedWebsite, TSnackbar } from '../../types/types'
 import { ToastContainer, toast } from 'react-toastify';
@@ -160,7 +161,7 @@ function BlockSites() {
                     />
                   </div>
                 ) : (
-                  <BlockSubstitute />
+                  <BlockSubstitute coverup_image={backgroundBlocksitesGif} />
                 )
               }
             </div>
