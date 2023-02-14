@@ -2,7 +2,7 @@ import React from 'react'
 import "./Focusio.css"
 import { focusSectionInput } from '../../../../data/Data'
 import { TFocusSectionInput } from '../../../../types/types'
-import FocusInput from '../../../focusSection/components/focusInput/FocusInput'
+import FocusInput from '../../../../components/focusInput/FocusInput'
 
 
 

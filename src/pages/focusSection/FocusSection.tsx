@@ -5,7 +5,7 @@ import { TCustomClassName, TFocusSectionInput } from '../../types/types'
 import { focusSectionInput } from "../../data/Data"
 import PButton from '../../components/button/PButton/PButton'
 import { openOptions } from '../../utility/utility'
-import FocusInput from './components/focusInput/FocusInput'
+import FocusInput from '../../components/focusInput/FocusInput'
 
 function FocusSection({ classname }: TCustomClassName) {
 
