@@ -1,7 +1,7 @@
 import React from 'react'
 import "./BlockInput.css"
 
-import IconAdd from "../../../../assets/images/icon-add.png"
+import IconAdd from "../../assets/images/icon-add.png"
 import { TBlockInput } from '../../types/types'
 
 function BlockInput({ value, setInputValue, handleClick }: TBlockInput) {
