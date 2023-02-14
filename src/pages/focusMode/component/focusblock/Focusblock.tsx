@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./Focusblock.css"
 import { isAvailableInChromePaths, showToast, validURL } from '../../../../utility/utility'
 import BlockInput from '../../../../components/blockInput/BlockInput'
-import GetBlockedSiteList from '../../../blockSites/components/getBlockedSiteList/GetBlockedSiteList'
+import GetBlockedSiteList from '../../../../components/getBlockedSiteList/GetBlockedSiteList'
 import BlockSubstitute from '../../../blockSites/components/blockSubstitute/BlockSubstitute'
 
 function Focusblock() {

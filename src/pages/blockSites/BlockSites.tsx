@@ -5,7 +5,7 @@ import IconRedirect from "../../assets/images/icon_redirect.png"
 import IconSchedule from "../../assets/images/icon_schedule.png"
 import DButton from '../../components/button/DButton/DButton'
 import BlockInput from '../../components/blockInput/BlockInput'
-import GetBlockedSiteList from './components/getBlockedSiteList/GetBlockedSiteList'
+import GetBlockedSiteList from '../../components/getBlockedSiteList/GetBlockedSiteList'
 import BlockSubstitute from './components/blockSubstitute/BlockSubstitute'
 import { validURL, isAvailableInChromePaths, showToast } from '../../utility/utility'
 import { TBlockedWebsite, TSnackbar } from '../../types/types'

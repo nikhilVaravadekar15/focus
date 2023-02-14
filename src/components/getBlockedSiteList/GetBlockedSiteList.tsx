@@ -2,7 +2,7 @@ import React, { Key } from 'react'
 import "./GetBlockedSiteList.css"
 import IconFocus from "../../../../assets/images/icon-focus_main_128.png"
 import IconRemove from "../../../../assets/images/icon-remove.png"
-import { TBlockedWebsite, TBlockedSiteList } from '../../../../types/types'
+import { TBlockedWebsite, TBlockedSiteList } from '../../types/types'
 
 
 function GetBlockedSiteList({ list, updateBlockList, deleteBlockListItem }: TBlockedSiteList) {
