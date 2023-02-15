@@ -1,8 +1,8 @@
 import React from 'react'
 import "./FocusInput.css"
-import { TFocusSectionInput } from '../../types/types'
+import { TFocusSectionInputhandler } from '../../types/types'
 
-function FocusInput({ title, type, name, description, min, max, value, unit, handleOnChange }: TFocusSectionInput) {
+function FocusInput({ title, type, name, description, min, max, value, unit, handleOnChange }: TFocusSectionInputhandler) {
   return (
     <div className="middle__input-area">
       <div className="input-area__time">
@@ -18,7 +18,7 @@ function FocusInput({ title, type, name, description, min, max, value, unit, han
               min={min}
               max={max}
               value={value}
-              onChange={(event) => handleOnChange(event)}
+              onChange={handleOnChange}
             />
           </div>
           <div className="input-unit">

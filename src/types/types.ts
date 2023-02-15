@@ -52,6 +52,14 @@ export type TFocusSectionInput = {
     max: number
     value: number
     unit: string
+}
+
+export type TFocus = {
+    status: boolean
+    focusArray: TFocusSectionInput[]
+}
+
+export type TFocusSectionInputhandler = TFocusSectionInput & {
     handleOnChange: (event: any) => void
 }
 

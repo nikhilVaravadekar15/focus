@@ -1,11 +1,20 @@
+.FocusSection .Timer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .FocusMode-timer .Timer {
     width: 448px;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .Timer {
-    /* width: 448px;
-    height: 528px; */
     gap: 8px;
     display: flex;
     align-items: center;

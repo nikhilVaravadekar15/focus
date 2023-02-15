@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Focusio.css"
 import { focusSectionInput } from '../../../../data/Data'
 import { TFocusSectionInput } from '../../../../types/types'
 import FocusInput from '../../../../components/focusInput/FocusInput'
 
 
+type TFocusio = {
+    focusArray: TFocusSectionInput[]
+    handleOnChange: (event: any) => void
+}
 
-function Focusio() {
+function Focusio({ focusArray, handleOnChange }: TFocusio) {
     return (
         <div className="Focusio">
             <div className="options__focus-inputs">
                 <h2> Timer Setup </h2>
                 <div className="section_focus-middle">
                     {
-                        focusSectionInput.map((item: TFocusSectionInput, index: number) => {
+                        focusArray.map((item: TFocusSectionInput, index: number) => {
                             return (
                                 <FocusInput
                                     key={index}
@@ -25,7 +29,7 @@ function Focusio() {
                                     max={item["max"]}
                                     value={item["value"]}
                                     unit={item["unit"]}
-                                    handleOnChange={() => { }}
+                                    handleOnChange={handleOnChange}
                                 />
                             )
                         })

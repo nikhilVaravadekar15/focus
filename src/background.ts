@@ -1,6 +1,6 @@
 /*global chrome*/
 
-import { categoriesData, scheduleData, settingsData } from "./data/Data";
+import { categoriesData, focusSectionInput, scheduleData, settingsData } from "./data/Data";
 import { validateCurrentOrigin } from "./utility/utility";
 
 
@@ -22,12 +22,8 @@ chrome.runtime.onInstalled.addListener(() => {
     "navigation": 0,
     "redirectUrl": "redirect.html",
     "focusMode": {
-      "focusModeStatus": false,
-      "details": {
-        "focusTime": 25,
-        "breakTime": 5,
-        "numberOfCycles": 2
-      }
+      "status": false,
+      "focusArray": focusSectionInput
     },
     "scheduleData": scheduleData,
     "categoriesData": categoriesData,
@@ -50,12 +46,8 @@ chrome.runtime.onStartup.addListener(() => {
         "navigation": 0,
         "redirectUrl": "redirect.html",
         "focusMode": {
-          "focusModeStatus": false,
-          "details": {
-            "focusTime": 25,
-            "breakTime": 5,
-            "numberOfCycles": 2
-          }
+          "status": false,
+          "focusArray": focusSectionInput
         },
         "scheduleData": scheduleData,
         "categoriesData": categoriesData,

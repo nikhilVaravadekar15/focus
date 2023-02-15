@@ -1,10 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./FocusMode.css"
 import Timer from '../../components/timer/Timer'
 import Focusio from './component/focusio/Focusio'
 import Focusblock from './component/focusblock/Focusblock'
+import { TFocusSectionInput } from '../../types/types'
 
 function FocusMode() {
+
+    const [focusStatus, setFocusStatus] = useState<boolean>(false);
+    const [focusArray, setFocusArray] = useState<TFocusSectionInput[]>([]);
+
+    useEffect(() => {
+        chrome.storage.sync.get(["focusMode"], (result: any) => {
+            setFocusStatus(result["focusMode"]["status"])
+            setFocusArray(result["focusMode"]["focusArray"])
+        })
+    }, [])
+
+    useEffect(() => {
+        chrome.storage.sync.set({
+            "focusMode": {
+                "status": focusStatus,
+                "focusArray": focusArray
+            }
+        })
+    }, [focusStatus, focusArray])
+
+    function handleOnChange(event: any): void {
+        let updatedFocusArray: TFocusSectionInput[] = []
+        setFocusArray((prevData: TFocusSectionInput[]) => {
+            updatedFocusArray = [...prevData]
+            for (let index = 0; index < updatedFocusArray.length; index++) {
+                const element: TFocusSectionInput = updatedFocusArray[index];
+                if (element["name"] === event.target.name &&
+                    element["min"] <= event.target.value &&
+                    event.target.value <= element["max"]
+                ) {
+                    element["value"] = event.target.value
+                }
+            }
+            return updatedFocusArray
+        })
+    }
+
+
     return (
         <>
             <div className="FocusMode">
@@ -22,14 +61,21 @@ function FocusMode() {
                         </div>
                         {/* body */}
                         <div className="FocusMode-container__body">
-                            {/* <div className="FocusMode-timer">
-                                <Timer />
-                            </div> */}
-                            <div className="body__options">
-                                <Focusio />
-                                <Focusblock />
-                            </div>
-
+                            {
+                                !focusStatus ? (
+                                    <div className="body__options">
+                                        <Focusio
+                                            focusArray={focusArray}
+                                            handleOnChange={handleOnChange}
+                                        />
+                                        <Focusblock />
+                                    </div>
+                                ) : (
+                                    <div className="FocusMode-timer">
+                                        <Timer />
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

@@ -34,8 +34,7 @@ const focusSectionInput: TFocusSectionInput[] = [
         "min": 10,
         "max": 999,
         "value": 25,
-        "unit": "Minutes",
-        handleOnChange: () => { }
+        "unit": "Minutes"
     },
     {
         "title": "Break time",
@@ -45,8 +44,7 @@ const focusSectionInput: TFocusSectionInput[] = [
         "min": 1,
         "max": 60,
         "value": 5,
-        "unit": "Minutes",
-        handleOnChange: () => { }
+        "unit": "Minutes"
     },
     {
         "title": "Number of cycles",
@@ -56,8 +54,7 @@ const focusSectionInput: TFocusSectionInput[] = [
         "min": 1,
         "max": 48,
         "value": 2,
-        "unit": "Cycles",
-        handleOnChange: () => { }
+        "unit": "Cycles"
     }
 ]
 
