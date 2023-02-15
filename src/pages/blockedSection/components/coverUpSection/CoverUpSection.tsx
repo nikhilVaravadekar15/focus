@@ -1,12 +1,12 @@
 import React from 'react'
 import "./CoverUpSection.css"
-import BackgroundFocusGif from "../../../../assets/images/background-focus.gif"
+import backgroundBlocksitesGif from "../../../../assets/images/background-blocksites.gif"
 
 function CoverUpSection({ title }: any) {
     return (
         <div className="section_cover-image">
             <div className="cover__background">
-                <img src={BackgroundFocusGif} alt="" draggable="false" />
+                <img src={backgroundBlocksitesGif} alt="" draggable="false" />
             </div>
             <div className="cover__text-message">
                 <h3>Not available on</h3>
