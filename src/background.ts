@@ -29,7 +29,8 @@ chrome.runtime.onInstalled.addListener(() => {
     "categoriesData": categoriesData,
     "settingsData": settingsData,
     "blockByWords": [],
-    "blockedWebsites": []
+    "blockedWebsites": [],
+    "focusBlockList": []
   });
   console.log('%c allow-in-incognito ', 'background: black; color: white; font-size:16px;');
 })
@@ -53,7 +54,8 @@ chrome.runtime.onStartup.addListener(() => {
         "categoriesData": categoriesData,
         "settingsData": settingsData,
         "blockByWords": [],
-        "blockedWebsites": []
+        "blockedWebsites": [],
+        "focusBlockList": []
       });
     }
   });

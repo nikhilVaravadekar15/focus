@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./FocusMode.css"
 import Timer from '../../components/timer/Timer'
 import Focusio from './component/focusio/Focusio'
-import Focusblock from './component/focusblock/Focusblock'
+import FocusBlockList from './component/FocusBlockList/FocusBlockList'
 import { TFocusSectionInput } from '../../types/types'
 
 function FocusMode() {
@@ -68,7 +68,7 @@ function FocusMode() {
                                             focusArray={focusArray}
                                             handleOnChange={handleOnChange}
                                         />
-                                        <Focusblock />
+                                        <FocusBlockList />
                                     </div>
                                 ) : (
                                     <div className="FocusMode-timer">

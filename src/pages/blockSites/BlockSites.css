@@ -88,7 +88,7 @@
     color: rgb(0, 0, 0);
 }
 
-.block-added-list {
+.BlockSites .block-added-list {
     width: 100%;
     height: 96%;
     display: flex;
