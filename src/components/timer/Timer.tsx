@@ -2,13 +2,19 @@ import React, { useState } from 'react'
 import "./Timer.css"
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
-function Timer() {
-    const [duration, setDuration] = useState<number>(0);
+type TTimer = {
+    counter: number
+    cycles: number
+    focus_time: number
+    duration: number
+}
+
+function Timer({ counter, cycles, focus_time, duration }: TTimer) {
 
     return (
         <div className="Timer">
             <div className="status">
-                1 of 5 cycles | Focus for 10 minutes
+                 of {cycles} cycles | Focus for 10 minutes
             </div>
             <div className="progress">
                 <CountdownCircleTimer
@@ -32,24 +38,13 @@ function Timer() {
 }
 
 function Counter({ remainingTime }: any) {
-    let hrs, mins, secs: string = ""
     let hours: number = Math.floor(remainingTime / 3600)
     let minutes: number = Math.floor((remainingTime % 3600) / 60)
     const seconds: number = remainingTime % 60
 
-    if (hours.toString().length === 1) {
-        hrs = "0" + hours.toString()
-    }
-    if (minutes.toString().length === 1) {
-        mins = "0" + minutes.toString()
-    }
-    if (seconds.toString().length === 1) {
-        secs = "0" + seconds.toString()
-    }
-
     return (
         <div className="Counter">
-            <div className='actual-counter'>{hrs}:{mins}:{secs}</div>
+            <div className='actual-counter'>{hours}:{minutes}:{seconds}</div>
             <div className="units">
                 <span>hr</span>
                 <span>min</span>

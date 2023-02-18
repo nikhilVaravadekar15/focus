@@ -1,7 +1,8 @@
 /*global chrome*/
 
+import { TFocus, TFocusSectionInput } from "../src/types/types"
+import { createAlarm, showNotification, validateCurrentOrigin } from "./utility/utility";
 import { categoriesData, focusSectionInput, scheduleData, settingsData } from "./data/Data";
-import { validateCurrentOrigin } from "./utility/utility";
 
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -23,6 +24,8 @@ chrome.runtime.onInstalled.addListener(() => {
     "redirectUrl": "redirect.html",
     "focusMode": {
       "status": false,
+      "tempStatus": false,
+      "current": 1,
       "focusArray": focusSectionInput
     },
     "scheduleData": scheduleData,
@@ -48,6 +51,8 @@ chrome.runtime.onStartup.addListener(() => {
         "redirectUrl": "redirect.html",
         "focusMode": {
           "status": false,
+          "tempStatus": false,
+          "current": 1,
           "focusArray": focusSectionInput
         },
         "scheduleData": scheduleData,
@@ -67,6 +72,63 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request["type"] === "notification-validate-url") {
     validateCurrentOrigin(request["message"]["origin"])
   }
+  if (request["type"] === "notification-start-focus-mode") {
+
+    chrome.storage.sync.get(["focusMode"], (result: any) => {
+      const status: boolean = result["focusMode"]["status"]
+      const current: number = result["focusMode"]["current"]
+      const focusItem: TFocusSectionInput = result["focusMode"]["focusArray"][0]
+      if (focusItem["name"] === "focus-time" && status) {
+        createAlarm(focusItem["name"], focusItem["value"])
+        showNotification(focusItem["title"], "basic", "Stay focued! Sites in your focus mode list will be blocked.", false)
+      }
+    })
+
+  }
   sendResponse();
 });
+
+chrome.alarms.onAlarm.addListener((alarm: any) => {
+  if (alarm["name"] === "focus-time") {
+    console.log("focus-time alarm cleared")
+    chrome.alarms.clear("focus-time")
+  }
+  chrome.storage.sync.get(["focusMode"], (result: any) => {
+    console.log(result)
+    let status: boolean = result["focusMode"]["status"]
+    let tempStatus: boolean = result["focusMode"]["tempStatus"]
+    let current: number = result["focusMode"]["current"]
+    const breakItem: TFocusSectionInput = result["focusMode"]["focusArray"][1]
+    const numberOfCyclesItem: TFocusSectionInput = result["focusMode"]["focusArray"][2]
+
+    if (breakItem["name"] === "break-time" && status) {
+
+      console.log("break-time0")
+
+      if (numberOfCyclesItem["value"] >= current && tempStatus) {
+
+        console.log("numberOfCyclesItem . break-time1")
+
+        current = current + 1
+        tempStatus = !tempStatus
+        createAlarm(breakItem["name"], breakItem["value"])
+        showNotification(breakItem["title"], "basic", "Take a break!!", false)
+
+      } else {
+        status = !status
+        current = 1
+      }
+    }
+
+    chrome.storage.sync.set({
+      "focusMode": {
+        "status": status,
+        "tempStatus": tempStatus,
+        "current": current,
+        "focusArray": focusSectionInput
+      }
+    })
+
+  })
+})
 

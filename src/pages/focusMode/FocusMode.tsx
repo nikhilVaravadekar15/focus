@@ -7,24 +7,36 @@ import { TFocusSectionInput } from '../../types/types'
 
 function FocusMode() {
 
-    const [focusStatus, setFocusStatus] = useState<boolean>(false);
+    const [status, setStatus] = useState<boolean>(false);
+    const [tempStatus, setTempStatus] = useState<boolean>(false);
+    const [duration, setDuration] = useState<number>(0);
+    const [current, setCurrent] = useState<number>(1);
     const [focusArray, setFocusArray] = useState<TFocusSectionInput[]>([]);
 
     useEffect(() => {
         chrome.storage.sync.get(["focusMode"], (result: any) => {
-            setFocusStatus(result["focusMode"]["status"])
-            setFocusArray(result["focusMode"]["focusArray"])
+            const focusArray: TFocusSectionInput[] = result["focusMode"]["focusArray"]
+            setFocusArray(focusArray)
+            setStatus(result["focusMode"]["status"])
+            for (let index = 0; index < focusArray.length; index++) {
+                const element: TFocusSectionInput = focusArray[index];
+                if (element["name"] === "focus-time") {
+                    setDuration(element["value"] * 60)
+                }
+            }
         })
     }, [])
 
     useEffect(() => {
         chrome.storage.sync.set({
             "focusMode": {
-                "status": focusStatus,
+                "status": status,
+                "tempStatus": tempStatus,
+                "current": 1,
                 "focusArray": focusArray
             }
         })
-    }, [focusStatus, focusArray])
+    }, [status, focusArray])
 
     function handleOnChange(event: any): void {
         let updatedFocusArray: TFocusSectionInput[] = []
@@ -37,12 +49,22 @@ function FocusMode() {
                     event.target.value <= element["max"]
                 ) {
                     element["value"] = event.target.value
+                    if (element["name"] === "focus-time") {
+                        setDuration(event.target.value * 60)
+                    }
                 }
             }
             return updatedFocusArray
         })
     }
 
+    function handleFocuMode(event: any): void {
+        setStatus(true)
+        setTempStatus(true)
+        chrome.runtime.sendMessage({
+            type: "notification-start-focus-mode"
+        })
+    }
 
     return (
         <>
@@ -62,17 +84,23 @@ function FocusMode() {
                         {/* body */}
                         <div className="FocusMode-container__body">
                             {
-                                !focusStatus ? (
+                                !status ? (
                                     <div className="body__options">
                                         <Focusio
                                             focusArray={focusArray}
                                             handleOnChange={handleOnChange}
+                                            handleFocuMode={handleFocuMode}
                                         />
                                         <FocusBlockList />
                                     </div>
                                 ) : (
                                     <div className="FocusMode-timer">
-                                        <Timer />
+                                        <Timer
+                                            counter={current}
+                                            cycles={2}
+                                            focus_time={1}
+                                            duration={duration}
+                                        />
                                     </div>
                                 )
                             }

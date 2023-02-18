@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { TBlockedWebsite, TCategories } from "../types/types";
-
+import Logo from "../assets/images/icon-focus_main_64.png"
 import adult from '../data/categories/adult'
 import arts_and_entertainment from '../data/categories/arts-and-entertainment'
 import community_and_society from '../data/categories/community-and-society'
@@ -198,4 +198,27 @@ export function showToast(type: string, toastString: string, delay: number) {
             position: toast.POSITION.TOP_CENTER
         });
     }
+}
+
+
+export function createAlarm(title: string, value: number) {
+    chrome.alarms.create(
+        title,
+        {
+            // "delayInMinutes": value
+        }
+    )
+}
+
+export function showNotification(title: string, type: string, message: string, silent: boolean) {
+    chrome.notifications.create(
+        title,
+        {
+            type: type,
+            iconUrl: Logo,
+            title: title,
+            message: message,
+            silent: silent
+        },
+    )
 }

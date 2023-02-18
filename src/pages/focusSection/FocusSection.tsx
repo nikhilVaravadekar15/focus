@@ -91,7 +91,8 @@ function FocusSection({ classname }: TCustomClassName) {
             </div>
           </div>
         ) : (
-          <Timer />
+          // <Timer duration={1}/>
+          <></>
         )
       }
 

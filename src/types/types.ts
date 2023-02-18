@@ -56,6 +56,8 @@ export type TFocusSectionInput = {
 
 export type TFocus = {
     status: boolean
+    tempStatus: boolean
+    current: number
     focusArray: TFocusSectionInput[]
 }
 

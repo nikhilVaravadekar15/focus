@@ -19,7 +19,8 @@
     "tabs",
     "activeTab",
     "storage",
-    "alarms"
+    "alarms",
+    "notifications"
   ],
   "background": {
     "service_worker": "js/background.js"

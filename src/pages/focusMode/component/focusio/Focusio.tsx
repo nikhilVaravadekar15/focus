@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import "./Focusio.css"
-import { focusSectionInput } from '../../../../data/Data'
 import { TFocusSectionInput } from '../../../../types/types'
 import FocusInput from '../../../../components/focusInput/FocusInput'
 
@@ -8,9 +7,10 @@ import FocusInput from '../../../../components/focusInput/FocusInput'
 type TFocusio = {
     focusArray: TFocusSectionInput[]
     handleOnChange: (event: any) => void
+    handleFocuMode: (event: any) => void
 }
 
-function Focusio({ focusArray, handleOnChange }: TFocusio) {
+function Focusio({ focusArray, handleOnChange, handleFocuMode }: TFocusio) {
     return (
         <div className="Focusio">
             <div className="options__focus-inputs">
@@ -35,7 +35,10 @@ function Focusio({ focusArray, handleOnChange }: TFocusio) {
                         })
                     }
                 </div>
-                <div className="start-button">
+                <div
+                    className="start-button"
+                    onClick={(event) => handleFocuMode(event)}
+                >
                     <div>Start Focus Session</div>
                 </div>
             </div>
