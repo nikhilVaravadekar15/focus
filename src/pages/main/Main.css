@@ -5,13 +5,6 @@
     flex-direction: column;
 }
 
-.container__header-section {
-    height: 72px;
-    display: flex;
-    z-index: 9;
-    width: 100%;
-}
-
 /*main-section*/
 
 .container__main-section {

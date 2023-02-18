@@ -7,24 +7,6 @@ import IconSettings from "../assets/images/icon-settings.png"
 import IconAbout from "../assets/images/icon_about.png"
 import { TCategories, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
 
-const focusTabs: TFocustabsData[] = [
-    {
-        "title": "Blocked",
-        "image": IconBlocked,
-        "background": "red"
-    },
-    {
-        "title": "Focus",
-        "image": IconFocus,
-        "background": "green"
-    },
-    {
-        "title": "Insight",
-        "image": IconInsight,
-        "background": "yellow"
-    }
-]
-
 const focusSectionInput: TFocusSectionInput[] = [
     {
         "title": "Focus time",
@@ -222,7 +204,6 @@ const settingsData: TSetting[] = [
 ]
 
 export {
-    focusTabs,
     focusSectionInput,
     navigationbarData,
     scheduleData,
