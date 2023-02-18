@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import "./Main.css"
 import BlockedSection from '../blockedSection/BlockedSection';
 import FocusSection from '../focusSection/FocusSection';
-import InsightSection from '../insightSection/InsightSection';
-
 
 function Main() {
     const [currentTab, setCurrentTab] = useState<number>(0)
@@ -31,9 +29,6 @@ function Main() {
                 />
                 <FocusSection
                     classname={currentTab === 1 ? "section active" : "section"}
-                />
-                <InsightSection
-                    classname={currentTab === 2 ? "section active" : "section"}
                 />
             </div>
         </div>
