@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./Main.css"
 import BlockedSection from '../blockedSection/BlockedSection';
-import FocusSection from '../focusSection/FocusSection';
 
 function Main() {
-    const [currentTab, setCurrentTab] = useState<number>(0)
     const [mainActiveStatus, setMainActiveStatusFlag] = useState<boolean>(true)
 
     useEffect(() => {
@@ -14,22 +12,10 @@ function Main() {
         })
     }, [])
 
-
-    function handleTabClick(id: number) {
-        setCurrentTab(() => {
-            return id
-        })
-    }
-
     return (
         <div className='Main'>
             <div className={!mainActiveStatus ? "container__main-section blur" : "container__main-section"}>
-                <BlockedSection
-                    classname={currentTab === 0 ? "section active" : "section"}
-                />
-                <FocusSection
-                    classname={currentTab === 1 ? "section active" : "section"}
-                />
+                <BlockedSection classname="section active" />
             </div>
         </div>
     )
