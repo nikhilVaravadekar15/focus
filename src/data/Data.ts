@@ -7,6 +7,7 @@ import IconSettings from "../assets/images/icon-settings.png"
 import IconAbout from "../assets/images/icon_about.png"
 import { TCategories, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
 
+
 const focusSectionInput: TFocusSectionInput[] = [
     {
         "title": "Focus time",

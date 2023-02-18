@@ -1,5 +1,6 @@
 .Focusio .options__focus-inputs {
     gap: 16px;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -39,4 +40,78 @@
 
 .Focusio .options__focus-inputs .start-button:hover {
     background-color: rgb(43, 167, 128);
+}
+
+/*input item*/
+/* .section_focus-middle .focus-input-item */
+.middle__input-area {
+    width: 94%;
+    margin: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.middle__input-area::after {
+    content: '';
+    width: 100%;
+    display: block;
+    margin-top: 16px;
+    border-bottom: 1px solid #333;
+}
+
+.middle__input-area:last-child::after {
+    content: '';
+    border: none;
+}
+
+.middle__input-area .input-area__time {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.FocusSection .middle__input-area .input-area__time .time__title {
+    font-size: 14px;
+}
+
+.FocusSection .middle__input-area .input-area__time .time__title p {
+    display: none;
+}
+
+.FocusMode .middle__input-area .input-area__time .time__title {
+    font-size: 14px;
+    width: 60%;
+}
+
+.FocusMode .middle__input-area .input-area__time .time__title p {
+    font-size: 14px;
+    color: rgb(166, 166, 166);
+}
+
+.middle__input-area .input-area__time .time__input {
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.middle__input-area .input-area__time .time__input input {
+    width: 96px;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    outline: none;
+    border: 1px solid #333;
+    appearance: textfield;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.middle__input-area .input-area__time .time__input input:focus {
+    outline: none;
 }

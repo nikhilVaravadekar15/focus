@@ -58,7 +58,7 @@ function FocusMode() {
         })
     }
 
-    function handleFocuMode(event: any): void {
+    function handleFocusMode(event: any): void {
         setStatus(true)
         setTempStatus(true)
         chrome.runtime.sendMessage({
@@ -87,9 +87,8 @@ function FocusMode() {
                                 !status ? (
                                     <div className="body__options">
                                         <Focusio
-                                            focusArray={focusArray}
                                             handleOnChange={handleOnChange}
-                                            handleFocuMode={handleFocuMode}
+                                            handleFocusMode={handleFocusMode}
                                         />
                                         <FocusBlockList />
                                     </div>
