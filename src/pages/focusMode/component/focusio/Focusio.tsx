@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Focusio.css"
 import { TFocusSectionInput } from '../../../../types/types'
-import FocusInput from '../../../../components/focusInput/FocusInput'
+import FocusInput from '../focusInput/FocusInput'
 
 
 type TFocusio = {

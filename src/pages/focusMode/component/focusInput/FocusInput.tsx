@@ -1,6 +1,6 @@
 import React from 'react'
 import "./FocusInput.css"
-import { TFocusSectionInputhandler } from '../../types/types'
+import { TFocusSectionInputhandler } from '../../../../types/types'
 
 function FocusInput({ title, type, name, description, min, max, value, unit, handleOnChange }: TFocusSectionInputhandler) {
   return (
