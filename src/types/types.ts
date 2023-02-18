@@ -1,11 +1,4 @@
 
-// main
-export type TFocustabsData = {
-    title: string
-    image: string
-    background: string
-}
-
 // tabs actions
 export type TFocusTabsSection = {
     currentTab: number
@@ -39,30 +32,6 @@ export type TWebsiteContent = {
     currentWebsiteOrigin: string
     currentWebsiteHostname: string
     currentWebsiteFavIcon: string
-}
-
-
-// focusSectionInput
-export type TFocusSectionInput = {
-    title: string
-    type: string
-    name: string
-    description: string
-    min: number
-    max: number
-    value: number
-    unit: string
-}
-
-export type TFocus = {
-    status: boolean
-    tempStatus: boolean
-    current: number
-    focusArray: TFocusSectionInput[]
-}
-
-export type TFocusSectionInputhandler = TFocusSectionInput & {
-    handleOnChange: (event: any) => void
 }
 
 // dashboard navigationbar

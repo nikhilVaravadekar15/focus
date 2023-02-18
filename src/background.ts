@@ -1,8 +1,7 @@
 /*global chrome*/
 
-import { TFocus, TFocusSectionInput } from "../src/types/types"
 import { createAlarm, showNotification, validateCurrentOrigin } from "./utility/utility";
-import { categoriesData, focusSectionInput, scheduleData, settingsData } from "./data/Data";
+import { categoriesData, scheduleData, settingsData } from "./data/Data";
 
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -26,7 +25,7 @@ chrome.runtime.onInstalled.addListener(() => {
       "status": false,
       "tempStatus": false,
       "current": 1,
-      "focusArray": focusSectionInput
+      "focusArray": []
     },
     "scheduleData": scheduleData,
     "categoriesData": categoriesData,
@@ -53,7 +52,7 @@ chrome.runtime.onStartup.addListener(() => {
           "status": false,
           "tempStatus": false,
           "current": 1,
-          "focusArray": focusSectionInput
+          "focusArray": []
         },
         "scheduleData": scheduleData,
         "categoriesData": categoriesData,
@@ -77,7 +76,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     chrome.storage.sync.get(["focusMode"], (result: any) => {
       const status: boolean = result["focusMode"]["status"]
       const current: number = result["focusMode"]["current"]
-      const focusItem: TFocusSectionInput = result["focusMode"]["focusArray"][0]
+      const focusItem = result["focusMode"]["focusArray"][0]
       if (focusItem["name"] === "focus-time" && status) {
         createAlarm(focusItem["name"], focusItem["value"])
         showNotification(focusItem["title"], "basic", "Stay focued! Sites in your focus mode list will be blocked.", false)
@@ -98,8 +97,8 @@ chrome.alarms.onAlarm.addListener((alarm: any) => {
     let status: boolean = result["focusMode"]["status"]
     let tempStatus: boolean = result["focusMode"]["tempStatus"]
     let current: number = result["focusMode"]["current"]
-    const breakItem: TFocusSectionInput = result["focusMode"]["focusArray"][1]
-    const numberOfCyclesItem: TFocusSectionInput = result["focusMode"]["focusArray"][2]
+    const breakItem = result["focusMode"]["focusArray"][1]
+    const numberOfCyclesItem = result["focusMode"]["focusArray"][2]
 
     if (breakItem["name"] === "break-time" && status) {
 
@@ -125,7 +124,7 @@ chrome.alarms.onAlarm.addListener((alarm: any) => {
         "status": status,
         "tempStatus": tempStatus,
         "current": current,
-        "focusArray": focusSectionInput
+        "focusArray": []
       }
     })
 

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import "./Navigationbar.css"
 
 import { navigationbarData } from "../../data/Data"
-import { TFocusTabsSection, TNavigationbarData, TNavigationbarTabs } from '../../types/types';
+import { TNavigationbarData, TNavigationbarTabs } from '../../types/types';
 import IconCoverFocus from "../../assets/images/cover-focus.gif"
 import { mainActiveContext, pageContext } from '../../context/context';
 import { setHref } from "../../utility/utility"

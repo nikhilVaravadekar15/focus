@@ -3,7 +3,18 @@ import "./FocusMode.css"
 import Timer from '../../components/timer/Timer'
 import Focusio from './component/focusio/Focusio'
 import FocusBlockList from './component/FocusBlockList/FocusBlockList'
-import { TFocusSectionInput } from '../../types/types'
+
+// focusSectionInput
+export type TFocusSectionInput = {
+    title: string
+    type: string
+    name: string
+    description: string
+    min: number
+    max: number
+    value: number
+    unit: string
+}
 
 function FocusMode() {
 

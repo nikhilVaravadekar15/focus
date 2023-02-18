@@ -5,41 +5,8 @@ import IconBlockByWords from "../assets/images/icon_add-words.png"
 import IconCategories from "../assets/images/icon_category.png"
 import IconSettings from "../assets/images/icon-settings.png"
 import IconAbout from "../assets/images/icon_about.png"
-import { TCategories, TFocusSectionInput, TFocustabsData, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
+import { TCategories, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
 
-
-const focusSectionInput: TFocusSectionInput[] = [
-    {
-        "title": "Focus time",
-        "type": "number",
-        "name": "focus-time",
-        "description": "Set the desired time to focus. Sites in your focus mode list will be blocked.",
-        "min": 10,
-        "max": 999,
-        "value": 25,
-        "unit": "Minutes"
-    },
-    {
-        "title": "Break time",
-        "type": "number",
-        "name": "break-time",
-        "description": "Set the desired break time and freely visit those websites from your list.",
-        "min": 1,
-        "max": 60,
-        "value": 5,
-        "unit": "Minutes"
-    },
-    {
-        "title": "Number of cycles",
-        "type": "number",
-        "name": "number-of-cycles",
-        "description": "The number of cycles of focus time and breaks you wish to run automatically.",
-        "min": 1,
-        "max": 48,
-        "value": 2,
-        "unit": "Cycles"
-    }
-]
 
 const navigationbarData: TNavigationbarData[] = [
     {
@@ -205,7 +172,6 @@ const settingsData: TSetting[] = [
 ]
 
 export {
-    focusSectionInput,
     navigationbarData,
     scheduleData,
     categoriesData,
