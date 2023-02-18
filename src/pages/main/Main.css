@@ -15,9 +15,33 @@
 .container__main-section .section {
     height: 100%;
     width: 100%;
-    display: none;
+    display: flex;
 }
 
-.container__main-section .section.active {
+.container__main-section .warning {
+    height: 100%;
+    width: 100%;
+    font-size: 1.5rem;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+}
+
+.container__main-section .warning>div {
+    display: block;
+    text-align: center;
+}
+
+.container__main-section .warning span {
+    margin: 0 4px;
+    padding: 0px 4px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(78, 147, 223);
+}
+
+.container__main-section .warning span.settings:hover {
+    border-bottom: 1px solid rgb(78, 147, 223);
 }

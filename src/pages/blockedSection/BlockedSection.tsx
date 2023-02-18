@@ -113,7 +113,7 @@ function BlockedSection({ classname }: TCustomClassName) {
                                     />
                                     <PButton
                                         classname={"edit-list-btn"}
-                                        title={"Edit block list"}
+                                        title={"Settings"}
                                         clickEventHandler={openOptions}
                                     />
                                 </div>
