@@ -1,6 +1,7 @@
 import React from 'react'
 import "./CoverUpSection.css"
 import backgroundBlocksitesGif from "../../../../assets/images/background-blocksites.gif"
+import { openOptions } from '../../../../utility/utility'
 
 function CoverUpSection({ title }: any) {
     return (
@@ -14,6 +15,12 @@ function CoverUpSection({ title }: any) {
                     {title}
                 </span>
             </div>
+            <span
+                className="settings-option"
+                onClick={() => openOptions()}
+            >
+                settings
+            </span>
         </div>
     )
 }
