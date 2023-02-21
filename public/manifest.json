@@ -20,7 +20,8 @@
     "activeTab",
     "storage",
     "alarms",
-    "notifications"
+    "notifications",
+    "topSites"
   ],
   "background": {
     "service_worker": "js/background.js"
