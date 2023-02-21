@@ -1,7 +1,7 @@
 {
   "name": "focus",
   "version": "0.1.0",
-  "description": "Simple Procrastination Blocker",
+  "description": "A simple chrome extension to block procrastination",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -10,17 +10,18 @@
     "clean": "rimraf dist",
     "style": "prettier --write \"src/**/*.{ts,tsx}\""
   },
-  "author": "",
+  "author": "nikhil_varavadekar",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/nikhilVaravadekar15/focus.git"
   },
   "dependencies": {
     "react": "^17.0.1",
-    "react-countdown-circle-timer": "^3.1.0",
     "react-dom": "^17.0.1",
-    "react-toastify": "^9.1.1"
+    "react-toastify": "^9.1.1",
+    "mui-chips-input": "^1.3.2",
+    "react-countdown-circle-timer": "^3.1.0"
   },
   "devDependencies": {
     "@types/chrome": "0.0.158",
@@ -31,7 +32,6 @@
     "css-loader": "^6.7.2",
     "file-loader": "^6.2.0",
     "glob": "^7.1.6",
-    "mui-chips-input": "^1.3.2",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2 ",
     "style-loader": "^3.3.1",
