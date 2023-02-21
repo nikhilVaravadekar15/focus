@@ -19,9 +19,15 @@ chrome.runtime.onInstalled.addListener(() => {
     }
   })
   chrome.storage.sync.set({ ...data });
-  console.log('%c allow-in-incognito ', 'background: black; color: white; font-size:16px;');
+  console.log('%c allowed-in-incognito ', 'background: black; color: white; font-size:16px;');
 })
 
+chrome.runtime.setUninstallURL(
+  "https://github.com/nikhilVaravadekar15/focus",
+  () => {
+    console.log('%c extension uninstalled ', 'background: red; color: white; font-size:16px;');
+  }
+)
 
 chrome.runtime.onStartup.addListener(() => {
   /**
@@ -52,16 +58,18 @@ chrome.alarms.onAlarm.addListener((alarm: any) => {
     let status: boolean = result["focusModeStatus"]
     let current: number = result["focusModeCurrent"]
     const details: TFocusModeDetails = result["focusModeDetails"]
-    if (status && current <= details["breakTime"]) {
-      console.log(`break-time ${current}`)
-
-      current = current + 1
-      createAlarm(Object.keys(details)[1], details["breakTime"])
-      showNotification(Object.keys(details)[1], "basic", "Take a break!!", false)
-    } else {
-      status = !status
-      current = 1
-    }
+    // if (status && current <= details["breakTime"]) {
+    //   current = current + 1
+    //   createAlarm(Object.keys(details)[1], details["breakTime"])
+    //   showNotification(Object.keys(details)[1], "basic", "Take a break!!", false)
+    // } else {
+    //   status = !status
+    //   current = 1
+    // }
+    // chrome.storage.sync.set({
+    //   "focusModeStatus": status,
+    //   "focusModeCurrent": current
+    // })
   })
 })
 

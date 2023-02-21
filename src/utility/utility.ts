@@ -205,8 +205,7 @@ export function createAlarm(title: string, value: number) {
     chrome.alarms.create(
         title,
         {
-            // "delayInMinutes": value
-            "delayInMinutes": 1
+            "delayInMinutes": value
         }
     )
 }
