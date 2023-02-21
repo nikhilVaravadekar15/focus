@@ -1,4 +1,5 @@
 import React from 'react'
+import TopSites from './component/topSites/TopSites'
 import "./Insights.css"
 
 function Insights() {
@@ -10,16 +11,18 @@ function Insights() {
                     <div className="Insights__container">
                         {/* header  */}
                         <div className="header">
-                            <div className="Insights-container__header">
-                                <div className="header__titles">
-                                    <h2>Insights</h2>
-                                </div>
+                            <div className="header__titles">
+                                <h2>Insights</h2>
                             </div>
                         </div>
                         {/* body */}
                         <div className="Insights-container__body">
-                            <div className="body__graph"></div>
-                            <div className="body__topsites"></div>
+                            <div className="body__graph">
+                                graph
+                            </div>
+                            <div className="body__topsites">
+                                <TopSites />
+                            </div>
                         </div>
                     </div>
                 </div>
