@@ -1,7 +1,7 @@
 /*global chrome*/
 
 import { createAlarm, showNotification, validateCurrentOrigin } from "./utility/utility";
-import { categoriesData, scheduleData, settingsData } from "./data/Data";
+import { data } from "./data/Data";
 
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -17,26 +17,7 @@ chrome.runtime.onInstalled.addListener(() => {
       });
     }
   })
-  chrome.storage.sync.set({
-    "mainActive": true,
-    "navigation": 0,
-    "redirectUrl": "redirect.html",
-    "focusMode": {
-      "status": false,
-      "current": 1,
-      "details": {
-        "focusTime": 25,
-        "breakTime": 5,
-        "numberOfCycles": 2
-      }
-    },
-    "scheduleData": scheduleData,
-    "categoriesData": categoriesData,
-    "settingsData": settingsData,
-    "blockByWords": [],
-    "blockedWebsites": [],
-    "focusBlockList": []
-  });
+  chrome.storage.sync.set({ ...data });
   console.log('%c allow-in-incognito ', 'background: black; color: white; font-size:16px;');
 })
 
@@ -47,26 +28,7 @@ chrome.runtime.onStartup.addListener(() => {
    */
   chrome.storage.sync.get(["mainActive", "navigation", "redirectUrl", "focusMode", "scheduleData", "categoriesData", "settingsData", "blockByWords", "blockedWebsites"], (result) => {
     if (result === undefined || result == null) {
-      chrome.storage.sync.set({
-        "mainActive": true,
-        "navigation": 0,
-        "redirectUrl": "redirect.html",
-        "focusMode": {
-          "status": false,
-          "current": 1,
-          "details": {
-            "focusTime": 25,
-            "breakTime": 5,
-            "numberOfCycles": 2
-          }
-        },
-        "scheduleData": scheduleData,
-        "categoriesData": categoriesData,
-        "settingsData": settingsData,
-        "blockByWords": [],
-        "blockedWebsites": [],
-        "focusBlockList": []
-      });
+      chrome.storage.sync.set({ ...data });
     }
   });
   console.log('%c Chrome onStartup ', 'background: black; color: yellow; font-size:16px;');

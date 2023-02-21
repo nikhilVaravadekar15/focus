@@ -171,9 +171,31 @@ const settingsData: TSetting[] = [
     }
 ]
 
+const data: any = {
+    "mainActive": true,
+    "navigation": 0,
+    "redirectUrl": "redirect.html",
+    "focusMode": {
+        "status": false,
+        "current": 1,
+        "details": {
+            "focusTime": 25,
+            "breakTime": 5,
+            "numberOfCycles": 2
+        }
+    },
+    "scheduleData": scheduleData,
+    "categoriesData": categoriesData,
+    "settingsData": settingsData,
+    "blockByWords": [],
+    "blockedWebsites": [],
+    "focusBlockList": []
+}
+
 export {
     navigationbarData,
     scheduleData,
     categoriesData,
-    settingsData
+    settingsData,
+    data
 }
