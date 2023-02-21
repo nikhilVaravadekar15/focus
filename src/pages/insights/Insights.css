@@ -1,0 +1,79 @@
+.Insights {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+/* CategoriesSites section */
+.Insights .section {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    padding: 32px;
+    transition: 0.5s;
+}
+
+.Insights__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* container__Insights-sites header */
+.Insights__container .header {
+    width: 100%;
+    height: 112px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Insights__container .Insights-container__body {
+    width: 100%;
+    height: calc(100% - 112px);
+}
+
+.Insights__container .Insights-container__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Insights__container .Insights-container__header .buttons .single-button {
+    height: 100%;
+}
+
+.Insights__container .Insights-container__header .header__titles h2 {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: rgb(33, 33, 33);
+    text-transform: capitalize;
+}
+
+/* container__Insights-sites body */
+.Insights-container__body {
+    flex-grow: 1;
+    height: 100%;
+    border-radius: 18px;
+    border: 1px solid rgb(205, 205, 205);
+}
+
+.Insights-container__body .body__graph {
+    gap: 12px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-right: 1px solid rgb(205, 205, 205);
+}
+
+.Insights-container__body .body__topsites {
+    width: 50%;
+    height: 100%;
+}

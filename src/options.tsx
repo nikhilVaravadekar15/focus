@@ -11,6 +11,7 @@ import Categories from "./pages/categories/Categories";
 import Settings from "./pages/settings/Settings";
 import { pageContext, mainActiveContext, redirectContext, scheduleContext } from "./context/context";
 import FocusMode from "./pages/focusMode/FocusMode";
+import Insights from "./pages/insights/Insights";
 
 
 function Options() {
@@ -86,7 +87,7 @@ function Options() {
                 </div>
                 <div id="/insights"
                   className={`options_section ${currentTab === 2 && "active"}`}>
-                  insights
+                  <Insights />
                 </div>
                 <div id="/block-by-words"
                   className={`options_section ${currentTab === 3 && "active"}`}>
