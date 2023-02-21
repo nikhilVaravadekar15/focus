@@ -3,38 +3,25 @@ import "./FocusMode.css"
 import Timer from '../../components/timer/Timer'
 import Focusio from './component/focusio/Focusio'
 import FocusBlockList from './component/FocusBlockList/FocusBlockList'
+import { TFocusModeDetails } from '../../types/types'
 
-// focusSectionInput
-export type TFocusSectionInput = {
-    title: string
-    type: string
-    name: string
-    description: string
-    min: number
-    max: number
-    value: number
-    unit: string
-}
 
 function FocusMode() {
 
     const [status, setStatus] = useState<boolean>(false);
-    const [tempStatus, setTempStatus] = useState<boolean>(false);
-    const [duration, setDuration] = useState<number>(0);
     const [current, setCurrent] = useState<number>(1);
-    const [focusArray, setFocusArray] = useState<TFocusSectionInput[]>([]);
+    const [duration, setDuration] = useState<number>(1);
+    const [details, setDetails] = useState<TFocusModeDetails>({
+        "focusTime": 25,
+        "breakTime": 5,
+        "numberOfCycles": 2
+    });
 
     useEffect(() => {
         chrome.storage.sync.get(["focusMode"], (result: any) => {
-            const focusArray: TFocusSectionInput[] = result["focusMode"]["focusArray"]
-            setFocusArray(focusArray)
             setStatus(result["focusMode"]["status"])
-            for (let index = 0; index < focusArray.length; index++) {
-                const element: TFocusSectionInput = focusArray[index];
-                if (element["name"] === "focus-time") {
-                    setDuration(element["value"] * 60)
-                }
-            }
+            setCurrent(result["focusMode"]["current"])
+            setDetails(result["focusMode"]["details"])
         })
     }, [])
 
@@ -42,36 +29,49 @@ function FocusMode() {
         chrome.storage.sync.set({
             "focusMode": {
                 "status": status,
-                "tempStatus": tempStatus,
-                "current": 1,
-                "focusArray": focusArray
+                "current": current,
+                "details": details
             }
         })
-    }, [status, focusArray])
+    }, [status, details])
 
     function handleOnChange(event: any): void {
-        let updatedFocusArray: TFocusSectionInput[] = []
-        setFocusArray((prevData: TFocusSectionInput[]) => {
-            updatedFocusArray = [...prevData]
-            for (let index = 0; index < updatedFocusArray.length; index++) {
-                const element: TFocusSectionInput = updatedFocusArray[index];
-                if (element["name"] === event.target.name &&
-                    element["min"] <= event.target.value &&
-                    event.target.value <= element["max"]
-                ) {
-                    element["value"] = event.target.value
-                    if (element["name"] === "focus-time") {
-                        setDuration(event.target.value * 60)
-                    }
-                }
+        const name: string = event.target.name
+        let value: number = event.target.value
+        if (name === "focusTime") {
+            if (value < 10) {
+                value = 10
             }
-            return updatedFocusArray
+            if (value > 999) {
+                value = 999
+            }
+        }
+        if (name === "breakTime") {
+            if (value < 1) {
+                value = 1
+            }
+            if (value > 60) {
+                value = 60
+            }
+        }
+        if (name === "numberOfCycles") {
+            if (value < 1) {
+                value = 1
+            }
+            if (value > 48) {
+                value = 48
+            }
+        }
+        setDetails((prevData: TFocusModeDetails) => {
+            return {
+                ...prevData,
+                [name]: value
+            }
         })
     }
 
     function handleFocusMode(event: any): void {
         setStatus(true)
-        setTempStatus(true)
         chrome.runtime.sendMessage({
             type: "notification-start-focus-mode"
         })
@@ -98,6 +98,7 @@ function FocusMode() {
                                 !status ? (
                                     <div className="body__options">
                                         <Focusio
+                                            details={details}
                                             handleOnChange={handleOnChange}
                                             handleFocusMode={handleFocusMode}
                                         />

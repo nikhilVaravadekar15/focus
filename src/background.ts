@@ -23,9 +23,12 @@ chrome.runtime.onInstalled.addListener(() => {
     "redirectUrl": "redirect.html",
     "focusMode": {
       "status": false,
-      "tempStatus": false,
       "current": 1,
-      "focusArray": []
+      "details": {
+        "focusTime": 25,
+        "breakTime": 5,
+        "numberOfCycles": 2
+      }
     },
     "scheduleData": scheduleData,
     "categoriesData": categoriesData,
@@ -50,9 +53,12 @@ chrome.runtime.onStartup.addListener(() => {
         "redirectUrl": "redirect.html",
         "focusMode": {
           "status": false,
-          "tempStatus": false,
           "current": 1,
-          "focusArray": []
+          "details": {
+            "focusTime": 25,
+            "breakTime": 5,
+            "numberOfCycles": 2
+          }
         },
         "scheduleData": scheduleData,
         "categoriesData": categoriesData,

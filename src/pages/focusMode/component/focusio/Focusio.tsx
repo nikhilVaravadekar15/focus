@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import "./Focusio.css"
+import { TFocusModeDetails } from '../../../../types/types'
 
 type TFocusio = {
+    details: TFocusModeDetails
     handleOnChange: (event: any) => void
     handleFocusMode: (event: any) => void
 }
 
-function Focusio({ handleOnChange, handleFocusMode }: TFocusio) {
+function Focusio({ details, handleOnChange, handleFocusMode }: TFocusio) {
     return (
         <div className="Focusio">
             <div className="options__focus-inputs">
@@ -22,11 +24,11 @@ function Focusio({ handleOnChange, handleFocusMode }: TFocusio) {
                             <div className="time__input">
                                 <div className="input-area">
                                     <input
-                                        type={'number'}
-                                        name={"focus-time"}
+                                        type={"number"}
+                                        name={"focusTime"}
                                         min={10}
                                         max={999}
-                                        value={25}
+                                        value={details.focusTime}
                                         onChange={handleOnChange}
                                     />
                                 </div>
@@ -45,11 +47,11 @@ function Focusio({ handleOnChange, handleFocusMode }: TFocusio) {
                             <div className="time__input">
                                 <div className="input-area">
                                     <input
-                                        type={'number'}
-                                        name={"break-time"}
+                                        type={"number"}
+                                        name={"breakTime"}
                                         min={1}
                                         max={60}
-                                        value={5}
+                                        value={details.breakTime}
                                         onChange={handleOnChange}
                                     />
                                 </div>
@@ -68,11 +70,11 @@ function Focusio({ handleOnChange, handleFocusMode }: TFocusio) {
                             <div className="time__input">
                                 <div className="input-area">
                                     <input
-                                        type={'number'}
-                                        name={"number-of-cycles"}
+                                        type={"number"}
+                                        name={"numberOfCycles"}
                                         min={1}
                                         max={48}
-                                        value={2}
+                                        value={details.numberOfCycles}
                                         onChange={handleOnChange}
                                     />
                                 </div>

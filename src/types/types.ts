@@ -59,7 +59,7 @@ export type TBlockedWebsite = {
 }
 
 // focus mode details
-export type TfocusMode = {
+export type TFocusModeDetails = {
     focusTime: number
     breakTime: number
     numberOfCycles: number
