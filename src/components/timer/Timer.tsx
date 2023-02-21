@@ -5,16 +5,15 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 type TTimer = {
     counter: number
     cycles: number
-    focus_time: number
     duration: number
 }
 
-function Timer({ counter, cycles, focus_time, duration }: TTimer) {
+function Timer({ counter, cycles, duration }: TTimer) {
 
     return (
         <div className="Timer">
             <div className="status">
-                 of {cycles} cycles | Focus for 10 minutes
+                {counter} of {cycles} cycles | Focus for {duration / 60} minutes
             </div>
             <div className="progress">
                 <CountdownCircleTimer
@@ -23,7 +22,7 @@ function Timer({ counter, cycles, focus_time, duration }: TTimer) {
                     strokeWidth={12}
                     colors={"#2596be"}
                 >
-                    {Counter}
+                    {CounterTime}
                 </CountdownCircleTimer>
             </div>
             <div className="helper-text">
@@ -37,10 +36,10 @@ function Timer({ counter, cycles, focus_time, duration }: TTimer) {
     )
 }
 
-function Counter({ remainingTime }: any) {
+function CounterTime({ remainingTime }: any) {
     let hours: number = Math.floor(remainingTime / 3600)
     let minutes: number = Math.floor((remainingTime % 3600) / 60)
-    const seconds: number = remainingTime % 60
+    let seconds: number = remainingTime % 60
 
     return (
         <div className="Counter">

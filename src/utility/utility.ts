@@ -206,6 +206,7 @@ export function createAlarm(title: string, value: number) {
         title,
         {
             // "delayInMinutes": value
+            "delayInMinutes": 1
         }
     )
 }

@@ -1,7 +1,8 @@
 /*global chrome*/
 
-import { createAlarm, showNotification, validateCurrentOrigin } from "./utility/utility";
 import { data } from "./data/Data";
+import { TFocusModeDetails } from "./types/types";
+import { createAlarm, showNotification, validateCurrentOrigin } from "./utility/utility";
 
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -39,63 +40,28 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request["type"] === "notification-validate-url") {
     validateCurrentOrigin(request["message"]["origin"])
   }
-  if (request["type"] === "notification-start-focus-mode") {
-
-    chrome.storage.sync.get(["focusMode"], (result: any) => {
-      const status: boolean = result["focusMode"]["status"]
-      const current: number = result["focusMode"]["current"]
-      const focusItem = result["focusMode"]["focusArray"][0]
-      if (focusItem["name"] === "focus-time" && status) {
-        createAlarm(focusItem["name"], focusItem["value"])
-        showNotification(focusItem["title"], "basic", "Stay focued! Sites in your focus mode list will be blocked.", false)
-      }
-    })
-
-  }
   sendResponse();
 });
 
 chrome.alarms.onAlarm.addListener((alarm: any) => {
   if (alarm["name"] === "focus-time") {
-    console.log("focus-time alarm cleared")
     chrome.alarms.clear("focus-time")
+    console.log("focus-time alarm cleared")
   }
-  chrome.storage.sync.get(["focusMode"], (result: any) => {
-    console.log(result)
-    let status: boolean = result["focusMode"]["status"]
-    let tempStatus: boolean = result["focusMode"]["tempStatus"]
-    let current: number = result["focusMode"]["current"]
-    const breakItem = result["focusMode"]["focusArray"][1]
-    const numberOfCyclesItem = result["focusMode"]["focusArray"][2]
+  chrome.storage.sync.get(["focusModeStatus", "focusModeCurrent", "focusModeDetails"], (result: any) => {
+    let status: boolean = result["focusModeStatus"]
+    let current: number = result["focusModeCurrent"]
+    const details: TFocusModeDetails = result["focusModeDetails"]
+    if (status && current <= details["breakTime"]) {
+      console.log(`break-time ${current}`)
 
-    if (breakItem["name"] === "break-time" && status) {
-
-      console.log("break-time0")
-
-      if (numberOfCyclesItem["value"] >= current && tempStatus) {
-
-        console.log("numberOfCyclesItem . break-time1")
-
-        current = current + 1
-        tempStatus = !tempStatus
-        createAlarm(breakItem["name"], breakItem["value"])
-        showNotification(breakItem["title"], "basic", "Take a break!!", false)
-
-      } else {
-        status = !status
-        current = 1
-      }
+      current = current + 1
+      createAlarm(Object.keys(details)[1], details["breakTime"])
+      showNotification(Object.keys(details)[1], "basic", "Take a break!!", false)
+    } else {
+      status = !status
+      current = 1
     }
-
-    chrome.storage.sync.set({
-      "focusMode": {
-        "status": status,
-        "tempStatus": tempStatus,
-        "current": current,
-        "focusArray": []
-      }
-    })
-
   })
 })
 

@@ -4,13 +4,13 @@ import Timer from '../../components/timer/Timer'
 import Focusio from './component/focusio/Focusio'
 import FocusBlockList from './component/FocusBlockList/FocusBlockList'
 import { TFocusModeDetails } from '../../types/types'
+import { createAlarm, showNotification } from '../../utility/utility'
 
 
 function FocusMode() {
 
     const [status, setStatus] = useState<boolean>(false);
     const [current, setCurrent] = useState<number>(1);
-    const [duration, setDuration] = useState<number>(1);
     const [details, setDetails] = useState<TFocusModeDetails>({
         "focusTime": 25,
         "breakTime": 5,
@@ -18,22 +18,20 @@ function FocusMode() {
     });
 
     useEffect(() => {
-        chrome.storage.sync.get(["focusMode"], (result: any) => {
-            setStatus(result["focusMode"]["status"])
-            setCurrent(result["focusMode"]["current"])
-            setDetails(result["focusMode"]["details"])
+        chrome.storage.sync.get(["focusModeStatus", "focusModeCurrent", "focusModeDetails"], (result: any) => {
+            setStatus(result["focusModeStatus"])
+            setCurrent(result["focusModeCurrent"])
+            setDetails(result["focusModeDetails"])
         })
     }, [])
 
     useEffect(() => {
-        chrome.storage.sync.set({
-            "focusMode": {
-                "status": status,
-                "current": current,
-                "details": details
-            }
-        })
-    }, [status, details])
+        chrome.storage.sync.set({ "focusModeStatus": status })
+    }, [status])
+
+    useEffect(() => {
+        chrome.storage.sync.set({ "focusModeDetails": details })
+    }, [details])
 
     function handleOnChange(event: any): void {
         const name: string = event.target.name
@@ -72,9 +70,7 @@ function FocusMode() {
 
     function handleFocusMode(event: any): void {
         setStatus(true)
-        chrome.runtime.sendMessage({
-            type: "notification-start-focus-mode"
-        })
+        manageFocusModeAlarms()
     }
 
     return (
@@ -109,8 +105,7 @@ function FocusMode() {
                                         <Timer
                                             counter={current}
                                             cycles={2}
-                                            focus_time={1}
-                                            duration={duration}
+                                            duration={status ? details["focusTime"] * 60 : details["breakTime"] * 60}
                                         />
                                     </div>
                                 )
@@ -121,6 +116,14 @@ function FocusMode() {
             </div>
         </>
     )
+}
+
+function manageFocusModeAlarms() {
+    chrome.storage.sync.get(["focusModeDetails"], (result: any) => {
+        const details: TFocusModeDetails = result["focusModeDetails"]
+        createAlarm(Object.keys(details)[0], details["focusTime"])
+        showNotification(Object.keys(details)[0], "basic", "Stay focued! Sites in your focus mode list will be blocked.", false)
+    })
 }
 
 export default FocusMode
