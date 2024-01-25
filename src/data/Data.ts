@@ -1,9 +1,7 @@
 import IconBlocked from "../assets/images/icon-banned.png"
-import IconFocus from "../assets/images/icon-focus.png"
 import IconInsight from "../assets/images/icon-insight.png"
 import IconBlockByWords from "../assets/images/icon_add-words.png"
 import IconCategories from "../assets/images/icon_category.png"
-import IconSettings from "../assets/images/icon-settings.png"
 import IconAbout from "../assets/images/icon_about.png"
 import { TCategories, TNavigationbarData, TScheduleData, TSetting } from "../types/types"
 
@@ -13,11 +11,6 @@ const navigationbarData: TNavigationbarData[] = [
         "image": IconBlocked,
         "title": "Block Sites",
         "url": "#/block-sites"
-    },
-    {
-        "image": IconFocus,
-        "title": "Focus Mode",
-        "url": "#/focus-mode"
     },
     {
         "image": IconInsight,
@@ -33,11 +26,6 @@ const navigationbarData: TNavigationbarData[] = [
         "image": IconCategories,
         "title": "Categories",
         "url": "#/categories"
-    },
-    {
-        "image": IconSettings,
-        "title": "Settings",
-        "url": "#/settings"
     },
     {
         "image": IconAbout,

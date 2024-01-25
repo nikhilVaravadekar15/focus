@@ -17,11 +17,11 @@ function Insights() {
                         </div>
                         {/* body */}
                         <div className="Insights-container__body">
-                            <div className="body__graph">
-                                graph
-                            </div>
                             <div className="body__topsites">
                                 <TopSites />
+                            </div>
+                            <div className="body__graph">
+                                #TODO:  graph
                             </div>
                         </div>
                     </div>

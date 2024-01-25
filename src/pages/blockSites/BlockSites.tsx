@@ -11,7 +11,7 @@ import BlockSubstitute from '../../components/blockSubstitute/BlockSubstitute'
 import { validURL, isAvailableInChromePaths, showToast } from '../../utility/utility'
 import { TBlockedWebsite, TSnackbar } from '../../types/types'
 import { ToastContainer, toast } from 'react-toastify';
-import { redirectContext, scheduleContext } from '../../context/context';
+import { redirectContext } from '../../context/context';
 
 function BlockSites() {
 
@@ -19,7 +19,6 @@ function BlockSites() {
   const [substitute, setSubstitute] = useState<boolean>(false)
   const [blockList, setBlockList] = useState<TBlockedWebsite[]>([])
   const { redirectFlag, setRedirectFlagStatus } = useContext(redirectContext)
-  const { scheduleFlag, setScheduleFlagStatus } = useContext(scheduleContext)
 
   useEffect(() => {
     if (blockList.length != 0) {
@@ -134,9 +133,6 @@ function BlockSites() {
                 <div className="buttons">
                   <div className="single-button">
                     <DButton icon={IconRedirect} title={"Redirect"} handler={setRedirectFlagStatus} />
-                  </div>
-                  <div className="single-button">
-                    <DButton icon={IconSchedule} title={"Schedule"} handler={setScheduleFlagStatus} />
                   </div>
                 </div>
               </div>

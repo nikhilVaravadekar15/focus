@@ -6,12 +6,9 @@ import BlockSites from "./pages/blockSites/BlockSites";
 import About from "./pages/about/About";
 import BlockByWords from "./pages/blockByWords/BlockByWords";
 import Redirect from "./components/redirect/Redirect";
-import Schedule from "./components/schedule/Schedule";
 import Categories from "./pages/categories/Categories";
-import Settings from "./pages/settings/Settings";
-import { pageContext, mainActiveContext, redirectContext, scheduleContext } from "./context/context";
-import FocusMode from "./pages/focusMode/FocusMode";
 import Insights from "./pages/insights/Insights";
+import { pageContext, mainActiveContext, redirectContext } from "./context/context";
 
 
 function Options() {
@@ -65,49 +62,36 @@ function Options() {
     <pageContext.Provider value={{ currentTab, setMenuItemClick }}>
       <mainActiveContext.Provider value={{ mainActive: mainActiveStatus, setMainActiveFlagStatus: setMainActiveStatusFlag }}>
         <redirectContext.Provider value={{ redirectFlag, setRedirectFlagStatus }}>
-          <scheduleContext.Provider value={{ scheduleFlag, setScheduleFlagStatus }}>
-            <div className="Options">
-              <div className={redirectFlag || scheduleFlag ? "options__navbar blur" : "options__navbar"}>
-                <Navigation />
+          <div className="Options">
+            <div className={redirectFlag ? "options__navbar blur" : "options__navbar"}>
+              <Navigation />
+            </div>
+            <>
+              <Redirect />
+            </>
+            <div className={redirectFlag || scheduleFlag || !mainActiveStatus ? "options__container blur" : "options__container"}>
+              <div id="/block-sites"
+                className={`options_section ${currentTab === 0 && "active"}`}>
+                <BlockSites />
               </div>
-              <>
-                <Redirect />
-              </>
-              <>
-                <Schedule />
-              </>
-              <div className={redirectFlag || scheduleFlag || !mainActiveStatus ? "options__container blur" : "options__container"}>
-                <div id="/block-sites"
-                  className={`options_section ${currentTab === 0 && "active"}`}>
-                  <BlockSites />
-                </div>
-                <div id="/focus-mode"
-                  className={`options_section ${currentTab === 1 && "active"}`}>
-                  <FocusMode />
-                </div>
-                <div id="/insights"
-                  className={`options_section ${currentTab === 2 && "active"}`}>
-                  <Insights />
-                </div>
-                <div id="/block-by-words"
-                  className={`options_section ${currentTab === 3 && "active"}`}>
-                  <BlockByWords />
-                </div>
-                <div id="/categories"
-                  className={`options_section ${currentTab === 4 && "active"}`}>
-                  <Categories />
-                </div>
-                <div id="/settings"
-                  className={`options_section ${currentTab === 5 && "active"}`}>
-                  <Settings />
-                </div>
-                <div id="/about"
-                  className={`options_section ${currentTab === 6 && "active"}`}>
-                  <About />
-                </div>
+              <div id="/insights"
+                className={`options_section ${currentTab === 1 && "active"}`}>
+                <Insights />
+              </div>
+              <div id="/block-by-words"
+                className={`options_section ${currentTab === 2 && "active"}`}>
+                <BlockByWords />
+              </div>
+              <div id="/categories"
+                className={`options_section ${currentTab === 3 && "active"}`}>
+                <Categories />
+              </div>
+              <div id="/about"
+                className={`options_section ${currentTab === 4 && "active"}`}>
+                <About />
               </div>
             </div>
-          </scheduleContext.Provider>
+          </div>
         </redirectContext.Provider>
       </mainActiveContext.Provider>
     </pageContext.Provider >

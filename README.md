@@ -44,7 +44,3 @@ the build is minified and the filenames include the hashes. Your app is ready to
 
 ## #TODO:
 - [ ] insights
-- [ ] focusmode timer
-- [ ] settings
-- [ ] schedule
-

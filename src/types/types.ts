@@ -93,12 +93,6 @@ export type TRedirect = {
     setRedirectFlagStatus: (flag: boolean) => void
 }
 
-// schedule
-export type TSchedule = {
-    scheduleFlag: boolean
-    setScheduleFlagStatus: (flag: boolean) => void
-}
-
 export type TMainActive = {
     mainActive: boolean
     setMainActiveFlagStatus: (flag: boolean) => void
